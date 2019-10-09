@@ -1,0 +1,5 @@
+Q2: find the sum of the biggest n items in the array
+
+Test function: 
+sum([2, 5, 1, 4, 3], 2)
+//9

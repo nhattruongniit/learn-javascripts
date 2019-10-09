@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>Responsive Grid Image</title>
+    <style type="text/css">
+        .row {
+            display: flex;
+            padding: 0 4px;
+            flex-wrap: wrap;
+        }
+        
+        .column {
+            flex: 24%;
+            padding: 0 4px;
+        }
+        
+        .column img {
+            width: 100%;
+            vertical-align: middle;
+            margin-top: 8px;
+        }
+        
+        @media screen and (max-width: 800px) {
+            .column {
+                flex: 50%;
+                max-width: 50%;
+            }
+        }
+        
+        @media screen and (max-width: 600px) {
+            .column {
+                flex: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="column">
+            <img src="images/wedding.jpg">
+            <img src="images/rocks.jpg">
+            <img src="images/falls2.jpg">
+            <img src="images/paris.jpg">
+            <img src="images/nature.jpg">
+            <img src="images/mist.jpg">
+            <img src="images/paris.jpg">
+        </div>
+        <div class="column">
+            <img src="images/underwater.jpg">
+            <img src="images/ocean.jpg">
+            <img src="images/wedding.jpg">
+            <img src="images/mountainskies.jpg">
+            <img src="images/rocks.jpg">
+            <img src="images/underwater.jpg">
+        </div>
+        <div class="column">
+            <img src="images/wedding.jpg">
+            <img src="images/rocks.jpg">
+            <img src="images/falls2.jpg">
+            <img src="images/paris.jpg">
+            <img src="images/nature.jpg">
+            <img src="images/mist.jpg">
+            <img src="images/paris.jpg">
+        </div>
+        <div class="column">
+            <img src="images/underwater.jpg">
+            <img src="images/ocean.jpg">
+            <img src="images/wedding.jpg">
+            <img src="images/mountainskies.jpg">
+            <img src="images/rocks.jpg">
+            <img src="images/underwater.jpg">
+        </div>
+    </div>
+
+</body>
+
+</html>

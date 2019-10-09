@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>Puzzle Words</title>
+    <style type="text/css">
+        .boxImg img {
+            display: inline-block;
+            vertical-align: top;
+            width: 49%
+        }
+
+        .box {
+            border: 1px solid #000;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            display:inline-block;
+        }
+
+        .c_chieuSang {
+            color: #f00;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="boxImg">
+        <img src="./images/course-puzzle1.jpg" />
+        <img src="./images/course-puzzle2.jpg" />
+    </div>
+
+    <div class="boxInput">
+        Words: <input type="text" id="inputWords" value="This is for JS Land"/> <br/>
+        Puzzle: <input type="text" id="inputPuzzle" value="5" /> <br/><br/>
+        <button type="text" id="btnGenerate">Generate</button><br/><br/>
+    </div>
+
+    <div id="container">
+
+    </div>
+    <script type="text/javascript">
+        // const btnGenerate = document.getElementById('btnGenerate');
+        // const words = document.getElementById('inputWords');
+        // const puzzleSize = document.getElementById('inputPuzzle');
+        // const container = document.getElementById('container');
+        
+        // btnGenerate.addEventListener('click', function() {
+        //     container.innerHTML = '';
+        //     let numberBox = puzzleSize.value * puzzleSize.value;
+        //     for (let i = 0; i < numberBox; i++) {
+        //         container.appendChild(generateBox(i))
+        //     }
+        //     const widthBox = document.getElementsByClassName('box')[0].clientWidth;
+        //     container.style.width = widthBox * puzzleSize.value + 15 + 'px';
+        // })
+
+        // function generateBox(number) {
+        //     var div = document.createElement('div');
+        //     var increa = number + 1;
+        //     var label = getRandomString(number);
+        //     var p = "<p>" + label + "</p>";
+            
+        //     div.classList.add('box');
+        //     div.innerHTML = p;
+
+        //     return div;
+        // }
+
+        // function getRandomNumber(min, max) {
+        //     return (
+        //         Math.floor(Math.random() * (Math.floor(max) - Math.floor(min) + 1 )) + Math.floor(min)
+        //     )
+        // }
+
+        // function getRandomString(strLength) {
+        //     let text = '';
+        //     const  possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        //     for (let i = 0; i < strLength; i++) {
+        //         text = possible.charAt(Math.floor(Math.random() * possible.length))
+        //     }
+
+        //     console.log(text)
+
+        //     return text;
+        // }
+        let str = "tao ne cu mi oii j nói cho tao biết cái gì đi";
+        let NUM = 15;
+        let ma = str.split(' ').map((item) => {
+            return item.length;
+        })
+        let max = Math.max(...ma);
+        NUM = NUM < max ? max : NUM;
+
+        let arr = str.split(' ').map((item) => {
+            return noiChuoi(item);
+        })
+
+        function noiChuoi(str) {
+            let chuoiSauKhiNoi = "";
+            let kyTuNoiChuoi = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+            if (str.length < NUM) {
+                while (chuoiSauKhiNoi.length < NUM) {
+                    chuoiSauKhiNoi += kyTuNoiChuoi[Math.floor(Math.random() * kyTuNoiChuoi.length)];
+                }
+                let chuoi = chuoiSauKhiNoi.slice(str.length);
+                let viTriNoi = Math.floor(Math.random() * chuoi.length);
+                let ketQua = chuoi.slice(0, viTriNoi) + str + chuoi.slice(viTriNoi);
+                return ketQua;
+            } else {
+                return str;
+            }
+        }
+
+        function render(arr) {
+            let table = document.createElement("table");
+            for (let i = 0; i < arr.length; i++) {
+                table.append(createTr(arr[i], i));
+            }
+            document.body.append(table);
+        }
+
+        function createTr(phanTu, index) {
+            let item = phanTu;
+            let vitriDau = phanTu.indexOf(str.split(' ')[index]);
+            let vitriCuoi = str.split(' ')[index].length + vitriDau;
+            let tr = document.createElement("tr");
+            for (let i = 0; i < item.length; i++) {
+                let td = document.createElement('td');
+                td.textContent = item[i];
+                if (vitriDau <= i && i < vitriCuoi) {
+                    td.className = "c_chieuSang";
+                }
+                tr.append(td);
+            }
+            return tr;
+        }
+
+        render(arr);
+    </script>
+</body>
+
+</html>

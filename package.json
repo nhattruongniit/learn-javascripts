@@ -1,0 +1,26 @@
+{
+  "name": "learn-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "apply.js",
+  "scripts": {
+    "start": "tsc typescript/main.ts && node typescript/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhattruongniit/learn-javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhattruongniit/learn-javascript/issues"
+  },
+  "homepage": "https://github.com/nhattruongniit/learn-javascript#readme",
+  "devDependencies": {
+    "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}

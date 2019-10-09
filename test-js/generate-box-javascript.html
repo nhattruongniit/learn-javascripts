@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Front End</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            margin: 4px;
+            width: 80px;
+            height: 80px;
+            background-color: gray;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        .box::before {
+            content: '';
+            width: 1px;
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .box span {
+            display: block;
+        }
+        
+        .box p {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        input {
+            width: 150px;
+        }
+        
+        [data-color='green'] {
+            background-color: green;
+        }
+        
+        [data-color='blue'] {
+            background-color: blue;
+        }
+        
+        [data-color='orange'] {
+            background-color: orange;
+        }
+        
+        [data-color='red'] {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="border-bottom:1px solid #262626; padding-bottom:10px;">
+        Number of boxes: <input type="number" min="1" max="128" id="inputNumber">
+        <button id="btnRender">Generate</button>
+    </div>
+
+    <div id="container">
+    </div>
+
+    <script type="text/javascript">
+        var wWindow = window.innerWidth;
+        var btnRender = document.getElementById('btnRender');
+        var inputNumber = document.getElementById('inputNumber');
+        var con = document.getElementById('container');
+        var n = 1;
+        var percentColors = ['green', 'blue', 'orange', 'red'];
+
+        btnRender.addEventListener('click', function(e) {
+            e.preventDefault();
+            con.innerHTML = '';
+
+            var value = inputNumber.value;
+
+            if (value > 129) return false;
+
+            for (var i = 0; i < value; i++) {
+                con.appendChild(generateBox(i));
+            }
+        });
+
+        con.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var target = e.target;
+            if (!target.matches('.box, .box *')) return false;
+
+            if (!target.matches('.box')) {
+                while (!target.matches('.box'))
+                    target = target.parentNode;
+            };
+
+            var countClick = target.dataset.clicked || 0;
+
+            countClick++;
+            this.dataset.totalClicked = parseInt((this.dataset.totalClicked || 0)) + 1;
+            target.dataset.clicked = countClick;
+            target.innerHTML = '<p>' + target.dataset.label + '<span>(' + countClick + 'clicks)</span>' + '</p>';
+
+
+            var totalClicked = this.dataset.totalClicked;
+            var childClicked = target.dataset.clicked;
+            var percent = Math.ceil((childClicked / totalClicked) * 100 / 25) - 1;
+            target.dataset.color = percentColors[percent];
+
+        }.bind(con));
+
+        function generateBox(i) {
+            var div = document.createElement("div");
+            var increa = i + 1;
+            var label = 'Box #' + increa;
+            var content = '<p>' + label + '</p>';
+
+            div.classList.add('box');
+            div.dataset.label = label;
+            div.innerHTML = content;
+
+            return div;
+        }
+    </script>
+
+</body>
+
+</html>

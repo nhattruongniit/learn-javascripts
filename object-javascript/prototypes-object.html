@@ -1,0 +1,33 @@
+<!-- https://medium.com/better-programming/prototypes-in-javascript-5bba2990e04b -->
+
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>Prototypes object in javascript</title>
+  </head>
+
+  <body>
+    <h1>Prototypes in JavaScript</h1>
+
+    <script type="text/javascript">
+      function Human(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fullName = function() {
+          return this.firstName + " " + this.lastName;
+        };
+      }
+
+      const person1 = new Human("Viral", "Koth");
+      Human.prototype.name = "Truong";
+      console.log(person1, Human.prototype);
+    </script>
+  </body>
+</html>

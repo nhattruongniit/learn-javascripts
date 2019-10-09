@@ -1,0 +1,4 @@
+truong knife 90 2
+truong pot 200 3
+nguyen waffte 120 6
+nguyen fish 150 7

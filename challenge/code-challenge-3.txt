@@ -1,0 +1,15 @@
+Q3: Write the function to calculate all the way to combine the quantity of each type of money to match total amount
+
+Test function: 
+
+const denominations = [
+{ moneyType: 500000, quantity: 2},
+{ moneyType: 200000, quantity: 6},
+{ moneyType: 100000, quantity: 8},
+{ moneyType: 50000, quantity: 3}
+];
+
+const amount = 850000;
+
+calculateDenomination(denominations, amount);
+//13

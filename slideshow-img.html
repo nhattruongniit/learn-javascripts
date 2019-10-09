@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>Slideshow Image</title>
+    <style type="text/css">
+        * {
+            box-sizing: border-box
+        }
+        /* Slideshow container */
+        
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+        /* Hide the images by default */
+        
+        .mySlides {
+            display: none;
+        }
+        /* Next & previous buttons */
+        
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+        /* Position the "next button" to the right */
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        /* On hover, add a black background color with a little bit see-through */
+        
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        /* Caption text */
+        
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+        /* Number text (1/3 etc) */
+        
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+        /* The dots/bullets/indicators */
+        
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        
+        .active,
+        .dot:hover {
+            background-color: #717171;
+        }
+        /* Fading animation */
+        
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        
+        @-webkit-keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+        
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+
+        #a{
+            position:relative;
+            width:200px;
+            height:200px;
+            background:red;
+        }
+
+        #b{
+            position: relative;
+            top:75px;
+            left:100px;
+            background:cyan;
+            width:75px;
+            height:100px;
+            z-index: 2;
+        }
+
+        #c{
+            position: relative;
+            background:white;
+            top:75px;
+            left:100px;
+            width:40px;
+            height:40px;
+            z-index: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src="images/1.jpg" style="width:100%">
+            <div class="text">Caption Text</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img src="images/2.jpg" style="width:100%">
+            <div class="text">Caption Two</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img src="images/3.jpg" style="width:100%">
+            <div class="text">Caption Three</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">4 / 4</div>
+            <img src="images/4.jpg" style="width:100%">
+            <div class="text">Caption Four</div>
+        </div>
+
+        <!-- Next and previous buttons -->
+        <div class="buttonArrow">
+            <a class="prev" onclick="showSlides()">&#10094;</a>
+            <a class="next" onclick="showSlides()">&#10095;</a>
+        </div>
+    </div>
+    <br>
+
+    <!-- The dots/circles -->
+    <div class="dots" style="text-align:center">
+    </div>
+
+    <div id="a">
+        <!-- <div id="b">
+            <div id="c"></div>
+        </div> -->
+        <div id="b"></div>
+        <div id="c"></div>
+        <div>dsadasd</div>
+    </div>
+   
+    <script type="text/javascript">
+        var slideIndex = 0;
+        var i, timeOut, note, textNote;
+        var slides = document.getElementsByClassName('mySlides');
+        var dots = document.getElementsByClassName('dots')[0];
+        var dot = document.getElementsByClassName('dot');
+        var buttonArrow = document.getElementsByClassName('buttonArrow')[0];
+
+        // If have 1 image, not slideshow
+        if (slides.length == 1) {
+            slides[slideIndex].style.display = 'block';
+            buttonArrow.style.display = 'none';
+        } else {
+            generateDot();
+            showSlides();
+        }
+
+        //Auto generation dots based on image
+        function generateDot() {
+            for (i = 0; i < slides.length; i++) {
+                note = document.createElement('span');
+                note.className = 'dot';
+                dots.appendChild(note);
+            }
+        }
+
+        function showSlides() {
+            clearTimeout(timeOut);
+
+            slideIndex++;
+
+            if (slideIndex > slides.length) slideIndex = 1;
+            if (slideIndex < 1) slideIndex = slides.length;
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+
+            for (i = 0; i < dot.length; i++) {
+                dot[i].className = dot[i].className.replace(' active', '');
+            }
+
+            slides[slideIndex - 1].style.display = 'block';
+            dot[slideIndex - 1].className += " active";
+
+            //timeOut = setTimeout(showSlides, 2000);
+        }
+    </script>
+</body>
+
+</html>

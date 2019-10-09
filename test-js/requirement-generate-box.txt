@@ -1,0 +1,36 @@
+Front-end
+It is NOT allowed to use any CSS/JS libraries or frameworks in the code
+
+Develop a web page (using HTML, CSS and JavaScript) with three requirements as below:
+
+Requirement 1:
+
+• Display a form with a label 'Number of boxes’ associated with a textbox that allows numeric value in range of 1 and 128 and a button with text 'Render'
+
+• Given user input value N into the textbox, when user clicks on 'Render' button, there are N boxes generated with text ‘Box #1', 'Box #2', ‘Box #N’… in turn. The box height is 64px and color is gray
+
+Requirement 2:
+
+• The page is responsive web design. Depend on minimum page width is 1px, 400px, 600px, 800px, 960px or 1080px there are maximum 1, 2, 3, 4, 6 or 12 buttons displayed in the same row
+
+• When user clicks on the box ‘Box #N’, there is a text “(X clicks)” displayed below the text ‘Box #N’. X is the times that the box was clicked
+
+Requirement 3:
+
+The margin of box is 4px and the text inside the box is centered vertically and horizontally
+When a box is clicked, the percent of clicks of every boxes would be changed, all boxes are required to automatically changed to a specific color as defined below:
+o 0% Gray
+
+o 1 - 25% Green
+
+o 26 - 50% Blue
+
+o 51 - 75% Orange
+
+o 76 - 100% Red
+
+Example:
+
+There are 7 boxes are displayed in a page that its width is less than 960px
+User clicked on Box #2 3 times, Box #3 once and Box #7 5 times
+Box #7 is in Orange color because it’s percent of clicks is 5 / (3+1+5) = 55.5%.

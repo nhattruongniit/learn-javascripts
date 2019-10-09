@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Front End</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            margin: 4px;
+            width: 80px;
+            height: 80px;
+            background-color: gray;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        .box::before {
+            content: '';
+            width: 1px;
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .box span {
+            display: block;
+        }
+        
+        .box p {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        input {
+            width: 150px;
+        }
+        
+        [data-color='green'] {
+            background-color: green;
+        }
+        
+        [data-color='blue'] {
+            background-color: blue;
+        }
+        
+        [data-color='orange'] {
+            background-color: orange;
+        }
+        
+        [data-color='red'] {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <label for="boxInput">Number of boxes: </label>
+        <input type="number" id="boxInput">
+        <button type="button" id="submitBtn">Submit</button>
+    </div>
+    <div class="boxes">
+    </div>
+
+    <script type="text/javascript">
+        const boxes = document.querySelector('.boxes');
+        const inputElement = document.querySelector('#boxInput');
+        const submitButton = document.querySelector('#submitBtn');
+        const count = [];
+
+        submitButton.addEventListener('click', generateBoxes);
+
+        function generateBoxes(event) {
+            event.preventDefault();
+            while (boxes.firstChild) {
+                boxes.removeChild(boxes.firstChild);
+            }
+
+            const numberOfBoxes = inputElement.value;
+
+            if (!numberOfBoxes || numberOfBoxes === 0) {
+                alert('Must be greater than 0');
+                return;
+            }
+
+            for (let i = 0; i < numberOfBoxes; i++) {
+                const newDiv = document.createElement('div');
+                newDiv.setAttribute('class', 'box');
+                newDiv.classList.add(i);
+                const boxText = document.createTextNode(`Box ${i + 1}`);
+                count[i] = 0;
+                const countSpan = document.createElement('span');
+                const clickCount = document.createTextNode(`${count[i]} click${count[i] > 1 ? 's' : ''}`);
+                countSpan.appendChild(clickCount);
+                newDiv.appendChild(boxText);
+                newDiv.appendChild(countSpan);
+                boxes.appendChild(newDiv);
+            }
+            boxes.childNodes.forEach(node => node.addEventListener('click', onBoxClick))
+        }
+
+        function onBoxClick(event) {
+            event.stopPropagation();
+
+            const box = event.target;
+            console.log(box);
+            const span = box.childNodes[1];
+            const index = box.classList[1];
+            console.log(isNaN(parseInt(index)));
+            if (!isNaN(parseInt(index))) {
+                count[index] += 1;
+            }
+            const clickCount = `${count[index]} click${count[index] > 1 ? 's' : ''}`;
+            span.innerHTML = clickCount;
+
+            console.log(count);
+        }
+    </script>
+
+</body>
+
+</html>
