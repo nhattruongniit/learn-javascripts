@@ -1,18 +1,19 @@
 function User() {
-  var username, password;
+  let username;
+  let password;
 
   function doLogin(user, pass) {
     username = user;
     password = pass;
-    console.log('login: ', username, password)
+    console.log("login: ", username, password);
   }
 
-  var publicAPI = {
+  const publicApi = {
     login: doLogin
   };
-  
-  return publicAPI;
+
+  return publicApi;
 }
 
-var fred = User();
-fred.login('truog', '123');
+const fred = new User();
+fred.login("fred", "123");
