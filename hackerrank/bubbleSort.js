@@ -1,27 +1,27 @@
 /* Practice -> Interview Preparation Kit -> Sorting -> Sorting: Bubble Sort */
-const arr = [6, 4, 1];
-const n = 3;
+const arr = [6, 4, 1, 5];
 let numSwaps = 0;
 let firstEle = 0;
 let lastEle = 0;
 
 const swap = () => {
-  for (let i = 0; i < n - 1; i++) {
-    if (arr[0] > arr[i + 1]) {
-      const tmp = arr[0];
-      arr[i] = arr[i + 1];
-      arr[i + 1] = tmp;
+  for(let i = 0; i < arr.length; i++) {
+    for(let j = 0; j < arr.length - 1; j++) {
+      if(arr[j] > arr[j + 1]) {
+        const tmp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = tmp;
+        numSwaps++;
+      }
     }
-    console.log(arr);
-
-    // if (arr[i] > arr[i + 1]) {
-    //   console.log(i);
-    //   arr[0] = arr[i + 1];
-    //   numSwaps++;
-    // }
   }
-
-  // console.log(arr, numSwaps);
+  return {
+    numSwaps,
+    firstEle: arr[0],
+    lastEle: arr[arr.length - 1]
+  }
 };
 
-swap();
+const result = swap();
+
+console.log(result)
