@@ -4,7 +4,6 @@ function Stack() {
   // properties and methods go here
   let items = [];
 
-
   /* Pushing elements to the stack
   - First method that we will implement is the push method.
   - This method is responsible for adding new elements to the stack.
@@ -12,7 +11,7 @@ function Stack() {
   */
   this.push = function(element) {
     items.push(element);
-  }
+  };
 
   /* Popping elements from the stack
   - Next, we are going to implement the pop method.
@@ -20,14 +19,14 @@ function Stack() {
   */
   this.pop = function(element) {
     return items.pop();
-  }
+  };
 
   /* Peeking the element from the top of the stack
   - We would like to know what the last item added to our stack.
   */
   this.peek = function() {
     return items[items.length - 1];
-  }
+  };
 
   /* Verifying if the stack is empty
   - Next is isEmpty method which returns true if the stack is empty.
@@ -35,11 +34,11 @@ function Stack() {
 
   this.isEmpty = function() {
     return items.length == 0;
-  }
+  };
 
   this.size = function() {
     return items.length;
-  }
+  };
 
   /* Clearing & printing the elements of the stack.
   - Finally, we are going to implement the clear method.
@@ -47,14 +46,12 @@ function Stack() {
   */
   this.clear = function() {
     items = [];
-  }
+  };
 
   this.print = function() {
     return items.toString();
-  }
-
+  };
 }
-
 
 let stack = new Stack();
 stack.push(5);
@@ -64,15 +61,16 @@ stack.push(15);
 stack.pop();
 stack.pop();
 
-console.log('list item: ',stack.print());
-console.log('last item pushed: ', stack.peek());
-console.log('stack empty: ', stack.isEmpty());
-console.log('stack size: ', stack.size());
+console.log("list item: ", stack.print());
+console.log("last item pushed: ", stack.peek());
+console.log("stack empty: ", stack.isEmpty());
+console.log("stack size: ", stack.size());
 
-
-/* TODO: convert decimal to binay ------_*/
+/* TODO: convert decimal to binary ------_*/
 function divideBy2(num) {
-  let binaryStack = new Stack(), rem, binaryString = '';
+  let binaryStack = new Stack(),
+    rem,
+    binaryString = "";
   while (num > 0) {
     rem = Math.floor(num % 2);
     binaryStack.push(rem);
@@ -89,7 +87,6 @@ let binaryA = divideBy2(decimal);
 
 console.log(`convert decimal is ${decimal} to binary is ${binaryA}`);
 
-
 /* TODO: convert decimal to octagonal, hexadecimal ------
 
 - from decimal to binary, the remainders will be 0 or 1.
@@ -101,7 +98,10 @@ console.log(`convert decimal is ${decimal} to binary is ${binaryA}`);
 */
 
 function baseConvert(num, base) {
-  let binaryStack = new Stack(), rem, binaryString = '', digits = '0123456789ABCDEF';
+  let binaryStack = new Stack(),
+    rem,
+    binaryString = "",
+    digits = "0123456789ABCDEF";
   while (num > 0) {
     rem = Math.floor(num % base);
     binaryStack.push(rem);
