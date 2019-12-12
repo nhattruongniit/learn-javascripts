@@ -11,18 +11,36 @@ her infinite string. There are 4 occurrences of a in the substring.
 
 */
 
-const string = 'abb';
+const str = "abba";
 const n = 10;
 
-const repeatString = (string, n) => {
-  const stringSplit = string.split('');
-  const stringSize = stringSplit.length;
-  const findLetterA = stringSplit.filter(val => val === 'a').length;
-  const repeat = Math.floor(n/stringSize);
-  const left = n - (repeat*stringSize);
-  const filter = stringSplit.filter((a,i) =>a == 'a' && i < left);
-  return (repeat*findLetterA) + filter.length;
-}
-const result = repeatString(string, n);
+const repeatString = (str, n) => {
+  // const countA = str => str.split("").filter(char => char === "a").length;
+  // const d = Math.floor(n / str.length);
+  // const r = n - str.length * d;
 
-console.log('result: ', result)
+  // console.log(str.substr(0, r));
+  // return d * countA(str) + countA(str.substr(0, r));
+  let i = 0;
+  let max = 0;
+  const quo = Math.floor(n / str.length);
+  const rem = n % str.length;
+
+  while (i < str.length) {
+    if (str[i] === "a") max++;
+    i++;
+  }
+  i = 0;
+  max = max * quo;
+
+  while (i < rem) {
+    if (str[i] === "a") max++;
+    i++;
+  }
+
+  return max;
+};
+
+const result = repeatString(str, n);
+
+console.log("result: ", result);

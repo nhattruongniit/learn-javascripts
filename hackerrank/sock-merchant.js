@@ -12,27 +12,22 @@
 
 */
 
-// const array = [10, 20, 20, 10, 10, 30, 50, 10, 20];
-// let totalPairs = 0;
+let totalPairs = 0;
+const arr = "1, 2, 1, 2, 1, 3, 2, 3"
+  .split(" ")
+  .map(arTemp => parseInt(arTemp, 10));
 
-// const sockMerchant = array => {
-//   const objColors = array.reduce((acc, curr) => {
-//     if (!acc[curr]) {
-//       acc[curr] = 1;
-//       return acc;
-//     }
-//     acc[curr] += 1;
-//     return acc;
-//   }, {});
-//   console.log("==objColors===", objColors);
+const scanner = arr.reduce((acc, curr) => {
+  if (!acc[curr]) {
+    acc[curr] = 1;
+    return acc;
+  }
+  acc[curr] += 1;
+  return acc;
+}, {});
 
-//   for (let color in objColors) {
-//     console.log("totalPairs: ", color);
-//     totalPairs += Math.floor(objColors[color] / 2);
-//   }
-//   return totalPairs;
-// };
+for (const pair in scanner) {
+  totalPairs += Math.floor(scanner[pair] / 2);
+}
 
-// const result = sockMerchant(array);
-
-// console.log("result: ", result);
+console.log(totalPairs);
