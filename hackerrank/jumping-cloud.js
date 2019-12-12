@@ -22,19 +22,22 @@
 
 */
 
-
-const cloud = [0, 0, 1, 0, 0, 1, 0];
+const cloud = [0, 0, 0, 0, 1, 0];
 let jumps = 0;
 let i = 0;
 
-while (i < cloud.length - 1) {
-  if(cloud[i+2] != 1) {
-    i+=2;
-  } else {
-    i+=1;
+const jumpingOnClouds = (cloud, jumps) => {
+  while (i < cloud.length - 1) {
+    if (cloud[i + 2] !== 1) {
+      i += 2;
+    } else {
+      i += 1;
+    }
+    jumps++;
   }
-  jumps++;
-}
+  return jumps;
+};
 
-console.log(jumps)
+const result = jumpingOnClouds(cloud, jumps);
 
+console.log("minium jump cloud: ", result);
