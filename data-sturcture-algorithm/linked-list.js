@@ -53,10 +53,13 @@ function LinkedList() {
   this.isEmpty = () => {};
   this.size = () => {};
   this.toString = () => {};
-  this.print = () => {};
+  this.print = () => {
+    return head;
+  };
 }
 
 const trains = new LinkedList();
 trains.append(15);
 trains.append(10);
-console.log(trains);
+trains.append(20);
+console.log(trains.print());

@@ -43,6 +43,7 @@ averageTemp[1][2] = 75;
 averageTemp[1][3] = 75;
 averageTemp[1][4] = 73;
 averageTemp[1][5] = 72;
+console.log("=== start two-dimensional array ===");
 function printMatrixTemp(myMatrix) {
   for (let i = 0; i < myMatrix.length; i++) {
     for (let j = 0; j < myMatrix[i].length; j++) {
@@ -50,7 +51,6 @@ function printMatrixTemp(myMatrix) {
     }
   }
 }
-console.log("=== two-dimensional array ===");
 printMatrixTemp(averageTemp);
 
 /* TODO: multidimensional array ================ */
