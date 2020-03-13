@@ -1,6 +1,6 @@
 console.log('########### Singleton Pattern #################')
 
-var mySingleton = function() {
+var mySingleton = function () {
   // here are our private methods and variables
   var privateVariable = 'something private';
   function showPrivate() {
@@ -9,24 +9,24 @@ var mySingleton = function() {
 
   //public variable and methods (which can accss private variable and method)
   return {
-    publicMethod: function() {
+    publicMethod: function () {
       showPrivate();
     },
     publicVar: 'the public can see this!'
   }
 }
-var single = mySingleton();;
+var single = mySingleton();
 single.publicMethod();
 console.log(single.publicVar);
 
 
-var mySingleton2 = (function() {
+var mySingleton2 = (function () {
   var instantiated;
 
   function init() {
     //singleton here
     return {
-      publicMethod: function() {
+      publicMethod: function () {
         console.log('hello word');
       },
       publicProperty: 'test'
@@ -34,8 +34,8 @@ var mySingleton2 = (function() {
   }
 
   return {
-    getInstance: function() {
-      if(!instantiated) {
+    getInstance: function () {
+      if (!instantiated) {
         instantiated = init();
       }
       return instantiated
@@ -45,7 +45,7 @@ var mySingleton2 = (function() {
 console.log(mySingleton2.getInstance().publicProperty);
 mySingleton2.getInstance().publicMethod();
 
-var singletonTester = (function() {
+var singletonTester = (function () {
 
   //options: a object containing configuration options for the singleton
   // e.g var options = { name: 'test', pointX: 5 };
@@ -55,17 +55,17 @@ var singletonTester = (function() {
     this.pointX = options.pointX || 6;
     this.pointY = options.pointY || 10;
   }
-  
+
   //this is our instance holder
   var instance;
-  
+
   // this is an emulation of static variables and methods
-  var _static =  {
+  var _static = {
     name: 'SingletonTester',
     // This is a method for getting an instance
     // It returns a singleton instance of a singleton object
-    getInstance: function(options) {
-      if(instance === undefined) {
+    getInstance: function (options) {
+      if (instance === undefined) {
         instance = new Singleton(options)
       }
       return instance;

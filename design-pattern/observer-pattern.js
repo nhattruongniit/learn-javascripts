@@ -20,17 +20,17 @@ $(el).off('/login')
 
 
 var pubsub = {};
-(function(q){
+(function (q) {
   var topics = {};
   var subUid = -1;
 
   // Publish or broadcast events of interest
   // with a specific topic name and arguments
   // such as the data to pass along
-  q.publish = function(topic, args) {
-    if(!topic[topic]) return false;
+  q.publish = function (topic, args) {
+    if (!topic[topic]) return false;
     var subscribers = topics[topic]
-    var len = subscribers ? subscribers.lemngth : 0;
+    var len = subscribers ? subscribers.length : 0;
     while (len--) {
       subscribers[len].func(topic, args);
     }
@@ -40,8 +40,8 @@ var pubsub = {};
   // with a specific topic name and a
   // callback function, to be executed
   // when the topic/event is observed
-  q.subscribe = function(topic, func) {
-    if(!topics[topic]) {
+  q.subscribe = function (topic, func) {
+    if (!topics[topic]) {
       topics[topic] = []
     }
     var token = (++subUid).toString();
@@ -55,11 +55,11 @@ var pubsub = {};
   // Unsubscribe from a specific
   // topic, based on a tokenized reference
   // to the subscription
-  q.unsubscribe = function( token ) {
-      for ( var m in topics ) {
-        if ( topics[m] ) {
-          for (var i = 0, j = topics[m].length; i < j; i++) {
-            if (topics[m][i].token === token) {
+  q.unsubscribe = function (token) {
+    for (var m in topics) {
+      if (topics[m]) {
+        for (var i = 0, j = topics[m].length; i < j; i++) {
+          if (topics[m][i].token === token) {
             topics[m].splice(i, 1);
             return token;
           }
@@ -70,7 +70,7 @@ var pubsub = {};
   };
 })(pubsub);
 
-var testHandler = function(topics, data) {
+var testHandler = function (topics, data) {
   console.log(topics + ": " + data);
 };
 
