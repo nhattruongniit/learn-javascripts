@@ -4,7 +4,7 @@ const output = [
   {
     title: "render",
     des: 'cuto',
-    service: ['service1-1', 'service1-2', 'service1-3', 'service1-4']
+    service: ['service1-1', 'service1-2', 'service1-3', 'service1-4', 'service1-5', 'service1-6']
   }, {
     title: "render 2",
     des: 'cuto 2',
