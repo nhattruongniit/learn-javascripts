@@ -7,6 +7,7 @@ const sockMerchant = (n, ar) => {
   const splitArr = ar.split(" ");
   let totalParis = 0;
   const cal = splitArr.reduce((acc, curr) => {
+    console.log(acc, curr)
     if (!acc[curr]) {
       acc[curr] = 1;
       return acc;
@@ -14,7 +15,6 @@ const sockMerchant = (n, ar) => {
     acc[curr] += 1;
     return acc;
   }, {});
-
   for (const item in cal) {
     totalParis += Math.floor(cal[item] / 2);
   }

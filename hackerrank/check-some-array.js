@@ -42,12 +42,12 @@ const flattenObj = (obj) => {
   return newObj;
 };
 
-const cloneObj =  flattenObj(input);
+const cloneObj = flattenObj(input);
 
 const hasFile = (key) => {
   return reg.test(cloneObj[key]) === true;
 }
 
 console.log('output: ', cloneObj);
-console.log('hasFile: ', Object.keys(cloneObj).some(hasFile)); 
-console.log('convertFileToBinary: ', convertFileToBinary(cloneObj));
+console.log('hasFile: ', Object.keys(cloneObj).some(hasFile));
+// console.log('convertFileToBinary: ', convertFileToBinary(cloneObj));

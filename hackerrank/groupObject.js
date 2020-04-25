@@ -10,7 +10,7 @@ const input = [
     "rating": "2.2",
     "getPoint": "40",
     "sizes": "Free,S,L,XL,XXL",
-    "colors": "#FF5733,#BAFF33,#33FFCC",
+    "colors": "#FF5733,#BAFF33",
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
     "lockversion": 0
   },
