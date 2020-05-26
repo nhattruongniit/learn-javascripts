@@ -10,12 +10,13 @@ let newString = 'abacabacd';
 function firstNotRepeatingCharacter(string) {
   let arr = string.split('');
 
-  for (let i = 0; i< arr.length; i++) {
-    if (arr.indexOf(arr[i]) == arr.lastIndexOf(arr[i])){
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr.indexOf(arr[i]), arr.lastIndexOf(arr[i]))
+    if (arr.indexOf(arr[i]) == arr.lastIndexOf(arr[i])) {
       return arr[i];
-    } 
+    }
   }
- 
+
   return '_';
 }
 
