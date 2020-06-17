@@ -1,5 +1,7 @@
-const input = [2, 2, 2, 7];
-const output = [1, 2]; // because 2 + 4 = 6
+// tra ve index cua 2 tổng 2 số = vs số target
+
+const input = [2, 2, 3, 4];
+// because 2 + 4 = 6
 
 const twoSum = function (nums, target) {
   const remainders = {};
@@ -12,6 +14,6 @@ const twoSum = function (nums, target) {
   }
 };
 
-const result = twoSum(input, 9);
+const result = twoSum(input, 6);
 
 console.log("=====result=====", result);
