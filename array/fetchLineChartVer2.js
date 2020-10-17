@@ -127,6 +127,11 @@ const output = {
   }
 }
 
+const lables = {
+  "7,1,Environment,Site Outdoor Air DrybulValuesVakb Temperature [C] !Hourly": "#6e8675",
+  "8,1,Environment,Site Outdoor Air Humidity Ratio [kgWater/kgDryAir] !Hourly" :"#8482f1"
+}
+
 let newObj = {
   name: '',
   chartData: []
