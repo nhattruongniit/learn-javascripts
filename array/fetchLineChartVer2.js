@@ -163,9 +163,10 @@ function convert(variables, variableValues) {
       value: listData[i].value
     });
   }
-  console.log({ result })
+  return { result }
+
 }
 
-const res = convert(variables, variableValues);
+const { result } = convert(variables, variableValues);
 
-// console.log('res: ', res)
+console.log('res: ', result['2001-01-27'])
