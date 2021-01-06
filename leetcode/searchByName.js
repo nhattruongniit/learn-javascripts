@@ -17,7 +17,6 @@ const array = [
   }
 ]
 
-
 function searchByName(keyword) {
   const newArray = array.filter(item => item.name.toLocaleLowerCase().indexOf(keyword) !== -1);
 
