@@ -25,5 +25,27 @@
 
   <body>
     <img src="./images/2.jpg" />
+
+    <script>
+        function foo(){
+            if(true){
+              var fruit1 = 'apple';        //exist in function scope
+                const fruit2 = 'banana';     //exist in block scope
+                let fruit3 = 'strawberry';   //exist in block scope
+              if(true) {
+                console.log(fruit2);
+              }
+              
+              
+            }
+            console.log(fruit1);
+            // console.log(fruit2);
+            console.log(fruit3);
+        }
+
+        foo();
+        //result:
+
+      </script>
   </body>
 </html>

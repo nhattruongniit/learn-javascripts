@@ -11,7 +11,7 @@ var sum2 = function (a, b) {
 
 sum2(1, 2);
 
-
+// arrow function
 var sum3 = (a, b) => {
   console.log(a + b)
 }
@@ -20,9 +20,18 @@ sum3(5, 8);
 
 var arr = [1, 2, 3];
 
-var newArr = arr.map(x => x*x);
+const newArraFunc = arr.map(x => {
+  return x * x;
+})
 
-console.log(newArr);
+var newArr = arr.map(x => {
+  if(x === 2) {
+    return x * x
+  }
+  return x;
+});
+
+console.log('newArr: ', newArr);
 
 /* === sự khác nhau function expression and arrow function */
 
@@ -32,13 +41,13 @@ var func = {
   name: 'aaa',
   run: function() {
     var run2 = function() {
-      console.log(this.name)
+      console.log('aaa expression: ', this.name)
     }
     run2.bind(this)();
   },
   runArrow: function() {
     var run2 = () => {
-      console.log(this.name)
+      console.log('aaa arrow: ', this.name)
     }
     run2();
   }
@@ -47,6 +56,10 @@ var func = {
 func.run();
 func.runArrow();
 
+
+var demo1  = {
+  foo: 'demo1'
+}
 
 var demo2 = {
   foo: 'bar',
