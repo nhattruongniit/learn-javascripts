@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>fetch line chart</title>
+</head>
+
+<body>
+    <!-- Slideshow container -->
+    <div>
+        Custom Event
+        <div id="demoEvent"></div>
+
+        <form>
+          <textarea></textarea>
+        </form>
+
+        <form>FORM
+          <div>DIV
+            <p>P</p>
+          </div>
+        </form>
+    </div>
+   
+    <script type="text/javascript">
+      const event = new CustomEvent('build');
+      const demoEvent = document.getElementById('demoEvent');
+
+      demoEvent.addEventListener('build', () => {
+        console.log('addEventListener')
+      })
+      demoEvent.dispatchEvent(event)
+
+      const form = document.querySelector('form');
+      const textarea = document.querySelector('textarea');
+
+      // Create a new event, allow bubbling, and provide any data you want to pass to the "detail" property
+      const eventAwesome = new CustomEvent('awesome', {
+        bubbles: true,
+        detail: {
+          text: () => textarea.value
+        }
+      });
+      form.addEventListener('awesome', e => console.log('awesome :', e.detail.text()));
+      textarea.addEventListener('input', e => e.target.dispatchEvent(eventAwesome))
+
+
+      for(let elem of document.querySelectorAll('*')) {
+        elem.addEventListener("click", e => alert(`Capturing: ${elem.tagName}`), true);
+        elem.addEventListener("click", e => alert(`Bubbling: ${elem.tagName}`));
+      }
+
+    </script>
+</body>
+
+</html>
