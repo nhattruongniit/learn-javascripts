@@ -56,7 +56,6 @@ var func = {
 func.run();
 func.runArrow();
 
-
 var demo1  = {
   foo: 'demo1'
 }
