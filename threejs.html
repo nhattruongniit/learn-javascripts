@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>Simple threejs</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js"></script>
+    <script type="text/javascript">
+       const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer();
+      const geometry = new THREE.BoxGeometry();
+      const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+      const cube = new THREE.Mesh( geometry, material );
+      const lineMaterial = new THREE.LineDashedMaterial({
+        color: 0xffffff,
+        linewidth: 1,
+        scale: 1,
+        dashSize: 3,
+        gapSize: 1,
+      })
+      const newLineMaterial = new THREE.Mesh( geometry, lineMaterial );
+      scene.add(cube);
+      scene.add(newLineMaterial);  
+
+      // camera.position.z = 5;
+      camera.position.set(0, 0, 5);
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+      animate();
+      
+    </script>
+</body>
+
+</html>
