@@ -14,7 +14,7 @@ console.log(name, age);
 
 
 // Minigame 2D
-function getDistance(p1, p2) {
+function getDistance(p1 = 1, p2 = 1) {
   const [ x1 = 0, y1 = 0] = p1;
   const [ x2 = 0, y2 = 0] = p2;
 
@@ -31,3 +31,23 @@ const {x: xDistance, y: yDistance} = getDistance(p1, p2);
 
 console.log('===============Minigame 2D===============');
 console.log('POSITION (x, y) = ', xDistance, yDistance);
+
+// rest
+const objA = {
+  a: 1,
+  d: 7,
+}
+
+const objB = {
+  ...objA,
+  d: 4,
+  t:5,
+}
+
+const objC = {
+  e: 6
+}
+
+// const combineObj = {...objA, ...objB, ...objC }
+// const combineObj2 = Object.assign(objA, objB, objC)
+console.log(objB)

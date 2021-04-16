@@ -150,4 +150,11 @@ class Person {
   }
 }
 
+const arrayabc = [2, 3, 5, 10].reduce((acc, curr) => {
+  return acc * curr
+});
+
+console.log('reducer: ', arrayabc)
+
+
 let person = new Person().getInfo();
