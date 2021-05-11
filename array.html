@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title> Array </title>
+</head>
+
+<body>
+    <div>
+        Array
+    </div>
+   
+    <script>
+      // create array
+      // way 1
+      const arr1 = [1, 2, 3, 4, 5]
+      // way 2
+      const arr2 = Array.from(new Array(5), (_, i) => i + 1)
+      // way 3
+      const arr3 = []
+      for(let i = 0; i < 10; i++) {
+        arr3.push(i)
+      }
+
+      // access item array
+      const firstEle = arr1[0];
+      const lastEle = arr1[arr1.length - 1]
+      
+      // loop array
+      const fruits = ['Apple', 'Banana', 'Orange']
+      fruits.forEach(function(item, index, array) {
+        console.log(item, index)
+      })
+     
+    </script>
+</body>
+
+</html>
