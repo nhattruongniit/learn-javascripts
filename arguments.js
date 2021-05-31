@@ -50,3 +50,17 @@ function sum() {
   }, 0)
 }
 console.log(sum(5, 23, 55));
+
+
+
+
+console.log('pack' == true)
+// output: false
+
+
+
+
+
+
+
+
