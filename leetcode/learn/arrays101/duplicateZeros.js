@@ -16,5 +16,5 @@ function duplicateZeros(arr) {
  return arr;
 }
 
-const resultDuplicateZeros = duplicateZeros(input);
+const resultDuplicateZeros = duplicate_2(input);
 console.log('duplicateZeros: ', resultDuplicateZeros)

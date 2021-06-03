@@ -1,0 +1,3 @@
+// There is another way of searching an Array. If the elements in the Array are in sorted order, then we can use binary search. Binary search is where we repeatedly look at the middle element in the Array, and determine whether the element we're looking for must be to the left, or to the right. Each time we do this, we're able to halve the number of elements we still need to search, making binary search a lot faster than linear search!
+
+/* === The downside of binary search though is that it only works if the data is sorted.  ==*/

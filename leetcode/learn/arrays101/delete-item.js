@@ -6,6 +6,7 @@ function removeEelement(arr, val) {
   while(i < arr.length) {
     arr[i] === val ? arr.splice(i, 1) : i++
   }
+  console.log(arr)
   return arr.length
 }
 
