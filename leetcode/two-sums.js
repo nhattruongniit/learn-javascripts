@@ -5,13 +5,15 @@ const input = [2, 2, 3, 4];
 
 // way 1
 const twoSum = function (nums, target) {
-  const remainders = {};  
-  for (let i = 0; i < nums.length; i++) {
-    const num = nums[i];
-    if (num in remainders) {
-      return [remainders[num], i];
+  const hashtable = {}
+
+  for(let i = 0; i < nums.length; i++) {
+    const currVal = arr[i];
+
+    if(currVal in hashtable) {
+      return [hashtable[currVal], i]
     }
-    remainders[target - num] = i;
+    hashtable[target - currVal] = i
   }
 };
 
@@ -23,8 +25,9 @@ console.log("result way 1: ", result);
 const twoSum2 = function (nums, target) {
   const map = new Map();  
   for (let i = 0; i < nums.length; i++) {
-    // map.set(key, value)
-    // map.has(key) map.get(key)
+    // map.set(i, nums[i])
+    // map.has(key);
+    //  map.get(key)
 
     const remain = target - nums[i];
     if(map.has(remain)) {
@@ -37,6 +40,6 @@ const twoSum2 = function (nums, target) {
 };
 
 
-const result2 = twoSum(input, 6);
+const result2 = twoSum2(input, 6);
 
 console.log("result way 2: ", result2);

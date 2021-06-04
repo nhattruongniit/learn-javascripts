@@ -11,4 +11,27 @@ const obj1 =  {
   simulations: 0
 }
 
-console.log(...obj1)
+// console.log(...obj1)
+const hiddenColumsSongParams = [
+  {
+    index: 4,
+    key: 'diamonds'
+  },
+  {
+    index: 5,
+    key: 'tags'
+  },
+  {
+    index: 6,
+    key: 'abc'
+  },
+  {
+    index: 7,
+    key: 'tyr'
+  }
+]
+const hideColumn = [4, 5]
+
+const res = hiddenColumsSongParams.filter(ele => !hideColumn.includes(ele.index))
+
+console.log(res);
