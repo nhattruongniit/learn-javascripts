@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>Date Time</title>
+</head>
+
+<body>
+    <!-- Slideshow container -->
+    <h2>Date Time</h2>
+
+    <script>
+      // strign
+      let date = new Date(0)
+      console.log('date: ', date)
+      console.log('date: ', date.getHours())
+      console.log('date UTC: ', date.getUTCHours())
+      console.log('date timestamp: ', date.getTime())
+      console.log('date +: ', +date)
+      date.setFullYear(2021, 2, 20)
+      console.log('getFullYear: ', date.getFullYear())
+
+      // oblgatory
+      let oblgatory = new Date(2021, 8, 4, 1, 30, 30)
+      console.log('oblgatory: ', oblgatory, oblgatory.getDay())
+
+      // measuring date
+      function diffSubtract(date1, date2) {
+        return date2 - date1;
+      }
+
+      function diffGetTime(date1, date2) {
+        return date2.getTime() - date1.getTime();
+      }
+
+      function bench(f) {
+        let date1 = new Date(0);
+        let date2 = new Date();
+
+        let start = Date.now();
+        for (let i = 0; i < 100000; i++) f(date1, date2);
+        return Date.now() - start;
+      }
+
+      console.log( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
+      console.log( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );
+
+      // exerices
+      console.log('=== tasks date time ===')
+      console.log('create a date: ', new Date('Feb 20, 2012, 03:12:00'))
+
+      // show a weekday
+      function getWeekDay(date) {
+        const days = ['SU', 'M0', 'TU', 'WE', 'TH', 'FR', 'SA'];
+        return days[date.getDay()]
+      }
+      const res = getWeekDay(new Date(2012, 0, 3))
+      console.log('show a weekday: ', res)
+
+      // show european day
+      function getEuropeanDay(date) {
+        let day = date.getDay();
+        if(day === 0) day = 7;
+        return day;
+
+      }
+      const resEuro = getEuropeanDay(new Date(2012, 0,  8))
+      console.log('show european weekday: ', resEuro)
+
+
+      // show european day
+      function getDateAgo(date, days) {
+        const dateCopy = new Date(date);
+        dateCopy.setDate(date.getDate() - days);
+        return dateCopy.getDate();
+      }
+      const resDateAgo= getDateAgo(new Date(2015, 0, 2), 1)
+      console.log('getDateAgo: ', resEuro)
+
+      // format relative date
+      function formatDate(date) {
+        let dayOfMonth = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let hour = date.getHours();
+        let minutes = date.getMinutes();
+        const diffMs = new Date() - date;
+        const diffSec = Math.round(diffMs / 1000);
+        const diffMin = diffSec / 60;
+        const diffHour = diffMin / 60;
+
+        // foramtting
+        year = year.toString().slice(-2)
+        month = month < 10 ? `0${month}` : month;
+        dayOfMonth = dayOfMonth < 10 ? `0${dayOfMonth}` : dayOfMonth;
+        hour = hour < 10 ? `0${hour}` : hour;
+        minutes = minutes < 10 ? `0${minutes}` : minutes;
+
+        if(diffSec < 1) {
+          return 'right now';
+        } else if (diffMin < 1) {
+          return `${diffSec} sec. ago`
+        } else if (diffHour < 1) {
+          return `${diffMin} min. ago`
+        } 
+        return `${dayOfMonth}.${month}.${year} ${hour}:${minutes}`
+      }
+
+      const resFormat= formatDate(new Date(new Date - 86400 * 1000))
+      console.log('formatDate: ', resFormat)
+
+    </script>
+</body>
+
+</html>
