@@ -109,6 +109,15 @@
       const resFormat= formatDate(new Date(new Date - 86400 * 1000))
       console.log('formatDate: ', resFormat)
 
+
+      let meetUp = {
+        title: "Conference",
+        participants: [{name: "John"}, {name: "Alice"}],
+        age: 19
+      }
+
+      console.log('json stingify: ', JSON.stringify(meetUp, ['title', 'age']))
+
     </script>
 </body>
 
