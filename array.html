@@ -31,6 +31,31 @@
       fruits.forEach(function(item, index, array) {
         console.log(item, index)
       })
+
+
+
+      const tableTotalData = [1,2,3];
+      const totalData = [...tableTotalData];
+      totalData[0] = 5
+
+      console.log('totalData: ', totalData)
+      console.log('tableTotalData: ', tableTotalData)
+
+
+      const tableObject = {
+        id: 1,
+        title: 'abc'
+      };
+
+      const totalObject = {...tableObject};
+      totalObject.id = 3
+      totalObject.title = 'truong'
+
+      console.log('totalObject: ', totalObject)
+      console.log('tableObject: ', tableObject)
+
+
+
      
     </script>
 </body>

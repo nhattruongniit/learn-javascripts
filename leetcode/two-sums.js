@@ -8,9 +8,10 @@ const twoSum = function (nums, target) {
   const hashtable = {}
 
   for(let i = 0; i < nums.length; i++) {
-    const currVal = arr[i];
+    const currVal = nums[i];
 
     if(currVal in hashtable) {
+      console.log('currVal: ', [hashtable[currVal], i])
       return [hashtable[currVal], i]
     }
     hashtable[target - currVal] = i
