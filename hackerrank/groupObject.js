@@ -44,6 +44,3 @@ const output = (data, [...group]) => {
 
 let result = output(input, ['images', 'colors']);
 console.log(result);
-
-
-

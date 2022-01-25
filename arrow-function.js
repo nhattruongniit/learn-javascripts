@@ -158,3 +158,4 @@ console.log('reducer: ', arrayabc)
 
 
 let person = new Person().getInfo();
+

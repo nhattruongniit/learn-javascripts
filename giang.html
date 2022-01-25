@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>Date Time</title>
+</head>
+
+<body>
+    <!-- Slideshow container -->
+    <p>Age</p>
+    <input type="text" id="age"></input>
+    <p>Income</p>
+    <input type="text" id="income"></input>
+    <p>Dependants</p>
+    <input type="text" id="dependants"></input>
+    <p><button id="btn">Calculate</button></p>
+
+    <script type="text/javascript">
+      window.addEventListener('load', (event) => {
+        const age = document.getElementById("age").value;
+        const income = document.getElementById("income").value;
+        const dependants = document.getElementById("dependants").value;
+        let btn = document.getElementById("btn");
+
+        btn.addEventListener("click", function() {
+          console.log(income, dependants)
+          let result = income * (2+ dependants *2);
+          console.log(result);
+      } );
+});
+
+       
+    </script>
+</body>
+
+</html>
