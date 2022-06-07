@@ -30,6 +30,16 @@ const input = {
   proofOfTemporaryAddress: 'http://localhost:3032/uploads/1678345437.png',
 }
 
+
+
+
+
+
+
+
+
+
+
 const newObj = {};
 const flattenObj = (obj) => {
   for (const key in obj) {

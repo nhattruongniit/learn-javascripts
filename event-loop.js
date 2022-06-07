@@ -67,3 +67,23 @@ function functionA() {
 functionA();
 
 console.log("GlobalContext");
+
+
+//
+const foo = () => console.log("foo");
+const promise1 = new Promise(resovle => setTimeout(() => resovle('promise1'), 1000));
+const bar0 = () => setTimeout(() => console.log("bar0"), 0);
+const promise2 = new Promise(resovle => resovle('promise2'));
+const bar5 = () => setTimeout(() => console.log("bar5"), 500);
+const bar10 = () => setTimeout(() => console.log("bar10"), 1000); 
+const baz = () => console.log("baz");
+
+promise1.then(value => console.log(value))
+promise2.then(value => console.log(value))
+bar0();
+bar10();
+bar5();
+foo();
+baz();
+
+// answer: foo -> baz -> promise 2 -> bar0 -> bar5 -> bar10 -> promise 1

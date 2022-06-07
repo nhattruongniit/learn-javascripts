@@ -90,3 +90,39 @@ const colors = colorArray.reduce((total, amount) => {
 console.log('Flattening color: ', colors);
 
 
+/* === group reduce * ===*/
+const languages = [
+  {
+    id: 2,
+    name: "English",
+    duration: 2,
+  },
+  {
+    id: 2,
+    name: "English",
+    duration: 3,
+  },
+  {
+    id: 3,
+    name: "French",
+    duration: 4,
+  },
+  {
+    id: 3,
+    name: "French",
+    duration: 5,
+  },
+];
+
+function groupBy(dataArray, property) {
+  return dataArray.reduce((acc, curr) => {
+    const key = curr[property];
+    if(!acc[key]) {
+      acc[key] = []
+    }
+    acc[key].push(curr)
+    return acc
+  }, {})
+}
+
+console.log('groupBy: ', groupBy(languages, 'id'))
