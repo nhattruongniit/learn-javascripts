@@ -86,4 +86,3 @@ bar5();
 foo();
 baz();
 
-// answer: foo -> baz -> promise 2 -> bar0 -> bar5 -> bar10 -> promise 1
