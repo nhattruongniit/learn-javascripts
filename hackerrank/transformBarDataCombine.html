@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>transformBarDataCombine</title>
+
+    <script type="text/javascript">
+      /* Dimension = Campaign ID */
+      const input = [
+        {
+          campaign_id: "ss_amn_magictiles3_jp_ios_mtg_phone",
+          source: "non-organic",
+          installs: 1198,
+        },
+        {
+          campaign_id: "ss_amn_magictiles3_jp_ios_mtg_tablet",
+          source: "non-organic",
+          installs: 189,
+        },
+        {
+          campaign_id: "None",
+          source: "organic",
+          installs: 179,
+        },
+      ];
+
+      /*
+      output
+      {
+        categories: ["ss_amn_magictiles3_jp_ios_mtg_phone", "ss_amn_magictiles3_jp_ios_mtg_tablet", "None"],
+        xAxis: [1198, 189, 179],
+        series: [
+          {
+            color: "rgb(51, 154, 240)",
+            name: "non-organic",
+            data: [1198, 189, 0],
+          },
+          {
+            color: "rgb(81, 207, 102)",
+            name: "organic",
+            data: [0, 0, 179],
+          },
+        ]
+      }
+      */
+
+      /* Dimension = App ID  */
+      const inputAppId = [
+        {
+          app_id: "id1594327148",
+          source: "non-organic",
+          installs: 1387,
+        },
+        {
+          app_id: "id12",
+          source: "organic",
+          installs: 12,
+        },
+        {
+          app_id: "id1594327148",
+          source: "organic",
+          installs: 179,
+        },
+      ];
+
+      /*
+      output App ID
+      {
+        categories: ["id1594327148", "id12"],
+        xAxis: [1566, 12],
+        series: [
+          {
+            color: "rgb(51, 154, 240)",
+            name: "non-organic",
+            data: [1387, 0],
+          },
+          {
+            color: "rgb(81, 207, 102)",
+            name: "organic",
+            data: [179, 12],
+          },
+        ]
+      }
+      */
+      const dimension = "app_id";
+      const metric = "installs";
+      const categories = [
+        ...new Set(inputAppId.map((item) => item[dimension])),
+      ];
+      const series = [...new Set(inputAppId.map((item) => item.source))].map(
+        (source) => {
+          return {
+            color: "rgb(51, 154, 240)",
+            name: source,
+            data: categories.map((cate) => {
+              const item = inputAppId.find(
+                (item) => item.source === source && item[dimension] === cate
+              );
+              return item ? item.installs : 0;
+            }),
+          };
+        }
+      );
+      const xAxis = series.reduce((acc, currItem) => {
+        currItem.data.forEach((number, index) => {
+          acc[index] = acc[index] ? acc[index] + number : number;
+        });
+        return acc;
+      }, []);
+
+      console.log({ categories, series, xAxis });
+    </script>
+  </head>
+
+  <body>
+    <h3>transformBarDataCombine</h3>
+  </body>
+</html>
