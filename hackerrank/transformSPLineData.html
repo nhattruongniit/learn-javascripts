@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>transformBarDataCombine</title>
+
+    <script type="text/javascript">
+      /* Dimension = Campaign ID */
+      const input = [
+        {
+          app_id: "id1443249551",
+          clicks: 283,
+          date: "2022-10-22",
+          impressions: 1058,
+        },
+        {
+          app_id: "id1443249551",
+          clicks: 276,
+          date: "2022-10-23",
+          impressions: 1175,
+        },
+        {
+          app_id: "id1443249551",
+          clicks: 191,
+          date: "2022-10-21",
+          impressions: 720,
+        },
+        {
+          app_id: "id1443249551",
+          clicks: 191,
+          date: "2022-10-24",
+        },
+      ];
+
+      const sorted = input.sort((a, b) => new Date(a.date) - new Date(b.date));
+      const res = sorted.reduce(
+        (acc, curr) => {
+          const { app_id, clicks, date, impressions } = curr;
+          if (!acc.categories.includes(date)) {
+            acc.categories.push(date);
+          }
+          if (clicks) {
+            acc.series[0].data.push(clicks);
+          }
+          if (impressions) {
+            acc.series[1].data.push(impressions);
+          }
+          return acc;
+        },
+        {
+          categories: [],
+          series: [
+            { name: "clicks", data: [] },
+            { name: "impressions", data: [] },
+          ],
+        }
+      );
+
+      console.log("res: ", res);
+    </script>
+  </head>
+
+  <body>
+    <h3>transformBarDataCombine</h3>
+  </body>
+</html>
