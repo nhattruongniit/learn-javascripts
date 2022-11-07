@@ -63,6 +63,68 @@
       );
 
       console.log("res: ", res);
+
+      const inputBar = [
+        {
+          assists: 6848,
+          installs_ua: 90416,
+          media_source: "ironsource_int",
+        },
+        {
+          assists: 581,
+          installs_ua: 1423,
+          media_source: "Apple Search Ads",
+        },
+      ];
+
+      const outputBar = [
+        {
+          name: "assists",
+          data: [6848, 581],
+        },
+        {
+          name: "installs_ua",
+          data: [90416, 1423],
+        },
+      ];
+
+      // convert inputBar to outputBar
+      const inputBar2 = inputBar.reduce(
+        (acc, curr) => {
+          const { assists, installs_ua, media_source } = curr;
+          if (assists) {
+            acc.series[0].data.push(assists);
+          }
+          if (installs_ua) {
+            acc.series[1].data.push(installs_ua);
+          }
+          return acc;
+        },
+        {
+          series: [
+            { name: "assists", data: [] },
+            { name: "installs_ua", data: [] },
+          ],
+        }
+      );
+      // sum data of inputBar2 to array
+      const xAxis = inputBar2.series.reduce((acc, currItem) => {
+        currItem.data.forEach((number, index) => {
+          acc[index] = acc[index] ? acc[index] + number : number;
+        });
+        return acc;
+      }, []);
+
+      console.log({ inputBar2, xAxis });
+
+      const numberA = 0.052806893771417056;
+      const outputNumber = "5.28";
+
+      // convert numberA number to string outputNumber
+      const outputNumber2 = numberA.toFixed(2).toString();
+      console.log({ outputNumber2 });
+
+      console.log({ jkl });
     </script>
   </head>
 
