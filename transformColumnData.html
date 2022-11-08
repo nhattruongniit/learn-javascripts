@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>tranformColumnData</title>
+
+    <script type="text/javascript">
+      const categories = [
+        "2022-10-30",
+        "2022-10-31",
+        "2022-11-01",
+        "2022-11-02",
+        "2022-11-03",
+        "2022-11-04",
+        "2022-11-05",
+        "2022-11-06",
+        "2022-11-07",
+      ];
+      const input = [
+        {
+          name: "Organic",
+          data: [23, 34, 2, 3, 4, 5, 6, 6, 7],
+        },
+        {
+          name: "mintegral_int",
+          data: [2, 3, 4, 1, 2, 5, 6, 3, 4],
+        },
+      ];
+      const output = [25, 37, 6, 4, 6, 10, 12, 9, 11];
+
+      const res = input.reduce((acc, curr) => {
+        const { name, data } = curr;
+        const series = data.map((d, i) => {
+          if (acc[i]) {
+            return acc[i] + d;
+          } else {
+            return d;
+          }
+        });
+        return series;
+      }, []);
+
+      // calculation % dfference between 2 dates from res
+      const res2 = res.map((d, i) => {
+        if (i === 0) {
+          return 0;
+        } else {
+          const prevNumber = res[i - 1];
+          const diff = prevNumber - d;
+          return (diff / prevNumber) * 100;
+          // return ((d - res[i - 1]) / res[i - 1]) * 100;
+        }
+      });
+
+      console.log({ res2 });
+    </script>
+  </head>
+
+  <body>
+    <h3>transformBarDataCombine</h3>
+  </body>
+</html>
