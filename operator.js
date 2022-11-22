@@ -116,3 +116,11 @@ function main(array) {
 
 
 console.log(main([1,2,3]))
+
+
+
+const cars = {};
+
+if(!!cars) {
+  console.log('abc')
+}

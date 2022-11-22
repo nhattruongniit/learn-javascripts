@@ -1,8 +1,6 @@
 // [1, 2, 3, 9] // no
 // [1, 2, 4, 4] // yes because 4 + 4 = 8.
 
-const { transpileModule } = require("typescript");
-
 // Tìm tổng 2 số liền kề = với số đã cho. sum = 8
 const nums = [1, 2, 4, 4];
 
@@ -13,6 +11,6 @@ function equalSum(nums, target) {
     }
   }
 }
-const result = equalSum(nums, 3);
+const result = equalSum(nums, 8);
 
 console.log(result);
