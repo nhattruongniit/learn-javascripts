@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title> Async await </title>
+</head>
+
+<body>
+    <div>
+        Autofill creative
+    </div>
+   
+    <script>
+      const campaigns = [
+        {
+          id: "60e57589-65e2-40a3-9168-92e477fdd85e",
+          name: "Christmas Jersey Connecticut",
+          channel: {
+            id: "380e5d60-bafa-4c7b-b8bd-5e20e01bb269",
+            name: "Google",
+            creativeSetTypes: [],
+          }
+        },
+        {
+          id: "7e2f626f-27e7-4aac-ad8b-ecd8d293a170",
+          name: "Christmas Recycled haptic",
+          channel: {
+            id: "579c4b22-7da7-4383-8410-154d74970e68",
+            name: "ironSource",
+            creativeSetTypes: [
+              {
+                id: "9ae2f36b-2689-4c30-a665-8bf5ba21ce6d",
+                name: "Video & Carousel",
+                creativeConfigurations: [
+                  {
+                    file_size: 2000,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "43d1ab06-2c12-4831-bf26-a017d1d3aa5f",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "left",
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "50ff5cf8-14bf-45a1-974f-9661eb931ecc",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "middle",
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "c3620d16-e83b-4dde-82d8-c5c948a295b7",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "right",
+                  },
+                  {
+                    file_size: 100,
+                    file_types: ["video"],
+                    id: "dfd7330e-0cde-428b-b597-eb7adb2e0bc5",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                    },
+                    name: "Video",
+                    type: null,
+                  },
+                ],
+              },
+              {
+                id: "79894940-157f-4093-8570-f8f621149b28",
+                name: "Video & Full Screen",
+                creativeConfigurations: [
+                  {
+                    file_size: 100,
+                    file_types: ["video"],
+                    id: "cb7253f4-f740-4d05-b46a-afb99a031294",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                    },
+                    name: "Video",
+                    type: null,
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "6b6d2742-b730-4d63-b450-ac6ac4f0b17e",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "left",
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "24590e97-3e2c-40fc-a892-524b090f06f6",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "middle",
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "d3c6e9c4-cc4b-4c72-9d52-c8eb6a449bd8",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "right",
+                  },
+                ],
+              }
+            ]
+          }
+        },
+      ]
+
+      const creatives = [
+        {
+          duration: "10000",
+          file_size: 788493,
+          file_type: "video",
+          id: "1nvXWle4LXtDwaxkF51Vy7BARADXvqv9Z",
+          mimeType: "video/mp4",
+          name: "video-mp4.mp4",
+          resolution: {
+            height: 176,
+            width: 320
+          },
+        },
+        {
+          duration: undefined,
+          file_size: 454484,
+          file_type: "png",
+          id: "1Nrjhr2E8ETvW0ddLAA04qa3PGohCj98y",
+          mimeType: "image/png",
+          name: "540x960.png",
+          resolution: {
+            height: 960,
+            width: 540
+          },
+        },
+        {
+          duration: undefined,
+          file_size: 522869,
+          file_type: "png",
+          id: "1igHdxKYeS2K1eBMGadCMPMPLS3Adb3OY",
+          mimeType: "image/png",
+          name: "960x540.png",
+          resolution: {
+            height: 540,
+            width: 960
+          },
+        },
+        {
+          duration: undefined,
+          file_size: 734772,
+          file_type: "png",
+          id: "18eRJB9PQJPuE8CbxIZtd9_lRu_HCvooc",
+          mimeType: "image/png",
+          name: "1024x768.png",
+          resolution: {
+            height: 768,
+            width: 1024
+          },
+        },
+        {
+          duration: undefined,
+          file_size: 6621,
+          file_type: "png",
+          id: "13n9EOB35Z9LlKqmmMUCjJ08X_zriy9--",
+          mimeType: "image/png",
+          name: "thumbnail_iconic-main (1).png",
+          resolution: {
+            height: 156,
+            width: 156
+          },
+        },
+        {
+          duration: undefined,
+          file_size: 2234203,
+          file_type: "html",
+          id: "1J2ZmKCvKuy1Ut1COcZRElZt77dGaZUIx",
+          mimeType: "text/html",
+          name: "220302_BH_GL_P1c0_GPOnly0Banner1Side0TaglineVO_AtMyWorst.html",
+          resolution: {
+            height: undefined,
+            width: undefined
+          },
+        },
+      ]
+
+      const output = [
+        {
+          id: "60e57589-65e2-40a3-9168-92e477fdd85e",
+          name: "Christmas Jersey Connecticut",
+          channel: {
+            id: "380e5d60-bafa-4c7b-b8bd-5e20e01bb269",
+            name: "Google",
+            creativeSetTypes: [],
+          }
+        },
+        {
+          id: "7e2f626f-27e7-4aac-ad8b-ecd8d293a170",
+          name: "Christmas Recycled haptic",
+          channel: {
+            id: "579c4b22-7da7-4383-8410-154d74970e68",
+            name: "ironSource",
+            creativeSetTypes: [
+              {
+                id: "9ae2f36b-2689-4c30-a665-8bf5ba21ce6d",
+                name: "Video & Carousel",
+                creativeConfigurations: [
+                  {
+                    file_size: 2000,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "43d1ab06-2c12-4831-bf26-a017d1d3aa5f",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "left",
+                    filled: {
+                      duration: undefined,
+                      file_size: 2000,
+                      file_type: "png",
+                      id: "1J2ZmKCvKuy1Ut1COcZRElZt77dGaZUIx",
+                      name: "image 1",
+                      position: 'left',
+                      resolution: {
+                        height: 200,
+                        width: 200
+                      },
+                    }
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "50ff5cf8-14bf-45a1-974f-9661eb931ecc",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "middle",
+                    filled: {
+                      duration: undefined,
+                      file_size: 2000,
+                      file_type: "png",
+                      id: "1J2ZmKCvKuy1Ut1COcZRElZt77dGaZUIx",
+                      name: "image 2",
+                      position: 'middle',
+                      resolution: {
+                        height: 200,
+                        width: 200
+                      },
+                    }
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "c3620d16-e83b-4dde-82d8-c5c948a295b7",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "right",
+                    filled: {
+                      duration: undefined,
+                      file_size: 2000,
+                      file_type: "png",
+                      id: "1J2ZmKCvKuy1Ut1COcZRElZt77dGaZUIx",
+                      name: "image 3",
+                      position: 'right',
+                      resolution: {
+                        height: 200,
+                        width: 200
+                      },
+                    }
+                  },
+                  {
+                    file_size: 100,
+                    file_types: ["video"],
+                    id: "dfd7330e-0cde-428b-b597-eb7adb2e0bc5",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                    },
+                    name: "Video",
+                    type: null,
+                    filled: {
+                      duration: 10000,
+                      file_size: 788493,
+                      file_type: "mp4",
+                      id: "1nvXWle4LXtDwaxkF51Vy7BARADXvqv9Z",
+                      name: "video-mp4.mp4",
+                      resolution: {
+                        height: 176,
+                        width: 320
+                      },
+                    },
+                  },
+                ],
+              },
+              {
+                id: "79894940-157f-4093-8570-f8f621149b28",
+                name: "Video & Full Screen",
+                creativeConfigurations: [
+                  {
+                    file_size: 100,
+                    file_types: ["video"],
+                    id: "cb7253f4-f740-4d05-b46a-afb99a031294",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                    },
+                    name: "Video",
+                    type: null,
+                    filled: {
+                      duration: 10000,
+                      file_size: 788493,
+                      file_type: "mp4",
+                      id: "1nvXWle4LXtDwaxkF51Vy7BARADXvqv9Z",
+                      name: "video-mp4.mp4",
+                      resolution: {
+                        height: 176,
+                        width: 320
+                      },
+                    },
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "6b6d2742-b730-4d63-b450-ac6ac4f0b17e",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "left",
+                    filled: {}
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "24590e97-3e2c-40fc-a892-524b090f06f6",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "middle",
+                    filled: {}
+                  },
+                  {
+                    file_size: 2,
+                    file_types: ["png", "jpg", "jpeg", "gif"],
+                    id: "d3c6e9c4-cc4b-4c72-9d52-c8eb6a449bd8",
+                    metadata: {
+                      max_ratio: 2,
+                      min_ratio: 0.5,
+                      max_dimension: 3840,
+                      min_dimension: 320,
+                    },
+                    name: "Image",
+                    type: "right",
+                    filled: {}
+                  },
+                ],
+              }
+            ]
+          }
+        },
+      ]
+
+      let res = {}
+
+      creatives.forEach(creative => {
+        for(const campaign of campaigns) {
+          for(const creativeSet of campaign.channel.creativeSetTypes) {
+           for(const creativeConfig of creativeSet.creativeConfigurations) {
+              res[creativeConfig.id] = {}
+           }
+          }
+
+        }
+      })
+     
+
+
+      
+
+      console.log('input', { campaigns, creatives, res, output })
+     
+      /*
+      body data to post on BE: [
+          {
+            "id": ""7e2f626f-27e7-4aac-ad8b-ecd8d293a170"", // campaignId
+            "sets": [
+              {
+                "typeId": "9ae2f36b-2689-4c30-a665-8bf5ba21ce6d", // creativeSetTypes Id
+                name: "Video & Carousel", // creativeSetTypes name
+                "creatives": [
+                  {
+                    duration: undefined,
+                    file_size: 6621,
+                    file_type: "png",
+                    postion: 'left',
+                    id: "13n9EOB35Z9LlKqmmMUCjJ08X_zriy9--",
+                    mimeType: "image/png",
+                    name: "thumbnail_iconic-main (1).png",
+                    resolution: {
+                      height: 156,
+                      width: 156
+                    },
+                  },
+                  {
+                    duration: undefined,
+                    file_size: 6621,
+                    file_type: "png",
+                    postion: 'right',
+                    id: "13n9EOB35Z9LlKqmmMUCjJ08X_zriy9--",
+                    mimeType: "image/png",
+                    name: "thumbnail_iconic-main (1).png",
+                    resolution: {
+                      height: 156,
+                      width: 156
+                    },
+                  },
+                ],
+              }
+            ]
+          }
+        ]
+      */
+
+    </script>
+</body>
+
+</html>
