@@ -370,13 +370,6 @@
         });
       });
       const campaignsParsed = arrayCampaigns.filter(campaign => campaign.creativeSets.length !== 0)
-      const clonedCampaignsParsed = JSON.parse(JSON.stringify(campaignsParsed))
-
-      const totalCreativeSet = campaignsParsed.reduce((acc, campaign) => {
-        return acc + campaign.creativeSets.length
-      }, 0)
-
-     
       dataCreatives.forEach((media) => {
         campaignsParsed.forEach((campaign, campaignIndex) => {
           for (const creativeSet of campaign.creativeSets) {
