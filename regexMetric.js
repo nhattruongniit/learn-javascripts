@@ -1,11 +1,12 @@
-// input = ["me_start", "song_start", "gm00_user_count", "cm05_user_count"];
+const input = ['cm01__fullads_show', 'song_start__song_play_type__replay', 'bannerads']
 
-// number =  'user_count'
+// result = 'song_start'
 
-// write regex to match with text has contains number
-const res = ["me_start", "song_start", "gm00_user_count", "cm05_user_count"].filter((text) => {
-  return text.includes('user_count');
-}
-);
+// write match function input  match with 'song_start'
 
-console.log(res)
+const abc = input.find(str => {
+  const res = str.match(/song_start/g)
+  return res
+} )
+
+console.log(abc)
