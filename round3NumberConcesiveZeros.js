@@ -1,16 +1,20 @@
-const input = [0.00000604379583, 0.03056432, 0.007054373, 0.001345767]
-// output = [0.00000604, 0.0356, 0.00754]
+// const input = [0.000006043709583, 0.03056432, 0.007054373, 0.001345767]
+// output = [0.00000604, 0.0305, 0.00754]
+const num = 0.001345767;
 
 // how to map input to output
-const res = input.map(num => {
-  const [, strAfterDot] = num.toString().split('.');
-  const str = strAfterDot.toString();
-  const match0 = str.match(/0/g)
-  const len = match0.length
-  const str2 = str.slice(0, len + 3)
-  const res = `0.${str2}` 
-  return Number(res);
+const [, strAfterDot] = num.toString().split('.');
+const strToArray = strAfterDot.split('')
+let count0 = 0;
+for (const digit of strToArray) {
+  if (digit === '0') {
+    count0++
+  } else {
+    break
+  }
 }
-)
-console.log(res)
+const consecutiveZeros = Array.from(Array(count0).keys()).map(() => 0).join('');
+const newThreeNumber = strToArray.slice(count0, count0 + 3).join('');
+const res = `0.${consecutiveZeros}${newThreeNumber}` 
 
+console.log('res: ', res)
