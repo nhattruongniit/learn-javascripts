@@ -17,4 +17,4 @@ const consecutiveZeros = Array.from(Array(count0).keys()).map(() => 0).join('');
 const newThreeNumber = strToArray.slice(count0, count0 + 3).join('');
 const res = `0.${consecutiveZeros}${newThreeNumber}` 
 
-console.log('res: ', res)
+console.log('res: ', Number(res).toFixed(consecutiveZeros.length + newThreeNumber.length))
