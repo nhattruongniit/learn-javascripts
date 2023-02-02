@@ -1,4 +1,4 @@
-const nameMedia = "Copy of 20230103_kl_PCC2eqwe_C1_T1C_1024x768.png";
+const nameMedia = "20230106_PCC2_C1_T1C_1200x628.jpg";
 const productCode = "PCC2";
 
 // write exact regex productCode
