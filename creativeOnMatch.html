@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>fetch line chart</title>
+  </head>
+
+  <body>
+    <!-- Slideshow container -->
+    <div>
+      <h2>Creative On Match</h2>
+    </div>
+
+    <script type="text/javascript">
+      const creativeUpload = [
+        {
+          id: "18XDQyosRsQrGKu1KSpBqk9trt7eZEecT",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1200,
+            height: 1200,
+          },
+          url: "https://lh6.googleusercontent.com/ZasfPGWrKhqmblWrjEkhTPUlkc7ug-hUpS6ukPpWGr59o7ir-F8ZqEon2hh-y1VEuDI9xdmWiPOC2Z8=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=18XDQyosRsQrGKu1KSpBqk9trt7eZEecT",
+          name: "220608_GRR_GL_B1b1_SeasonalElement0PrideMonth_1200x1200 (1).jpg",
+          mimeType: "image/jpeg",
+          file_size: 147236,
+          file_type: "jpeg",
+          extensionFile: "jpeg",
+        },
+        {
+          id: "1wSWzqlqbWuGjXu7z6vHMw_l5KUofEnq1",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 564,
+            height: 564,
+          },
+          url: "https://lh3.googleusercontent.com/OSHXBHbOlwUIYM_dQ4Nv_AGFcUaTGtisN48xwrQWUyCrkF-Vg9SGVrU46bknbygaVv-nuA9Av45n7ew=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=1wSWzqlqbWuGjXu7z6vHMw_l5KUofEnq1",
+          name: "230111_GMS2_GL_W3b1.jpg",
+          mimeType: "image/jpeg",
+          file_size: 45719,
+          file_type: "jpeg",
+          extensionFile: "jpeg",
+        },
+        {
+          id: "1zLgXYa1uIfDaRm0TK4q5wSP0kQo74j67",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1080,
+            height: 1920,
+          },
+          duration: "22122",
+          url: "https://lh3.googleusercontent.com/65xG9kFk7LcAQPQzU5dPWom-PUDV2XmvAW_UFn6uchF-hvfua2fesVprX-1PokxgxeRZUBgihy4Bn58=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=1zLgXYa1uIfDaRm0TK4q5wSP0kQo74j67",
+          name: "20230106_PCC2_GL_V1c1_PMEOM_22s_1080x1920.mp4",
+          mimeType: "video/mp4",
+          file_size: 29312432,
+          file_type: "video",
+          extensionFile: "mp4",
+        },
+        {
+          id: "1otdx_PS8ck0CIkeyA2B6nlK4N70aH741",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 512,
+            height: 512,
+          },
+          url: "https://lh6.googleusercontent.com/g5PPWQSymCvUwA_61DAluoNsOiXU0_gACxTtYCUWzj1i2rlrQ-_oODE1XYVe_By_MwaQjPY0FUYZbj8=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=1otdx_PS8ck0CIkeyA2B6nlK4N70aH741",
+          name: "220606_GMS2_GL_I3b1_SeasonalElement04thJuly0iOs_512x512.png",
+          mimeType: "image/png",
+          file_size: 801079,
+          file_type: "png",
+          extensionFile: "png",
+        },
+        {
+          id: "1dZEa8RFm9s9bMwEUuASnO47eNZQegK_1",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1024,
+            height: 1024,
+          },
+          url: "https://lh5.googleusercontent.com/RTLstZtNK_MNoyHX5QScWOCncYj6t3_2C1gQUXxziT73PfLSauU2wjc41vPW_GG9i4TXmjMU5yoVt2I=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=1dZEa8RFm9s9bMwEUuASnO47eNZQegK_1",
+          name: "220606_GMS2_GL_I3b1_SeasonalElement04thJuly0iOs_1024x1024_Background.png",
+          mimeType: "image/png",
+          file_size: 948590,
+          file_type: "png",
+          extensionFile: "png",
+        },
+        {
+          id: "1aeoic5USlLL05z4r9Qw9gsEnmRaUccI3",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1080,
+            height: 1080,
+          },
+          duration: "21999",
+          url: "https://lh5.googleusercontent.com/wbN7Weobr1xQOAbhFyyOOpQJlu9FvrvkwpPdkiwL58LbWW5KCjIJOPz36iv1gjD6IsIwFr-den6EIus=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=1aeoic5USlLL05z4r9Qw9gsEnmRaUccI3",
+          name: "20230106_GMS2_GL_V5c1_PMEOM_22s_1080x1080.mp4",
+          mimeType: "video/mp4",
+          file_size: 28743813,
+          file_type: "video",
+          extensionFile: "mp4",
+        },
+        {
+          id: "1ajSKvaVAbfwDSoi6tW3_fOV9nfWh5Knz",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1200,
+            height: 628,
+          },
+          url: "https://lh4.googleusercontent.com/GkzMVCQw9Z4-kkqd14RxQ2FvZOYyU8OMwPDjq-7AOSriAUY-_5O8ivswJAzWTNynOHqUzssXUw4Wdao=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=1ajSKvaVAbfwDSoi6tW3_fOV9nfWh5Knz",
+          name: "20230106_PCC2_C1_T1C_1200x628.jpg",
+          mimeType: "image/jpeg",
+          file_size: 151149,
+          file_type: "jpeg",
+          extensionFile: "jpeg",
+        },
+        {
+          id: "12J6VA444pd4t0r5wMS5Fkl_pMj-2rckh",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1024,
+            height: 1024,
+          },
+          url: "https://lh4.googleusercontent.com/0AGQObaLwsvT75-OiTQGWCSWOMsFPRnY9nss58DIaeDP38-SKlo8ORAvXeQb7K0eOI0rTFkjah6G2Ao=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=12J6VA444pd4t0r5wMS5Fkl_pMj-2rckh",
+          name: "220606_PCC2_GL_I3b1_SeasonalElement04thJuly0iOs_1024x1024_Foreground.png",
+          mimeType: "image/png",
+          file_size: 595011,
+          file_type: "png",
+          extensionFile: "png",
+        },
+        {
+          id: "1My11fuzXnBPPaD-8GcTdWjzfe1T6WD0G",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1024,
+            height: 1024,
+          },
+          url: "https://lh3.googleusercontent.com/_zEeGvY-v8l-G1cp6U2vnfM0WRFMVx3ReyNFR8oGgHg19crh55yLffL6aFXPP4DqtKazJj--7-jozuE=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=1My11fuzXnBPPaD-8GcTdWjzfe1T6WD0G",
+          name: "220606_PCC2_GL_I3b1_SeasonalElement04thJuly0Android_1024x1024_Background.png",
+          mimeType: "image/png",
+          file_size: 940321,
+          file_type: "png",
+          extensionFile: "png",
+        },
+        {
+          id: "18DNL6GLIb2dpp7xQPN2aqJq0jn3L9Uee",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1200,
+            height: 1200,
+          },
+          url: "https://lh4.googleusercontent.com/sxw9nVtfRD6INjHWVspG1QOJSrKjwhfowutgeMiLTwGtK2IaBf78c6Ooe6R8-RbpfOIaopWebms9Fak=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=18DNL6GLIb2dpp7xQPN2aqJq0jn3L9Uee",
+          name: "220608_PCC22_GL_B1b1_SeasonalElement0PrideMonth_1200x1200.jpg",
+          mimeType: "image/jpeg",
+          file_size: 147236,
+          file_type: "jpeg",
+          extensionFile: "jpeg",
+        },
+        {
+          id: "1uoTUl-ukehHyLPtwIxe92YziX0SUwtYL",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1023,
+            height: 1024,
+          },
+          url: "https://lh5.googleusercontent.com/EMRsY0i_u4Y4kWIa17tuL_8eLBh9D1b_wg0lYsv6lO7eBZUoHQkrhaaJ09in-jI9miHSGRrWf2w1VA0=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=1uoTUl-ukehHyLPtwIxe92YziX0SUwtYL",
+          name: "220606_PCC2_GL_I3b1_SeasonalElement04thJuly0Android_1024x1024_Foreground.png",
+          mimeType: "image/png",
+          file_size: 429837,
+          file_type: "png",
+          extensionFile: "png",
+        },
+        {
+          id: "144vDIqP5uvBMqhlPB8VdI4DXZRh_hF2u",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 512,
+            height: 512,
+          },
+          url: "https://lh6.googleusercontent.com/Rb-iZeUlx9iAC63vsmRWmdm3HgqAFXGZcwuEaGNljecynE7rp36EYeFlTGQlFJ-cYneMZv7sTnqOjDE=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=144vDIqP5uvBMqhlPB8VdI4DXZRh_hF2u",
+          name: "220606_PCC2_GL_I3b1_SeasonalElement04thJuly0Android_512x512.png",
+          mimeType: "image/png",
+          file_size: 729387,
+          file_type: "png",
+          extensionFile: "png",
+        },
+        {
+          id: "1BKUVLHoIEHRjoqt1KvIl-fbglY2BCwpN",
+          isError: false,
+          errorContent: "",
+          resolution: {
+            width: 1080,
+            height: 1080,
+          },
+          duration: "22122",
+          url: "https://lh5.googleusercontent.com/A5wNLHY89EGYKG8vVPX27WlROpLky3ouSqOhT7IpwOFWKXNHaPv6cwDUr9_weJoDCn-g1LMcSzEo-2o=s220",
+          videoUrl:
+            "https://drive.google.com/uc?id=1BKUVLHoIEHRjoqt1KvIl-fbglY2BCwpN",
+          name: "20230106_TH_GL_V1c2_PMEOM_22s_1080x1080.mp4",
+          mimeType: "video/mp4",
+          file_size: 29119856,
+          file_type: "video",
+          extensionFile: "mp4",
+        },
+      ];
+      const creativeSets = [
+        {
+          file_size: 100000000,
+          file_types: ["mp4"],
+          id: "ce86908e-96a5-4d2d-83b1-500c7fd01c3d",
+          metadata: {
+            max_ratio: 2,
+            min_ratio: 0.5,
+          },
+          name: "video",
+          type: "video",
+          is_required: true,
+          __typename: "CreativeConfiguration",
+        },
+        {
+          file_size: 2000000,
+          file_types: ["png", "jpg", "jpeg", "gif"],
+          id: "de9080c8-1b4f-4f04-809b-301985f34047",
+          metadata: {
+            max_ratio: 2,
+            min_ratio: 0.5,
+            max_dimension: 3840,
+            min_dimension: 320,
+          },
+          name: "image",
+          type: "left",
+          is_required: true,
+          __typename: "CreativeConfiguration",
+        },
+        {
+          file_size: 2000000,
+          file_types: ["png", "jpg", "jpeg", "gif"],
+          id: "439e9a74-b4c4-496e-9d60-d4f8882e1b31",
+          metadata: {
+            max_ratio: 2,
+            min_ratio: 0.5,
+            max_dimension: 3840,
+            min_dimension: 320,
+          },
+          name: "image",
+          type: "middle",
+          is_required: true,
+          __typename: "CreativeConfiguration",
+        },
+        {
+          file_size: 2000000,
+          file_types: ["png", "jpg", "jpeg", "gif"],
+          id: "30e04b26-345e-4e5d-831e-482fb2ff6aa8",
+          metadata: {
+            max_ratio: 2,
+            min_ratio: 0.5,
+            max_dimension: 3840,
+            min_dimension: 320,
+          },
+          name: "image",
+          type: "right",
+          is_required: true,
+          __typename: "CreativeConfiguration",
+        },
+      ];
+
+      const inRange = (number, start, end) => {
+        return number >= start && number <= end;
+      };
+
+      function validateFileIS({ media, creativeSet, productCode }) {
+        let isMatch = false;
+        let isMatchProductCode = false;
+
+        // check exactly name by product code
+        if (productCode !== "") {
+          const regexProductCode = new RegExp(
+            `(([?!_])(${productCode})([?!_]))`,
+            "g"
+          );
+          isMatchProductCode = regexProductCode.test(media.name);
+        }
+
+        // metadata
+        const ratio = media.resolution.width / media.resolution.height;
+
+        // video
+        if (
+          media.mimeType.startsWith("video") &&
+          creativeSet.file_types.includes(media.extensionFile)
+        ) {
+          const isRatio = inRange(
+            ratio,
+            creativeSet.metadata.min_ratio,
+            creativeSet.metadata.max_ratio
+          );
+          const isFileSize = media.file_size <= creativeSet.file_size;
+          isMatch = isRatio && isFileSize;
+        }
+
+        // image
+        if (
+          media.mimeType.startsWith("image") &&
+          creativeSet.file_types.includes(media.file_type)
+        ) {
+          const isRatio =
+            inRange(
+              ratio,
+              creativeSet.metadata.min_ratio,
+              creativeSet.metadata.max_ratio
+            ) &&
+            (inRange(
+              media.resolution.width,
+              creativeSet.metadata.min_dimension,
+              creativeSet.metadata.max_dimension
+            ) ||
+              inRange(
+                media.resolution.height,
+                creativeSet.metadata.min_dimension,
+                creativeSet.metadata.max_dimension
+              ));
+          const isFileSize = media.file_size <= creativeSet.file_size;
+          isMatch = isRatio && isFileSize;
+        }
+
+        // playable
+        if (
+          media.mimeType === "text/html" &&
+          creativeSet.file_types.includes(media.file_type)
+        ) {
+          isMatch = true;
+        }
+
+        return isMatch && isMatchProductCode;
+      }
+
+      const creativeIdsMatched = creativeUpload.reduce((acc, currItem) => {
+        const isMatch = creativeSets.some((set) =>
+          validateFileIS({
+            media: currItem,
+            creativeSet: set,
+            productCode: "PCC2",
+          })
+        );
+        if (isMatch) {
+          acc.push(currItem.id);
+        }
+        return acc;
+      }, []);
+
+      console.log("input: ", {
+        creativeUpload,
+        creativeSets,
+        creativeIdsMatched,
+      });
+    </script>
+  </body>
+</html>
