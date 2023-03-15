@@ -1,5 +1,5 @@
-const ratio = 1;
-const minRatio = 1;
+const ratio = 800 / 600;
+const minRatio = 1.3333333333333333;
 const maxRatio = Number.MAX_SAFE_INTEGER;
 
 const minDimension = 200;
@@ -9,9 +9,6 @@ const inRange = (number, start, end) => {
   return number >= start && number <= end;
 };
 
-const res =
-  inRange(ratio, minRatio, maxRatio) &&
-  (inRange(1080, minDimension, maxDimension) ||
-    inRange(1080, minDimension, maxDimension));
+const res = inRange(ratio, 1.33, 1.34);
 
 console.log("res: ", res);
