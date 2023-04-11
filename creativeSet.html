@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>creativeSet</title>
+  </head>
+
+  <body>
+    <h2>creativeSet</h2>
+
+    <script type="text/javascript">
+      const creativesMatched = [
+        {
+          id: 1,
+          creativeSets: [],
+          file_size: 100,
+        },
+        {
+          id: 2,
+          creativeSets: [],
+          file_size: 200,
+        },
+      ];
+      const campaigns = [
+        {
+          id: "campaign 1",
+          creativeSets: [
+            {
+              type: "left",
+              file_size: 100,
+            },
+            {
+              type: "middle",
+              file_size: 100,
+            },
+            {
+              type: "right",
+              file_size: 200,
+            },
+          ],
+        },
+      ];
+
+      const res = [
+        {
+          id: 1,
+          file_size: 100,
+          creativeSets: [
+            {
+              type: "left",
+              file_size: 100,
+            },
+            {
+              type: "middle",
+              file_size: 100,
+            },
+          ],
+        },
+        {
+          id: 2,
+          file_size: 200,
+          creativeSets: [
+            {
+              type: "right",
+              file_size: 200,
+            },
+          ],
+        },
+      ];
+
+      const final = creativesMatched.map((creative) => {
+        const set = campaigns[0].creativeSets.filter(
+          (creativeSet) => creativeSet.file_size === creative.file_size
+        );
+        return {
+          ...creative,
+          creativeSets: [...creative.creativeSets, set],
+        };
+      });
+      console.log(final);
+    </script>
+  </body>
+</html>
