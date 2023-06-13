@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>Deep Clone</title>
+</head>
+
+<body>
+    <script>
+
+      const objA = {
+        name: 'truong'
+      }; 
+      const objB = {
+        age: 18,
+        firstName: 'nguyen',
+        name: 'vinh',
+      }; 
+      const objC = {
+        lastName: 'minh'
+      };
+
+      /* merge object
+        - copy tat ca cac thuoc tinh cua object vs nhau (giữ nguyên)
+        - property sẽ bị overide lại nếu bị trùng.
+      */
+      const mergedObject = Object.assign({}, objB, objA)
+      console.log('mergedObject: ', mergedObject)
+
+      /* replace object
+        - nó sẽ tạo ra 1 object mới. Các property của object cũ sẽ bị mất đi
+      */
+
+      const replacedObject = {
+        ...objB, // copy property
+        country: 'VN'
+      }
+      console.log('replacedObject: ', replacedObject)
+
+
+    </script>
+</body>
+
+</html>

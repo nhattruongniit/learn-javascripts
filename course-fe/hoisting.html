@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CountTime Active Tab Browser</title>
+  </head>
+
+  <body>
+    <h2>Hoisting</h2>
+
+    <script type="text/javascript">
+      // so sanh tham chieu
+      const objA = {}; // memory A
+      const objB = {}; // memory B
+      const objC = objA; // memory A
+      objC.name = 'truong'
+
+      const todos = [
+        {
+          id: 1,
+          title: 'learn js',
+        },
+        {
+          id: 2,
+          title: 'learn angular',
+        },
+        {
+          id: 3,
+          title: 'learn html',
+        },
+      ]
+      
+      // const clonedTodos = [...todos]; // shallow clone
+      const clonedTodos = JSON.parse(JSON.stringify(todos)); // deep clone
+      clonedTodos[1].title = 'learn vue'
+
+      console.log('res: ', { todos, clonedTodos });
+
+      // equality ==
+      console.log('equality ==: ', true) // => 1 == Number(true)
+
+      // !!!true => !true => false => !false => true =>  !true => false
+      // !!null => !null => true => !true => false
+
+      // UI -> call api -> render UI
+
+      const p1 = new Promise((resolve, reject) => {
+        try {
+          const sum = 1 + 20;
+          resolve(sum)
+        } catch(err) {
+          reject(err)
+        }
+      })
+
+      const p2 = fetch('https://jsonplaceholder.typicode.com/todos/1').then(res => res.json())
+
+      p1
+        .then(res => res * 2)
+        .then(res => res * 3)
+        .then(res => console.log('res: ', res))
+        .catch(error => {
+          console.log('error: ', error)
+        })
+
+      Promise.all([p1, p2])
+        .then(res => {
+          console.log('promise all Success: ', res)
+        })
+        .catch(error => {
+          console.log('promise all error: ', error)
+        })
+      
+
+      console.log('p1: ', {p1, p2 })
+
+
+      // async/await function
+      async function functionSum() {
+        try {
+          const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+          const data = await res.json();
+          return data;
+        } catch(err) {
+          console.log('err: ', err)
+        }
+      }
+      functionSum().then(res => console.log('async, await: ', res))
+
+
+    </script>
+  </body>
+</html>
+ 
