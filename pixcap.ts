@@ -44,17 +44,20 @@ ASSUMPTIONS: You may assume:
 
 ASSESSMENT CRITERIA:
 1. The efficiency of the code
-2. Object oriented programming design 3. Readability
+2. Object oriented programming design 
+3. Readability
 4. Completeness of solution
 
 REQUIREMENTS:
 Must be written in Typescript.
 */
+
 interface Employee {
   uniqueId: number;
   name: string;
   subordinates: Employee[];
 }
+
 interface IEmployeeOrgApp {
   ceo: Employee;
   /**
@@ -64,41 +67,184 @@ interface IEmployeeOrgApp {
   * @param supervisorID
   */
   move(employeeID: number, supervisorID: number): void;
-  /** Undo last move action */ undo(): void;
+  /** Undo last move action */
+  undo(): void;
   /** Redo last undone action */
   redo(): void;
 }
 
 class EmployeeOrgApp implements IEmployeeOrgApp {
-  public ceo: Employee;
+  private employeesMap: Map<number, Employee>;
+  private actionsStack: { action: string; data: any }[];
+  private undoStack: { action: string; data: any }[];
 
-  constructor(ceo: Employee) {
-    this.ceo = ceo;
+  constructor(public ceo: Employee) {
+    this.employeesMap = new Map();
+    this.buildEmployeeMap(this.ceo);
+    this.actionsStack = [];
+    this.undoStack = [];
+  }
+
+  // Helper function to recursively build the employeesMap
+  private buildEmployeeMap(employee: Employee) {
+    this.employeesMap.set(employee.uniqueId, employee);
+    for (const subordinate of employee.subordinates) {
+      this.buildEmployeeMap(subordinate);
+    }
+  }
+
+  move(employeeID: number, supervisorID: number): void {
+    if (
+      !this.employeesMap.has(employeeID) ||
+      !this.employeesMap.has(supervisorID)
+    ) {
+      throw new Error("Invalid employeeID or supervisorID");
+    }
+
+    const employee = this.employeesMap.get(employeeID);
+    const currentSupervisorID = this.findCurrentSupervisorID(employeeID);
+    const supervisor = this.employeesMap.get(supervisorID);
+    const oldSupervisor = this.employeesMap.get(currentSupervisorID);
+
+    if (!supervisor || !oldSupervisor) {
+      throw new Error("Invalid employeeID or supervisorID");
+    }
+
+    this.actionsStack.push({
+      action: "move",
+      data: { employeeID, currentSupervisorID },
+    });
+
+    // Update the subordinates list of the old supervisor
+
+    if (!oldSupervisor) return;
+    oldSupervisor.subordinates = oldSupervisor.subordinates.filter(
+      (e) => e.uniqueId !== employeeID
+    );
+
+    // Update the subordinates list of the new supervisor
+    supervisor.subordinates.push(employee as Employee);
+  }
+
+  private findCurrentSupervisorID(employeeID: number): number {
+    let currentSupervisorID = -1;
+    for (const [, employee] of this.employeesMap) {
+      for (const subordinate of employee.subordinates) {
+        if (subordinate.uniqueId === employeeID) {
+          currentSupervisorID = employee.uniqueId;
+          break;
+        }
+      }
+    }
+    return currentSupervisorID;
   }
 
   undo(): void {
-    throw new Error("Method not implemented.");
+    const lastAction = this.actionsStack.pop();
+
+    if (this.actionsStack.length === 0 || !lastAction) {
+      throw new Error("Nothing to undo");
+    }
+
+    this.undoStack.push(lastAction);
+
+    if (lastAction.action === "move") {
+      const { employeeID, currentSupervisorID } = lastAction.data;
+
+      const employee = this.employeesMap.get(employeeID);
+      const oldSupervisor = this.employeesMap.get(currentSupervisorID);
+      const newSupervisorID = this.findCurrentSupervisorID(employeeID);
+      const newSupervisor = this.employeesMap.get(newSupervisorID);
+
+      if (!newSupervisor || !oldSupervisor) {
+        throw new Error("Invalid employeeID or supervisorID");
+      }
+
+      oldSupervisor.subordinates.push(employee as Employee);
+      newSupervisor.subordinates = newSupervisor.subordinates.filter(
+        (e) => e.uniqueId !== employeeID
+      );
+    }
   }
 
-  move(employeeID, supervisorID) {
-    this.ceo./.push();
-  }
+  redo(): void {
+    const lastUndoneAction = this.undoStack.pop();
 
-  redo() {}
+    if (this.undoStack.length === 0 || !lastUndoneAction) {
+      throw new Error("Nothing to redo");
+    }
 
-  getCeo() {
-    return this.ceo;
+    this.actionsStack.push(lastUndoneAction);
+
+    if (lastUndoneAction.action === "move") {
+      const { employeeID, currentSupervisorID } = lastUndoneAction.data;
+      this.move(employeeID, currentSupervisorID);
+    }
   }
 }
 
 const ceo: Employee = {
   uniqueId: 1,
   name: "Mark Zuckerberg",
-  subordinates: [],
+  subordinates: [
+    {
+      uniqueId: 2,
+      name: "Sarah Donald",
+      subordinates: [
+        {
+          uniqueId: 3,
+          name: "Cassandra Reynolds",
+          subordinates: [
+            {
+              uniqueId: 4,
+              name: "Mary Blue",
+              subordinates: [],
+            },
+            {
+              uniqueId: 5,
+              name: "Bob Saget",
+              subordinates: [
+                {
+                  uniqueId: 6,
+                  name: "Tina Teff",
+                  subordinates: [
+                    {
+                      uniqueId: 7,
+                      name: "Will Turner",
+                      subordinates: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      uniqueId: 8,
+      name: "Tyler Simpson",
+      subordinates: [
+        {
+          uniqueId: 9,
+          name: "Harry Tobs",
+          subordinates: [
+            {
+              uniqueId: 10,
+              name: "Thomas Brown",
+              subordinates: [],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 const app = new EmployeeOrgApp(ceo);
-console.log("getCEO: ", app.getCeo());
+app.move(7, 8);
+
+console.log("results: ", { ceo });
 
 /* 
 Đông:

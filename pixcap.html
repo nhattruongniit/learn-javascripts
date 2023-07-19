@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>CountTime Active Tab Browser</title>
+  </head>
+
+  <body>
+    <h2>PXICAP</h2>
+
+    <script type="text/javascript">
+      /* Below is an example organisation chart. At the top is the ceo, Mark Zuckerberg. Mark's subordinates are Sarah, Tyler, Bruce and Georgina.
+          Mark Zuckerberg:
+            - Sarah Donald:
+              - Cassandra Reynolds: 
+                - Mary Blue:
+                - Bob Saget:
+                  - Tina Teff:
+                    - Will Turner:
+            - Tyler Simpson:
+              - Harry Tobs:
+                - Thomas Brown: 
+              - George Carrey:
+              - Gary Styles: 
+            - Bruce Willis:
+            - Georgina Flangy:
+              - Sophie Turner:
+
+          The CEO is represented with the following structure.
+
+          interface Employee { 
+            uniqueId: number;
+            name: string; 
+            subordinates: Employee[];
+          }
+
+          const ceo: Employee = { 
+            uniqueId: 1
+            name: Mark Zuckerberg,
+            subordinates: [Employee, Employee, ....] 
+          }
+
+          Your task is to create a concrete class called EmployeeOrgApp that implements IEmployeeOrgApp. The class should be instantiable 
+          with the ceo as a constructor parameter.
+          E.g. const app = new EmployeeOrgApp(ceo)
+
+          The class should:
+          1. move employee A to become the subordinate of employee B (i.e. B becomes A's supervisor)
+          2. undo/redo the move action
+
+          ASSUMPTIONS: You may assume:
+          - when an employee (e.g. Bob Saget) is moved to a new supervisor (e.g. Georgina), Bob's existing subordinates (Tina Teff) will become the subordinate of Cassandra, Bob's old supervisor.
+          - employees without any subordinates have an empty list for their subordinates property
+          - You may not clone the state/tree during each action (move/undo/redo).
+
+          ASSESSMENT CRITERIA:
+          1. The efficiency of the code
+          2. Object oriented programming design 
+          3. Readability
+          4. Completeness of solution
+
+          REQUIREMENTS:
+          Must be written in Typescript.
+          */
+
+      class EmployeeOrgApp {
+        constructor(ceo) {
+          this.employeesMap = new Map();
+          this.ceo = ceo;
+          this.buildEmployeeMap(this.ceo);
+          this.actionsStack = [];
+          this.undoStack = [];
+          this.results = [];
+        }
+
+        buildEmployeeMap(employee) {
+          this.employeesMap.set(employee.uniqueId, employee);
+          for (const subordinate of employee.subordinates) {
+            this.buildEmployeeMap(subordinate);
+          }
+        }
+
+        move(employeeID, supervisorID) {
+          if (
+            !this.employeesMap.has(employeeID) ||
+            !this.employeesMap.has(supervisorID)
+          ) {
+            throw new Error("Invalid employeeID or supervisorID");
+          }
+
+          const employee = this.employeesMap.get(employeeID);
+          const currentSupervisorID = this.findCurrentSupervisorID(employeeID);
+          const supervisor = this.employeesMap.get(supervisorID);
+
+          this.actionsStack.push({
+            action: "move",
+            data: { employeeID, currentSupervisorID },
+          });
+
+          const oldSupervisor = this.employeesMap.get(currentSupervisorID);
+          oldSupervisor.subordinates = oldSupervisor.subordinates.filter(
+            (e) => e.uniqueId !== employeeID
+          );
+
+          supervisor.subordinates.push(employee);
+        }
+
+        findCurrentSupervisorID(employeeID) {
+          let currentSupervisorID = -1;
+          for (const [, employee] of this.employeesMap) {
+            for (const subordinate of employee.subordinates) {
+              if (subordinate.uniqueId === employeeID) {
+                currentSupervisorID = employee.uniqueId;
+                break;
+              }
+            }
+          }
+          return currentSupervisorID;
+        }
+
+        undo() {
+          if (this.actionsStack.length === 0) {
+            throw new Error("Nothing to undo");
+          }
+
+          const lastAction = this.actionsStack.pop();
+          this.undoStack.push(lastAction);
+
+          if (lastAction.action === "move") {
+            const { employeeID, currentSupervisorID } = lastAction.data;
+            const employee = this.employeesMap.get(employeeID);
+
+            const oldSupervisor = this.employeesMap.get(currentSupervisorID);
+            oldSupervisor.subordinates.push(employee);
+
+            const newSupervisorID = this.findCurrentSupervisorID(employeeID);
+            const newSupervisor = this.employeesMap.get(newSupervisorID);
+            newSupervisor.subordinates = newSupervisor.subordinates.filter(
+              (e) => e.uniqueId !== employeeID
+            );
+          }
+        }
+
+        redo() {
+          if (this.undoStack.length === 0) {
+            throw new Error("Nothing to redo");
+          }
+
+          const lastUndoneAction = this.undoStack.pop();
+          this.actionsStack.push(lastUndoneAction);
+
+          if (lastUndoneAction.action === "move") {
+            const { employeeID, currentSupervisorID } = lastUndoneAction.data;
+            this.move(employeeID, currentSupervisorID);
+          }
+        }
+      }
+
+      const ceo = {
+        uniqueId: 1,
+        name: "Mark Zuckerberg",
+        subordinates: [
+          {
+            uniqueId: 2,
+            name: "Sarah Donald",
+            subordinates: [
+              {
+                uniqueId: 3,
+                name: "Cassandra Reynolds",
+                subordinates: [
+                  {
+                    uniqueId: 4,
+                    name: "Mary Blue",
+                    subordinates: [],
+                  },
+                  {
+                    uniqueId: 5,
+                    name: "Bob Saget",
+                    subordinates: [
+                      {
+                        uniqueId: 6,
+                        name: "Tina Teff",
+                        subordinates: [
+                          {
+                            uniqueId: 7,
+                            name: "Will Turner",
+                            subordinates: [],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            uniqueId: 8,
+            name: "Tyler Simpson",
+            subordinates: [
+              {
+                uniqueId: 9,
+                name: "Harry Tobs",
+                subordinates: [
+                  {
+                    uniqueId: 10,
+                    name: "Thomas Brown",
+                    subordinates: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      const app = new EmployeeOrgApp(ceo);
+      app.move(7, 8);
+
+      console.log("results: ", { ceo });
+    </script>
+  </body>
+</html>
