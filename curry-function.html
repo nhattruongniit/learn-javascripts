@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>curry-function</title>
+  </head>
+
+  <body>
+    <h2>curry-function</h2>
+
+    <script type="text/javascript">
+      // sum(2)(3)(4) = 9
+
+      function sum(a) {
+        return function(b) {
+          return function (c) {
+            return a + b + c;
+          }
+        }
+      }
+      const sum = a => (b) => (c) => a + b + c;
+
+      const res = sum(2)(4)(6) // 12
+    </script>
+  </body>
+</html>

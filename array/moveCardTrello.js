@@ -5,7 +5,7 @@ const lists = {
     title: 'list 1',
     cards: ['card-1', 'card-2', 'card-3', 'card-4'],
   },
-},
+}
 
 const swap = (sourceIndex, destinationIndex) => {
   const newCards = [...list.cards];
