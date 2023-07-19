@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>CountTime Active Tab Browser</title>
+  </head>
+
+  <body>
+    <h2>Language Config</h2>
+    <div style="margin-top: 20px; text-align: center">
+      <h1>0</h1>
+    </div>
+
+    <script type="text/javascript">
+      const languages = [
+        {
+          value: "AF",
+          code: "af",
+          label: "Afrikaans",
+        },
+        {
+          value: "AR",
+          code: "ar",
+          label: "Arabic",
+        },
+        {
+          value: "AS",
+          code: "as",
+          label: "Assamese",
+        },
+        {
+          value: "AZ",
+          code: "az",
+          label: "Azerbaijani",
+        },
+        {
+          value: "BE",
+          code: "be",
+          label: "Belarusian",
+        },
+        {
+          value: "BE",
+          code: "be",
+          label: "Belarusian",
+        },
+        {
+          value: "BN",
+          code: "bn",
+          label: "Bengali",
+        },
+        {
+          value: "BG",
+          code: "bg",
+          label: "Bulgarian",
+        },
+        {
+          value: "CA",
+          code: "ca",
+          label: "Catalan",
+        },
+        {
+          value: "ZH",
+          code: "zh",
+          label: "Chinese",
+        },
+        {
+          value: "HR",
+          code: "hr",
+          label: "Croatian",
+        },
+        {
+          value: "CS",
+          code: "cs",
+          label: "Czech",
+        },
+        {
+          value: "DA",
+          code: "da",
+          label: "Danish",
+        },
+        {
+          value: "NL",
+          code: "nl",
+          label: "Dutch",
+        },
+        {
+          value: "EN",
+          code: "en",
+          label: "English",
+        },
+        {
+          value: "ET",
+          code: "et",
+          label: "Estonian",
+        },
+        {
+          value: "FIL",
+          code: "fil",
+          label: "Filipino",
+        },
+        {
+          value: "FI",
+          code: "fi",
+          label: "Finnish",
+        },
+        {
+          value: "FR",
+          code: "fr",
+          label: "French",
+        },
+        {
+          value: "DE",
+          code: "de",
+          label: "German",
+        },
+        {
+          value: "EL",
+          code: "el",
+          label: "Greek",
+        },
+        {
+          value: "HE",
+          code: "he",
+          label: "Hebrew",
+        },
+        {
+          value: "HI",
+          code: "hi",
+          label: "Hindi",
+        },
+        {
+          value: "HU",
+          code: "hu",
+          label: "Hungarian",
+        },
+        {
+          value: "IS",
+          code: "is",
+          label: "Icelandic",
+        },
+        {
+          value: "ID",
+          code: "id",
+          label: "Indonesian",
+        },
+        {
+          value: "IT",
+          code: "it",
+          label: "Italian",
+        },
+        {
+          value: "JA",
+          code: "ja",
+          label: "Japanese",
+        },
+        {
+          value: "KK",
+          code: "kk",
+          label: "Kazakh",
+        },
+        {
+          value: "KO",
+          code: "ko",
+          label: "Korean",
+        },
+        {
+          value: "KY",
+          code: "ky",
+          label: "Kyrgyz",
+        },
+        {
+          value: "LV",
+          code: "lv",
+          label: "Latvian",
+        },
+        {
+          value: "LT",
+          code: "lt",
+          label: "Lithuanian",
+        },
+        {
+          value: "MK",
+          code: "mk",
+          label: "Macedonian",
+        },
+        {
+          value: "MS",
+          code: "ms",
+          label: "Malay",
+        },
+        {
+          value: "MR",
+          code: "mr",
+          label: "Marathi",
+        },
+        {
+          value: "MN",
+          code: "mn",
+          label: "Mongolian",
+        },
+        {
+          value: "NE",
+          code: "ne",
+          label: "Nepali",
+        },
+        {
+          value: "NO",
+          code: "no",
+          label: "Norwegian",
+        },
+        {
+          value: "PS",
+          code: "ps",
+          label: "Pashtu",
+        },
+        {
+          value: "FA",
+          code: "fa",
+          label: "Persian",
+        },
+        {
+          value: "PL",
+          code: "pl",
+          label: "Polish",
+        },
+        {
+          value: "PT",
+          code: "pt",
+          label: "Portuguese",
+        },
+        {
+          value: "RO",
+          code: "ro",
+          label: "Romanian",
+        },
+        {
+          value: "RU",
+          code: "ru",
+          label: "Russian",
+        },
+        {
+          value: "SA",
+          code: "sa",
+          label: "Sanskrit",
+        },
+        {
+          value: "SR",
+          code: "sr",
+          label: "Serbian",
+        },
+        {
+          value: "SK",
+          code: "sk",
+          label: "Slovak",
+        },
+        {
+          value: "SL",
+          code: "sl",
+          label: "Slovenian",
+        },
+        {
+          value: "ES",
+          code: "es",
+          label: "Spanish",
+        },
+        {
+          value: "SV",
+          code: "sv",
+          label: "Swedish",
+        },
+        {
+          value: "TA",
+          code: "ta",
+          label: "Tamil",
+        },
+        {
+          value: "TH",
+          code: "th",
+          label: "Thai",
+        },
+        {
+          value: "TR",
+          code: "tr",
+          label: "Turkish",
+        },
+        {
+          value: "UK",
+          code: "uk",
+          label: "Ukrainian",
+        },
+        {
+          value: "UR",
+          code: "ur",
+          label: "Urdu",
+        },
+        {
+          value: "UZ",
+          code: "uz",
+          label: "Uzbek",
+        },
+        {
+          value: "VI",
+          code: "vi",
+          label: "Vietnamese",
+        },
+      ];
+
+      // remove duplicate code
+      // const languagesOption = languages.reduce((acc, currItem) => {
+      //   acc[currItem.code] = currItem;
+      //   return acc;
+      // }, {});
+
+      // const locationsOption = locations.reduce((acc, currItem) => {
+      //   acc[currItem.code] = currItem;
+      //   return acc;
+      // }, {});
+
+      const res = languages.map((ele) => "LANGUAGES." + ele.code);
+
+      console.log("languages: ", { res });
+    </script>
+  </body>
+</html>

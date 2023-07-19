@@ -1,9 +1,9 @@
 {
   "name": "learn-javascript",
   "version": "1.0.0",
-  "description": "",
   "scripts": {
-    "start": "tsc typescript/main.ts && node typescript/main.js"
+    "start": "tsc typescript/main.ts && node typescript/main.js",
+    "pixcap": "tsc pixcap.ts"
   },
   "repository": {
     "type": "git",
@@ -13,10 +13,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^3.1.6"
+    "typescript": "^3.9.10"
   },
   "dependencies": {
     "cross-fetch": "^3.0.4",
     "lodash": "^4.17.15"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/nhattruongniit/learn-javascript/issues"
+  },
+  "homepage": "https://github.com/nhattruongniit/learn-javascript#readme",
+  "main": "abc.js",
+  "description": ""
 }
