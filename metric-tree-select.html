@@ -131,7 +131,6 @@
       function filterTree(tree, keysToKeep) {
         return tree.reduce((filtered, node) => {
           if (keysToKeep.includes(node.key)) {
-            // Include the current node and its children
             const newNode = { ...node };
             if (newNode.children) {
               newNode.children = filterTree(newNode.children, keysToKeep);
