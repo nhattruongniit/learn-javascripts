@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>Metric Tree Select</title>
+  </head>
+
+  <body>
+    <div>
+      <h2>Metric Tree Select</h2>
+    </div>
+
+    <script type="text/javascript">
+      const input = [
+        {
+          title: "User count Parent",
+          key: "user_count_parent",
+          children: [
+            {
+              title: "User count",
+              key: "user_count",
+              children: [
+                { title: "gm00_user_count", key: "gm00_user_count" },
+                { title: "gm01_user_count", key: "gm01_user_count" },
+              ],
+            },
+          ],
+        },
+        {
+          title: "Retention ULRD",
+          key: "retention_urld",
+          children: [
+            {
+              title: "Ad impression",
+              key: "ad_impression",
+              children: [
+                { title: "gm00_ad_impression", key: "gm00_ad_impression" },
+              ],
+            },
+            {
+              title: "Value combine",
+              key: "value_combine",
+              children: [
+                { title: "gm00_value_combine", key: "gm00_value_combine" },
+              ],
+            },
+            {
+              title: "Ad value (URLD)",
+              key: "ad_value_urld",
+              children: [],
+            },
+          ],
+        },
+        {
+          title: "FB login click",
+          key: "fb_login_click",
+        },
+      ];
+
+      const checkedKeys = [
+        "gm00_user_count",
+        "gm00_ad_impression",
+        "ad_impression",
+        "ad_value_urld",
+      ];
+
+      const checkedNotes = [
+        { title: "gm00_user_count", key: "gm00_user_count" },
+        { title: "gm00_ad_impression", key: "gm00_ad_impression" },
+        {
+          title: "Ad impression",
+          key: "ad_impression",
+          children: [
+            { title: "gm00_ad_impression", key: "gm00_ad_impression" },
+          ],
+        },
+        {
+          title: "Ad value (URLD)",
+          key: "ad_value_urld",
+          children: [],
+        },
+      ];
+
+      const output = [
+        {
+          title: "User count Parent",
+          key: "user_count_parent",
+          children: [
+            {
+              title: "User count",
+              key: "user_count",
+              children: [
+                {
+                  title: "gm00_user_count",
+                  key: "gm00_user_count",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: "Retention ULRD",
+          key: "retention_urld",
+          children: [
+            {
+              title: "Ad impression",
+              key: "ad_impression",
+              children: [
+                {
+                  title: "gm00_ad_impression",
+                  key: "gm00_ad_impression",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: "Ad value (URLD)",
+          key: "ad_value_urld",
+          children: [],
+        },
+      ];
+
+      // mapping output based on the input and checkedKeys
+      function filterTree(tree, keysToKeep) {
+        return tree.reduce((filtered, node) => {
+          if (keysToKeep.includes(node.key)) {
+            // Include the current node and its children
+            const newNode = { ...node };
+            if (newNode.children) {
+              newNode.children = filterTree(newNode.children, keysToKeep);
+            }
+            filtered.push(newNode);
+          } else if (node.children) {
+            // Recursively filter children and include the parent if it has children left
+            const filteredChildren = filterTree(node.children, keysToKeep);
+            if (filteredChildren.length > 0) {
+              const newNode = { ...node, children: filteredChildren };
+              filtered.push(newNode);
+            }
+          }
+          return filtered;
+        }, []);
+      }
+
+      console.log("checkedNotes: ", {
+        input,
+        checkedKeys,
+        output: filterTree(input, checkedKeys),
+      });
+    </script>
+  </body>
+</html>
