@@ -148,10 +148,24 @@
         }, []);
       }
 
+      // count amount total items of input
+      function countItemsRecursive(data) {
+        let count = 0;
+
+        data.forEach((item) => {
+          count++; // Count the current item
+          if (item.children && item.children.length > 0) {
+            count += countItemsRecursive(item.children); // Recursively count children
+          }
+        });
+
+        return count;
+      }
       console.log("checkedNotes: ", {
         input,
         checkedKeys,
         output: filterTree(input, checkedKeys),
+        total: countItemsRecursive(input),
       });
     </script>
   </body>
