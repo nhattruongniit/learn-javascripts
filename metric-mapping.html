@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>Metric Tree Select</title>
+  </head>
+
+  <body>
+    <div>
+      <h2>Metric Mapping</h2>
+    </div>
+
+    <script type="text/javascript">
+      const input = [
+        {
+          createdAt: "2023-09-13 10:00:47",
+          updatedAt: "2023-09-13 10:00:47",
+          aggregation: "COUNT",
+          description: "Song start count per user",
+          eventName: "song_start",
+          id: 1,
+          name: "count_song_start",
+          sql: "COUNTIF(event_name = 'song_start')",
+          type: "DEFAULT",
+          metricGroup: null,
+        },
+        {
+          createdAt: "2023-09-13 10:00:47",
+          updatedAt: "2023-09-13 10:00:47",
+          aggregation: "COUNT",
+          description: "Song end count 1",
+          eventName: "song_end_1",
+          id: 2,
+          name: "count_song_end_1",
+          sql: "COUNTIF(event_name = 'song_end')",
+          type: "DEFAULT",
+          metricGroup: "Song Count",
+        },
+        {
+          createdAt: "2023-09-13 10:00:47",
+          updatedAt: "2023-09-13 10:00:47",
+          aggregation: "COUNT",
+          description: "Song end count  2",
+          eventName: "song_end_2",
+          id: 2,
+          name: "count_song_end_2",
+          sql: "COUNTIF(event_name = 'song_end')",
+          type: "DEFAULT",
+          metricGroup: "Song Count",
+        },
+      ];
+
+      const output = [
+        {
+          title: "song_start",
+          key: 1,
+        },
+        {
+          title: "song_end_1",
+          key: 2,
+          children: [
+            {
+              title: "song_end_1",
+              key: 2,
+            },
+            {
+              title: "song_end_2",
+              key: 2,
+            },
+          ],
+        },
+      ];
+
+      function recursiveFormat(data) {
+        return data.reduce((acc, currItem) => {
+          const { metricGroup, ...rest } = currItem;
+          if (!metricGroup) {
+            acc.push({
+              title: rest.eventName,
+              key: rest.id,
+            });
+          } else {
+            if (!acc.some((item) => item.key === rest.id)) {
+              acc.push({
+                title: rest.eventName,
+                key: rest.id,
+                children: [
+                  {
+                    title: rest.eventName,
+                    key: rest.id,
+                  },
+                ],
+              });
+            } else {
+              const index = acc.findIndex((item) => item.key === rest.id);
+              acc[index].children.push({
+                title: rest.eventName,
+                key: rest.id,
+              });
+            }
+          }
+          return acc;
+        }, []);
+      }
+
+      function convertInputToOutput(input) {
+        const output = [];
+
+        // Create a map to store the metricGroup objects
+        const metricGroups = {};
+
+        // Helper function to recursively process metric objects
+        function processMetric(metric) {
+          const metricObject = {
+            title: metric.eventName,
+            key: metric.eventName,
+            ...metric,
+          };
+
+          // If the metric has a metricGroup, process it recursively
+          if (metric.metricGroup) {
+            if (!metricGroups[metric.metricGroup]) {
+              metricGroups[metric.metricGroup] = {
+                title: metric.metricGroup,
+                key: metric.metricGroup,
+                children: [],
+              };
+            }
+            metricGroups[metric.metricGroup].children.push(metricObject);
+          } else {
+            output.push(metricObject);
+          }
+        }
+
+        // Process each metric in the input array
+        input.forEach((metric) => processMetric(metric));
+
+        // // Add metricGroups to the output
+        for (const metricGroup of Object.values(metricGroups)) {
+          output.push(metricGroup);
+        }
+
+        return output;
+      }
+
+      console.log("metric mapping: ", {
+        input,
+        chatgpt: convertInputToOutput(input),
+      });
+    </script>
+  </body>
+</html>
