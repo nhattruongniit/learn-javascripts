@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>Object To String</title>
+  </head>
+
+  <body>
+    <!-- Slideshow container -->
+    <p class="panel">Object To String</p>
+    
+    <script type="text/javascript">
+      const objectItem =  [
+      {
+        "id": 1170,
+        "document_id": 10,
+        "class_id": 929,
+        "class_name": "BuildingSurface:Detailed",
+        "fields": {
+            "A1": "WALL-1PF",
+            "A2": "Wall",
+            "A3": "WALL-1",
+            "A4": "PLENUM-1",
+            "A6": "Outdoors",
+            "A8": "SunExposed",
+            "A9": "WindExposed",
+            "N1": 0.5,
+            "N2": 4
+        },
+        "extensions": {
+            "vertices": [
+                {
+                    "N3": 0,
+                    "N4": 0,
+                    "N5": 3
+                },
+                {
+                    "N3": 0,
+                    "N4": 0,
+                    "N5": 2.4
+                },
+                {
+                    "N3": 30.5,
+                    "N4": 0,
+                    "N5": 2.4
+                },
+                {
+                    "N3": 30.5,
+                    "N4": 0,
+                    "N5": 3
+                }
+            ]
+        },
+        "category": null,
+        "from_template": 0,
+        "selected_object_id": null
+      },
+      {
+        "id": 1170,
+        "document_id": 10,
+        "class_id": 929,
+        "class_name": "BuildingSurface:Detailed",
+        "fields": {
+            "A1": "WALL-1PF",
+            "A2": "Wall",
+            "A3": "WALL-1",
+            "A4": "PLENUM-1",
+            "A6": "Outdoors",
+            "A8": "SunExposed",
+            "A9": "WindExposed",
+            "N1": 0.5,
+            "N2": 4
+        },
+        "extensions": {
+            "vertices": [
+                {
+                    "N3": 0,
+                    "N4": 0,
+                    "N5": 3
+                },
+                {
+                    "N3": 0,
+                    "N4": 0,
+                    "N5": 2.4
+                },
+                {
+                    "N3": 30.5,
+                    "N4": 0,
+                    "N5": 2.4
+                },
+                {
+                    "N3": 30.5,
+                    "N4": 0,
+                    "N5": 3
+                }
+            ]
+        },
+        "category": null,
+        "from_template": 0,
+        "selected_object_id": null
+      }
+      ];
+
+      function objToString (obj) {
+          return Object.entries(obj || {}).reduce((str, [p, val]) => {
+            if(typeof val === 'object') {
+              return `${str}${p}::${objToString(val)}`;
+            }
+
+              return `${str}${p}::${val}\n`;
+          }, '');
+        }
+
+      const res = objToString(objectItem);
+      // console.log(res);
+
+      function convertToText(obj) {
+        //create an array that will later be joined into a string.
+        var string = [];
+
+        //is object
+        //    Both arrays and objects seem to return "object"
+        //    when typeof(obj) is applied to them. So instead
+        //    I am checking to see if they have the property
+        //    join, which normal objects don't have but
+        //    arrays do.
+        if (typeof(obj) == "object" && ((obj || {}).join == undefined)) {
+            string.push(`{\n`);
+            for (prop in obj) {
+                string.push(`  ${prop}`, `: `, `${convertToText(obj[prop])}`, `,\n`);
+            };
+            string.push(`}`);
+
+        //is array
+        } else if (typeof(obj) == "object" && !(obj.join == undefined)) {
+            string.push("[")
+            for(prop in obj) {
+                string.push(`  ${convertToText(obj[prop])}`, `,\n`);
+            }
+            string.push("]")
+
+        //is function
+        } else if (typeof(obj) == "function") {
+            string.push(obj.toString())
+
+        //all other values can be done with JSON.stringify
+        } else {
+          string.push(JSON.stringify(obj))
+        }
+
+        return string.join("")
+      }
+
+      // console.log(convertToText(objectItem))
+
+      const formattedText = JSON.stringify(objectItem, null, 2); // 2 spaces for indentation
+
+      console.log(formattedText);
+
+
+    </script>
+  </body>
+</html>

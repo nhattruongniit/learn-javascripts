@@ -1,10 +1,25 @@
-const obj1 = { a: 1 };
-const obj2 = {};
-const number = 1;
+const input = [
+  { idd_name: "N3", value: 3 },
+  { idd_name: "N4", value: 4 },
+  { idd_name: "N5", value: 5 },
+];
 
-console.log("equality string: ", obj1.toString());
+// Create an array of unique idd_names
+const iddNames = [...new Set(input.map(item => item.idd_name))];
 
-console.log("equality valueOf: ", obj1.valueOf());
-console.log("equality: ", obj1.valueOf() == obj1);
+// Initialize an empty array to store the output
+const output = [];
 
-console.log("Object is: ", Object.is(obj1, obj1));
+// Iterate over each item in the input array
+input.forEach((item) => {
+  const newItem = {};
+  
+  // Iterate over the unique idd_names
+  iddNames.forEach((iddName) => {
+    newItem[iddName] = item.value ;
+  });
+  
+  output.push(newItem);
+});
+
+console.log(output);

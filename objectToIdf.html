@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>Object To IDF</title>
+  </head>
+
+  <body>
+    <!-- Slideshow container -->
+    <p class="panel">Object To IDF</p>
+    
+    <script type="text/javascript">
+      const class_name = 'BuildingSurface:Detailed';
+      const fields = [
+          {
+              "field_name": "Name",
+              "jdd_name": "name",
+              "idd_name": "A1",
+              "field_id": 14300,
+              "options": {
+                  "required-field": "1",
+                  "type": "alpha"
+              },
+              "references": [
+                  "AllHeatTranAngFacNames",
+                  "AllHeatTranSurfNames",
+                  "AllShadingAndHTSurfNames",
+                  "FloorSurfaceNames",
+                  "OutFaceEnvNames",
+                  "RadiantSurfaceNames",
+                  "SurfaceNames",
+                  "SurfAndSubSurfNames"
+              ]
+          },
+          {
+              "field_name": "Surface Type",
+              "jdd_name": "surface_type",
+              "idd_name": "A2",
+              "field_id": 14301,
+              "options": {
+                  "required-field": "1",
+                  "type": "choice",
+                  "choices": [
+                      "Ceiling",
+                      "Floor",
+                      "Roof",
+                      "Wall"
+                  ]
+              },
+              "references": []
+          },
+          {
+              "field_name": "Construction Name",
+              "jdd_name": "construction_name",
+              "idd_name": "A3",
+              "field_id": 14302,
+              "options": {
+                  "required-field": "1",
+                  "type": "object-list",
+                  "object-list": [
+                      "ConstructionNames"
+                  ]
+              },
+              "references": []
+          },
+          {
+              "field_name": "Zone Name",
+              "jdd_name": "zone_name",
+              "idd_name": "A4",
+              "field_id": 14303,
+              "options": {
+                  "required-field": "1",
+                  "type": "object-list",
+                  "object-list": [
+                      "ZoneNames"
+                  ]
+              },
+              "references": []
+          },
+          {
+              "field_name": "Space Name",
+              "jdd_name": "space_name",
+              "idd_name": "A5",
+              "field_id": 14304,
+              "options": {
+                  "type": "object-list",
+                  "object-list": [
+                      "SpaceNames"
+                  ]
+              },
+              "references": []
+          },
+          {
+              "field_name": "Outside Boundary Condition",
+              "jdd_name": "outside_boundary_condition",
+              "idd_name": "A6",
+              "field_id": 14305,
+              "options": {
+                  "required-field": "1",
+                  "type": "choice",
+                  "choices": [
+                      "Adiabatic",
+                      "Foundation",
+                      "Ground",
+                      "GroundBasementPreprocessorAverageFloor",
+                      "GroundBasementPreprocessorAverageWall",
+                      "GroundBasementPreprocessorLowerWall",
+                      "GroundBasementPreprocessorUpperWall",
+                      "GroundFCfactorMethod",
+                      "GroundSlabPreprocessorAverage",
+                      "GroundSlabPreprocessorCore",
+                      "GroundSlabPreprocessorPerimeter",
+                      "OtherSideCoefficients",
+                      "OtherSideConditionsModel",
+                      "Outdoors",
+                      "Surface",
+                      "Zone"
+                  ]
+              },
+              "references": []
+          },
+          {
+              "field_name": "Outside Boundary Condition Object",
+              "jdd_name": "outside_boundary_condition_object",
+              "idd_name": "A7",
+              "field_id": 14306,
+              "options": {
+                  "type": "object-list",
+                  "object-list": [
+                      "OutFaceEnvNames"
+                  ]
+              },
+              "references": []
+          },
+          {
+              "field_name": "Sun Exposure",
+              "jdd_name": "sun_exposure",
+              "idd_name": "A8",
+              "field_id": 14307,
+              "options": {
+                  "default": "SunExposed",
+                  "type": "choice",
+                  "choices": [
+                      "NoSun",
+                      "SunExposed"
+                  ]
+              },
+              "references": []
+          },
+          {
+              "field_name": "Wind Exposure",
+              "jdd_name": "wind_exposure",
+              "idd_name": "A9",
+              "field_id": 14308,
+              "options": {
+                  "default": "WindExposed",
+                  "type": "choice",
+                  "choices": [
+                      "NoWind",
+                      "WindExposed"
+                  ]
+              },
+              "references": []
+          },
+          {
+              "field_name": "View Factor to Ground",
+              "jdd_name": "view_factor_to_ground",
+              "idd_name": "N1",
+              "field_id": 14309,
+              "options": {
+                  "minimum": "0",
+                  "maximum": "1",
+                  "autocalculatable": "1",
+                  "type": "real",
+                  "json-enum-diff": "Autocalculate"
+              },
+              "references": []
+          },
+          {
+              "field_name": "Number of Vertices",
+              "jdd_name": "number_of_vertices",
+              "idd_name": "N2",
+              "field_id": 14310,
+              "options": {
+                  "minimum": "3",
+                  "autocalculatable": "1",
+                  "json-enum-diff": "Autocalculate"
+              },
+              "references": []
+          },
+          {
+              "field_name": "Vertex 1 X-coordinate",
+              "jdd_name": "vertex_x_coordinate",
+              "idd_name": "N3",
+              "field_id": 14311,
+              "options": {
+                  "extensible": "vertices",
+                  "required-field": "1",
+                  "units": "m",
+                  "type": "real"
+              },
+              "references": []
+          },
+          {
+              "field_name": "Vertex 1 Y-coordinate",
+              "jdd_name": "vertex_y_coordinate",
+              "idd_name": "N4",
+              "field_id": 14312,
+              "options": {
+                  "extensible": "vertices",
+                  "required-field": "1",
+                  "units": "m",
+                  "type": "real"
+              },
+              "references": []
+          },
+          {
+              "field_name": "Vertex 1 Z-coordinate",
+              "jdd_name": "vertex_z_coordinate",
+              "idd_name": "N5",
+              "field_id": 14313,
+              "options": {
+                  "extensible": "vertices",
+                  "required-field": "1",
+                  "units": "m",
+                  "type": "real"
+              },
+              "references": []
+          }
+      ]
+      const objects =  [
+        {
+          "id": 1170,
+          "document_id": 10,
+          "class_id": 929,
+          "class_name": "BuildingSurface:Detailed",
+          "fields": {
+            "A1": "WALL-1PF",
+            "A2": "Wall",
+            "A3": "WALL-1",
+            "A4": "PLENUM-1",
+            "A6": "Outdoors",
+            "A8": "SunExposed",
+            "A9": "WindExposed",
+            "N1": 0.5,
+            "N2": 4
+          },
+          "extensions": {
+            "vertices": [
+              {
+                "N3": 0,
+                "N4": 0,
+                "N5": 3
+              },
+              {
+                "N3": 0,
+                "N4": 0,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 3
+              }
+            ]
+          },
+          "category": null,
+          "from_template": 0,
+          "selected_object_id": null
+        },
+        {
+          "id": 1171,
+          "document_id": 10,
+          "class_id": 929,
+          "class_name": "BuildingSurface:Detailed",
+          "fields": {
+            "A1": "WALL-1PR",
+            "A2": "Wall",
+            "A3": "WALL-1",
+            "A4": "PLENUM-1",
+            "A6": "Outdoors",
+            "A8": "SunExposed",
+            "A9": "WindExposed",
+            "N1": 0.5,
+            "N2": 4
+          },
+          "extensions": {
+            "vertices": [
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 3
+              },
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 15.2,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 15.2,
+                "N5": 3
+              }
+            ]
+          },
+          "category": null,
+          "from_template": 0,
+          "selected_object_id": null
+        }
+      ]
+
+      const rawObject = `
+        BuildingSurface:Detailed,
+            WALL-1PF,                !- Name
+            Wall,                    !- Surface Type
+            WALL-1,                  !- Construction Name
+            PLENUM-1,                !- Zone Name
+            ,                        !- Space Name
+            Outdoors,                !- Outside Boundary Condition
+            ,                        !- Outside Boundary Condition Object
+            SunExposed,              !- Sun Exposure
+            WindExposed,             !- Wind Exposure
+            0.5,                     !- View Factor to Ground
+            4,                       !- Number of Vertices
+            0,0,3,                   !- Vertex 1
+            0,0,2.4,                 !- Vertex 2
+            30.5,0,2.4,              !- Vertex 3
+            30.5,0,3;                !- Vertex 4
+
+
+        BuildingSurface:Detailed,
+            WALL-1PR,                !- Name
+            Wall,                    !- Surface Type
+            WALL-1,                  !- Construction Name
+            PLENUM-1,                !- Zone Name
+            ,                        !- Space Name
+            Outdoors,                !- Outside Boundary Condition
+            ,                        !- Outside Boundary Condition Object
+            SunExposed,              !- Sun Exposure
+            WindExposed,             !- Wind Exposure
+            0.5,                     !- View Factor to Ground
+            4,                       !- Number of Vertices
+            30.5,0,3,                !- Vertex 1
+            30.5,0,2.4,              !- Vertex 2
+            30.5,15.2,2.4,           !- Vertex 3
+            30.5,15.2,3;             !- Vertex 4
+      `
+
+
+      const extensibleObject = objects?.find(obj => obj.extensions && Object.keys(obj.extensions).length > 0);
+      const extensibleName = extensibleObject ? Object.keys(extensibleObject.extensions)[0] : '';
+      const extensibleVertices= extensibleObject ? extensibleObject.extensions[extensibleName] : [];
+    
+      const allFields = [];
+      const vertexFields = [];
+
+      fields.forEach((field) => {
+        const isExtensible = !!field.options['extensible'];
+        if (isExtensible) {
+          vertexFields.push(field);
+        } else {
+          allFields.push(field);
+        }
+      })
+
+      extensibleVertices.forEach((vertex, vertexIndex) => {
+        allFields.push({
+          field_name: `Vertex ${vertexIndex + 1}`,
+          idd_name: `Vertex ${vertexIndex + 1}`,
+          vertices: Object.values(vertex).join(','),
+          options: {
+            'required-field': "1"
+          }
+        });
+      })
+
+      const output = objects.reduce((acc, currObject, index) => {
+        const fieldsValue = allFields.reduce((acc, field) => {
+          const value = currObject.fields[field.idd_name];
+          acc[field.field_name] = {
+            value: field?.vertices ? field?.vertices : value,
+            label: field.idd_name,
+            field_name: field.field_name,
+            required: field?.options['required-field'] === '1',
+          };
+          return acc;
+        }, {})
+        // sort asceding fieldsValue based on label
+        const sortedFieldsValue = Object.values(fieldsValue).sort((a, b) => {
+          if (a.label < b.label) {
+            return -1;
+          }
+          if (a.label > b.label) {
+            return 1;
+          }
+          return 0;
+        })
+        acc[class_name + '-' + index] = {
+          ...acc[class_name],
+          ...sortedFieldsValue
+        }
+        return acc;
+      }, {})
+
+
+      console.log('input: ', {
+        class_name,
+        fields,
+        objects,
+        allFields,
+        output,
+      })
+
+      console.log('rawObject: ', rawObject)
+
+    </script>
+  </body>
+</html>
