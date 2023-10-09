@@ -390,7 +390,7 @@
         });
       })
 
-      const output = objects.reduce((acc, currObject, index) => {
+      const objectsJSON = objects.reduce((acc, currObject, index) => {
         const fieldsValue = allFields.reduce((acc, field) => {
           const value = currObject.fields[field.idd_name];
           acc[field.field_name] = {
@@ -418,16 +418,52 @@
         return acc;
       }, {})
 
+      function convertObjectToRaw(object) {
+        let rawObject = '';
+        let minLength = 0;
+        let maxLength = 0;
+
+        for (const key in object) {
+          rawObject += `\n\nBuildingSurface:Detailed,\n\n`;
+          const properties = object[key];
+          for (let i = 0; i < Object.keys(properties).length; i++) {
+            const property = properties[i];
+            const value =  property.value?.toString() || '';
+            const baseLength = value.length;
+            if(baseLength > maxLength) maxLength = baseLength;
+            else if (baseLength < minLength) minLength = baseLength;
+          }
+
+          for (let i = 0; i < Object.keys(properties).length; i++) {
+            const property = properties[i];
+            const value =  property.value ? property.value.toString() : '';
+            const baseLength = value.length;
+            
+            let calcLength = baseLength < maxLength ? baseLength  + 10 : minLength + 30;
+            if(baseLength <= 1) {
+              calcLength = 8;
+            }
+            const tabsAndSpaces = '\t'.repeat(5 - Math.ceil(calcLength / 8));
+
+            rawObject += `\t${value},${tabsAndSpaces} !- ${property.field_name}\n`;
+          
+          }
+        }
+        return rawObject;
+      }
+
+      const rawObjectString = convertObjectToRaw(objectsJSON);
 
       console.log('input: ', {
         class_name,
         fields,
         objects,
         allFields,
-        output,
+        objectsJSON,
       })
 
-      console.log('rawObject: ', rawObject)
+      // console.log('rawObject: ', rawObject)
+      console.log(rawObjectString)
 
     </script>
   </body>
