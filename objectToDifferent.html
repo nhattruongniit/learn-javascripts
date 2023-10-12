@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>objectToParse</title>
+  </head>
+
+  <body>
+    <!-- Slideshow container -->
+    <p class="panel">objectToParse</p>
+    
+    <script type="text/javascript">
+      const current = [
+        {
+          "id": 1170,
+          "document_id": 10,
+          "class_id": 929,
+          "class_name": "BuildingSurface:Detailed Tony",
+          "fields": {
+            "A1": "WALL-1PF",
+            "A2": "Wall",
+            "A3": "WALL-1",
+            "A4": "PLENUM-1",
+            "A6": "Outdoors",
+            "A8": "SunExposed",
+            "A9": "WindExposed",
+            "N1": 0.5,
+            "N2": 42
+          },
+          "extensions": {
+            "vertices": [
+              {
+                "N3": 0,
+                "N4": 0,
+                "N5": 3
+              },
+              {
+                "N3": 0,
+                "N4": 0,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 3
+              }
+            ]
+          },
+          "category": null,
+          "from_template": 0,
+          "selected_object_id": null
+        },
+        {
+          "id": 1171,
+          "document_id": 10,
+          "class_id": 929,
+          "class_name": "BuildingSurface:Detailed",
+          "fields": {
+            "A1": "WALL-1PR",
+            "A2": "Wall",
+            "A3": "WALL-1",
+            "A4": "PLENUM-1",
+            "A6": "Outdoors",
+            "A8": "SunExposed",
+            "A9": "WindExposed",
+            "N1": 0.5,
+            "N2": 4
+          },
+          "extensions": {
+            "vertices": [
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 3
+              },
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 15.2,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 15.2,
+                "N5": 3
+              }
+            ]
+          },
+          "category": null,
+          "from_template": 0,
+          "selected_object_id": null
+        }
+      ];
+
+      const input = [
+        {
+          "id": 1170,
+          "document_id": 10,
+          "class_id": 929,
+          "class_name": "BuildingSurface:Detailed",
+          "fields": {
+            "A1": "WALL-1PF",
+            "A2": "Wall",
+            "A3": "WALL-1",
+            "A4": "PLENUM-1",
+            "A6": "Outdoors",
+            "A8": "SunExposed",
+            "A9": "WindExposed",
+            "N1": 0.5,
+            "N2": 42
+          },
+          "extensions": {
+            "vertices": [
+              {
+                "N3": 0,
+                "N4": 0,
+                "N5": 3
+              },
+              {
+                "N3": 0,
+                "N4": 0,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 3
+              }
+            ]
+          },
+          "category": null,
+          "from_template": 0,
+          "selected_object_id": null
+        },
+        {
+          "id": 1171,
+          "document_id": 10,
+          "class_id": 929,
+          "class_name": "BuildingSurface:Detailed",
+          "fields": {
+            "A1": "WALL-1PR",
+            "A2": "Wall",
+            "A3": "WALL-1",
+            "A4": "PLENUM-1",
+            "A6": "Outdoors",
+            "A8": "SunExposed",
+            "A9": "WindExposed",
+            "N1": 0.5,
+            "N2": 4
+          },
+          "extensions": {
+            "vertices": [
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 3
+              },
+              {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 15.2,
+                "N5": 2.4
+              },
+              {
+                "N3": 30.5,
+                "N4": 15.2,
+                "N5": 3
+              }
+            ]
+          },
+          "category": null,
+          "from_template": 0,
+          "selected_object_id": null
+        }
+      ]
+
+      function findDifferentObjects(current, input) {
+        const differences = [];
+
+        const deepEqual = (obj1, obj2) => {
+          const keys1 = Object.keys(obj1 || {});
+
+          for (const key of keys1) {
+            const val1 = obj1[key];
+            const val2 = obj2[key];
+
+            if (typeof val1 === 'object' && typeof val2 === 'object') {
+              if (!deepEqual(val1, val2)) {
+                return false;
+              }
+            } else if (val1 !== val2) {
+              return false;
+            }
+          }
+
+          return true;
+        };
+
+        current.forEach((currentObj) => {
+          const isDifferent = input.find((inputObj) => deepEqual(currentObj, inputObj));
+          console.log('isDifferent', isDifferent)
+          if (!isDifferent) {
+            differences.push(currentObj);
+          }
+        });
+
+        return differences;
+      }
+
+      const differingObjects = findDifferentObjects(current, input);
+      console.log(differingObjects);
+      
+    </script>
+  </body>
+</html>
