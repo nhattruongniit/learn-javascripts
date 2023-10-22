@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array</title>
+  </head>
+  <body>
+    <h2>array-baitap-moveList</h2>
+
+
+    <script type="text/javascript">
+      const columns = ['list-1', 'list-2', 'list-3', 'list-4', 'list-5'];
+
+      /* 
+       drag & drop 1 array
+       - type 1: swap
+          (0, 2) ->  ['list-3', 'list-2', 'list-1', 'list-4', 'list-5'];
+          (1, 3) ->  ['list-1', 'list-4', 'list-3', 'list-2', 'list-5'];
+          (0, 4) ->  ['list-5', 'list-2', 'list-3', 'list-4', 'list-1'];
+
+      - type 2: xếp hàng
+          (0, 2) ->  ['list-2', 'list-3', 'list-1', 'list-4', 'list-5'];
+          (2, 4) ->  ['list-1', 'list-2', 'list-4', 'list-5', 'list-3'];
+      */
+
+      function swapMoveList(array, sourceIndex, destinationIndex) {
+        // code logic
+      }
+
+      function stackMoveList(array, sourceIndex, destinationIndex) {
+        // code logic
+        const resArray = JSON.parse(JSON.stringify(array)); // deep clone
+        const temp = resArray.splice(sourceIndex, 1)[0]; // get item deleted
+        resArray.splice(destinationIndex, 0, temp); // add item deleted into destination
+        return resArray;
+      }
+
+      const resStackMoveList = stackMoveList(columns, 2, 4) // ['list-2', 'list-3', 'list-1', 'list-4', 'list-5'];
+
+      console.log('stackMoveList: ', { resStackMoveList })
+
+    </script>
+  </body>
+</html>

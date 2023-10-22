@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>truthy and falsy</title>
+    </head>
+<body>
+    <h2>truthy and falsy</h2>
+
+    <script type="text/javascript">
+      // how to check truthy and falsy. We using Boolean() function
+      const isName = false; // boolean
+      const stringAbc = ''; // string
+      const nullVariable = null; // null
+      const undefinedVariable = undefined; // undefined
+      const numberZero = 10; // number
+      const numberZero2 = 'abc'; // string // NaN = not a number
+
+      console.log('truthy and falsy: ', { 
+        isName: Boolean(isName), 
+        stringAbc: Boolean(stringAbc), 
+        nullVariable: Boolean(nullVariable), 
+        undefinedVariable: Boolean(undefinedVariable),
+        numberZero: Boolean(numberZero),
+        checkNumber: Number(numberZero) == Number(numberZero2), // 10 == NaN = false
+      });
+
+    </script>
+</body>
+</html>

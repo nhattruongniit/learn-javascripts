@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hoisting</title>
+  </head>
+  <body>
+    <h2>Hoisting</h2>
+
+    <script type="text/javascript">
+
+      const resSum = sum(10, 10);
+      console.log('resSum: ', resSum); 
+      // function hoisting
+      function sum(x, y) {
+        return x + y;
+      }
+
+    </script>
+  </body>
+</html>

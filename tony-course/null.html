@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>undefined</title>
+    </head>
+<body>
+    <h2>null</h2>
+
+    <script type="text/javascript">
+        var words = null; // null
+        
+        function testVowels(word) {
+            var result = word.match(/[aeiou]/gi);
+            if(result == null) {
+                return 0;
+            }
+            return result.length;
+        }
+        const resultWord = testVowels('aeio');
+
+        console.log("testVowels: ", { resultWord });
+
+    </script>
+</body>
+</html>

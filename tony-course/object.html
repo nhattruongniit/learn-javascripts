@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Object</title>
+    </head>
+<body>
+    <h2>Object</h2>
+
+    <script type="text/javascript">
+        // create object
+        const user = {
+          firstName: 'tony', // string,
+          age: 30, // number
+          isMale: true, // boolean
+          colors: ['#f00', '#ff0', '#fff'], // array
+          books: { // nested object
+            author: 'truong',
+            title: 'javascript'
+          },
+          "like bird": true, // multiword property name,
+          getFirstName: function() { // add method
+            return this.firstName
+          }
+        };
+        // qualityPropertyUser = 6; // using for ... in operator -  typeof xx (check type)
+        
+        const getFirstName = user.getFirstName();
+        console.log("access method ", getFirstName)
+
+        // add property name
+        user.isAdmin = true;
+
+        const cars = {}; // empty object
+        cars.name = 'bmw'; // add property name
+
+        // value shorthand
+        function makeUser(name, age) {
+          return {
+            name,
+            age
+          }
+        }
+
+        // access property object
+        console.log("access property way1 ", user.firstName)
+        console.log("access property way2 ", user['firstName'])
+        console.log("access property way2 ", user['like bird']); 
+
+        // access property with desctruturing
+        // const firstNameOfUser = user.firstName;
+        // const age = user.age;
+        // const title = user.books.title;
+
+        // defined name property
+        const colors = '#f00';
+        // const colorsOfUser = user.colors;
+        const { 
+          firstName, 
+          age,
+          colors: colorsOfUser, // defined name property
+          books: {
+            title
+          }
+        } = user;
+        console.log('access destructuring title book: ', {title, colorsOfUser});
+
+      // loop object
+
+      /*
+        - using: for ... in
+        - purpose: get key of object
+      */
+      for(const key in user) {
+          console.log("for...in get key: ", key); // get key
+          console.log("for...in get value: ", user[key]) // get value === user['firstName']
+      }
+
+      /*
+        - using: in
+        - purpose: check exist property
+      */
+      const keyUser = 'lastName';
+      const isExistedLastName = keyUser in user; // boolean 
+      // if(!(keyUser in user))
+      if(!isExistedLastName) {
+        user.lastName = 'nguyen'
+      }
+      console.log("in operator: ", user)
+
+      /*
+       - count number property object
+      */
+      let quality = 0;
+      for (const key in user) {
+        if ((typeof user[key]) != "function") {
+          // quality += 1;
+          quality = quality + 1;
+        }
+      }
+      console.log('count number property object: ', quality);
+
+      /* 
+        - using: Object.keys()
+        - convert object to array 
+        - array contains items is: key object
+      */
+      const userKeys = Object.keys(user);
+      console.log('loop Object.keys(): ', userKeys);
+
+      /* 
+        - using: Object.values()
+        - convert object to array 
+        - array contains items is: value object
+      */
+      const userValues = Object.values(user);
+      console.log('loop Object.values(): ', userValues);
+
+      /* 
+        - using: Object.entries()
+        - convert object to array 
+        - array contains items is: key, value object
+      */
+      const userEntries = Object.entries(user);
+      console.log('loop Object.entries(): ', userEntries);
+
+      /*
+        ordered object
+        - tự sắp xếp tăng dần nếu key property là kiểu integer
+        - nếu ko muốn auto sắp xếp thì ta add thêm "+" trong key
+      */
+      const code = {
+        "44": "UK",
+        "50": "Vietnam",
+        "49": "Germamy",
+        "1": "USA",
+      }
+      for(const keyCode in code) {
+        console.log('ordered object integer: ', code[keyCode]); 
+      }
+
+      // fix = "+"
+      const codeNoOrdered = {
+        "+44": "UK",
+        "+50": "Vietnam",
+        "+49": "Germamy",
+        "+1": "USA",
+      }
+      for(const keyCode in codeNoOrdered) {
+        console.log('no ordered object: ', codeNoOrdered[keyCode]); 
+      }
+
+      // delete property
+      delete user.books
+      for (const key in user) {
+        if ((typeof user[key]) != "function") {
+          delete user[key]
+        }
+      }
+      console.log("delete property object: ", user)
+
+      // copy object
+      const objectA = { // memory A
+        firstName: 'truong',
+        lastName: 'nguyen',
+        task: { // memory A-1
+          id: 1,
+          description: 'learn javascript'
+        }
+      }
+      // es6 spread
+      const objectB = { 
+        age: 18, 
+        gender: 'Male',
+        firstName: 'linh',
+        ...objectA,
+        ... user,
+      }; 
+      const objectC = Object.assign({ age: 18, gender: 'Male' }, objectA, user) // es5
+
+      console.log('copy object: ', {
+        es6: objectB,
+        es5: objectC
+      })
+
+      // stringify, parse JSON
+      function updateTask() {
+        // shallow copy
+        // const clonedObjA = { ...objectA }  // memory B (task: memory A-1 )
+        // clonedObjA.task.description = 'learn react'
+
+        // deep copy
+        // const stringifyObj = JSON.stringify(objectA); // convert object to string
+        // const parseObj = JSON.parse(stringifyObj); // covert string to object
+        const parseObj = JSON.parse(JSON.stringify(objectA))
+        parseObj.task.description = 'learn react';
+        return parseObj;
+      }
+      const resultClonedObjectA = updateTask();
+      console.log("updateTask: ", resultClonedObjectA)
+      
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array</title>
+  </head>
+  <body>
+    <h2>Array</h2>
+
+    <div>Link: https://codelearn.io/sharing/10-array-method-trong-javascript</div>
+
+    <script type="text/javascript">
+      const arr2 = Array.from(new Array(5), (_, index) => index + 1);
+      console.log("create array2: ", arr2)
+
+      // string[]
+      const stringArray = ['abc', 'zwt', '321312', 'linh']
+      
+      // number[]
+      const numberArray = [12312, 1414, 1212312, 41241]
+
+      // object[]
+      const objectArray = [
+        {
+          id: 1,
+          title: 'learn javascript',
+          thumbnail: 'xxx',
+          description: 'xxx'
+        },
+        {
+          id: 2,
+          title: 'learn javascript',
+          thumbnail: 'xxx',
+          description: 'xxx'
+        }
+      ]
+
+      // any[]
+      const anyArray = [
+        123,
+        {
+          id: 1,
+          title: 'learn javascript'
+        },
+        'edsdas'
+      ]
+
+      const names = [
+        {
+          id: 1,
+          name: 'truong'
+        },
+        {
+          id: 2,
+          name: 'linh'
+        }
+      ]
+
+      // for ... of
+      const resNames = [];
+      for (const element of names) {
+        const checkIsOdd = element.id % 2 === 0;
+
+        element.datetime = Date.now();
+        element.isOdd = checkIsOdd
+        resNames.push(element) // add item into last array 
+      }
+      console.log('for ... of: ', resNames)
+
+      // for ... in
+      for (const nameIndex in names) {
+        console.log('for ... in: ', nameIndex)
+      }
+
+      // push, pop
+      const nameItem = {
+        id: Date.now(),
+        name: 'linh' + Date.now()
+      }
+      names.push(nameItem); // add item into end array
+      const getNameLength = names.length; // get length of array
+      console.log('array push: ', { names, originNameLength: getNameLength })
+
+      const clonedArray = [...names]; // cloned new array
+      clonedArray.pop(); // remove last element of array
+      const getNameLengthAfterPop = clonedArray.length; // get length of array
+      console.log('array pop: ', { names: clonedArray, originNameLengthAfterPop: getNameLengthAfterPop })
+
+      // unshift, shift
+      const objectItems = [
+        {
+          id: 'linh' + Date.now(),
+          name: 'linh' + Date.now()
+        },
+        {
+          id: 'truong' + Date.now(),
+          name: 'truong' + Date.now()
+        }
+      ]
+
+      // array index: 0, 1, 2, 3
+      // add new item (4): 0, 1, 2, 4, 3
+
+      /* how to ad more item into array */
+      for (const element of objectItems) {
+        names.unshift(element); // add item into begin array
+      }
+      console.log('array unshift: ', { names, originNameLength: getNameLength })
+
+      const clonedShiftArray = [...names]; // cloned new array
+      clonedShiftArray.shift(); // remove first element of array
+      console.log('array shift: ', { names: clonedShiftArray })
+
+      // splice - (start, deleteCount, item1, item2, itemN)
+      const members = ['truong', 'sang', 'linh'];
+
+      // add a item into from index 1
+      members.splice(1, 0, 'quoc'); // output: ['truong', 'quoc', 'sang', 'linh'];
+      members.splice(0, 0, 'quoc'); // output: ['quoc', 'truong', 'quoc', 'sang', 'linh'];
+      members.splice(3, 0, 'khoa'); // output: ['quoc', 'truong', 'quoc', 'khoa', 'sang', 'linh'];
+
+      // replace
+      members.splice(2, 1, 'niem'); // output: ['quoc', 'truong', 'niem', 'khoa', 'sang', 'linh'];
+      members.splice(1, 2, 'ngoc'); // output: ['quoc', 'ngoc', 'khoa', 'sang', 'linh'];
+      members.splice(1, 2, 'kien', 'thy'); // output: ['quoc', 'kien', 'thy', 'sang', 'linh']
+
+      // remove
+      members.splice(1, 2); // output: ['quoc', 'sang', 'linh']
+      members.splice(2); // output: ['quoc', 'sang']
+      members.splice(-1);  // output: ['quoc']
+
+      console.log('array splice: ', members)
+
+      /* bai tap splice
+        - remove cac book mà price > 100
+        - add new book at index 2
+      */
+      const books = [
+        {
+          id: 1,
+          price: 80,
+          title: 'javascript'
+        },
+        {
+          id: 2,
+          price: 102,
+          title: 'react'
+        },
+        {
+          id: 3,
+          price: 40,
+          title: 'angular'
+        }
+      ]
+      // Linh
+      const newBook = {
+        id: 4,
+        price: 50,
+        title: 'angular'
+      }
+      for (const index in books) {
+        if (books[index].price > 100) {
+          books.splice(1, 1);
+        }
+      }
+      books.splice(2, 0, newBook)
+      console.log('bai tap splice: ', books)
+
+
+    /* indexOf: find the index of a value, 
+      Syntax:  indexOf(searchElement, fromIndex)
+        - searchElement (require): Element to locate in the array. (string)
+        - fromIndex (optional): The index to start the search at. (index)
+
+        Notes: using when array is string[]
+    */
+    const nameIndex = stringArray.indexOf('linh');
+    console.log('indexOf name: ', { stringArray, nameIndex })
+
+    /* findIndex: find the index of a value, 
+      Syntax:  findIndex(callback function)
+      Notes: using when array is any[]
+    */
+
+    // const objectNameIndex = names.findIndex((item) => item.name === 'truong') // arrow function
+    const objectNameIndex = names.findIndex((item) => {
+      // block function
+      return item.name === 'linh'
+    })
+    console.log('findIndex name: ', { names, objectNameIndex })
+
+    // filter: find item that is is odd
+    const filterNamesIsOdd = names.filter((item) => {
+      // block function
+      return item.isOdd // true or false
+    })
+    console.log('filter name: ', { names, filterNamesIsOdd })
+
+    // searching item in array with filter
+    const fruits = [
+      {
+        id: 1,
+        title: 'apple',
+      },
+      {
+        id: 2,
+        title: 'banana'
+      },
+      {
+        id: 3,
+        title: 'grapes'
+      },
+      {
+        id: 4,
+        title: 'mango'
+      },
+      {
+        id: 5,
+        title: 'orange'
+      }
+    ]
+    // 'apple' -> apple
+    // 'ap' => apple, grapes
+    function filterFruistItem(array, query) {
+      // return array.filter((item) => {
+      //       return item.title === query;
+      //   });
+      const res = array.filter((item) => {
+          return item.title === query;
+      });
+      return res;
+    }
+    const resultFilter = filterFruistItem(fruits, 'apple')
+    console.log('resultFilter: ', resultFilter)
+
+    /* map 
+      The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
+    */
+    const mapFruitDate = fruits.map(item => {
+      item.datetime = Date.now();
+      return item;
+    })
+    console.log('mapFruitDate: ', mapFruitDate)
+
+    /*
+      sort: The sort() method sorts the elements of an array and returns the sorted array. The default sort order is ascending.
+    */
+   const numbers = [5, 4, 3, 8, 9, 1, 10, 30, 40, 20] // number[]
+   const numberSorted = numbers.sort((a, b) => {
+      if(a < b) return 1
+      if(a > b) return -1
+      return 0;
+   });
+
+   const fruitOrderByAlphabet = fruits.sort((a, b) => {
+      if(a.title < b.title) return -1
+      if(a.title > b.title) return 1
+      return 0;
+   });
+
+   // deep clone
+   const addField = JSON.parse(JSON.stringify(fruitOrderByAlphabet)).map(item => {
+      item.price = 100;
+      return item;
+   })
+   console.log('fruitOrderByAlphabet: ', { fruitOrderByAlphabet, addField })
+
+   /* some
+    - The some() method tests whether at least one element in the array passes the test implemented by the provided function.
+    - Return boolean value.
+    - Nó sẽ dừng lại vòng lặp ngay lập tức khi đã tim dc item thỏa điều kiện function
+   */
+
+   const prices = [33, 30, 13, 17, 19, 30, 20, 50]; // number[]
+    //  const priceEven = prices.some(item => {
+    //   return item % 2 === 0;
+    //  })
+    //  const priceEven = prices.some((item) => item % 2 === 0)
+    let counterLoopEven = 0;
+
+    function isEven(item) {
+        counterLoopEven = counterLoopEven + 1;
+        return item % 2 === 0
+    }
+    const priceEven = prices.some(isEven)
+    console.log('priceEven: ', { priceEven, counterLoopEven })
+
+    const isExistedApple = fruits.some(item => {
+      return item.title === 'apple'
+    })
+
+    console.log('isExistedApple: ', { isExistedApple })
+
+    /* every
+      - The every() method tests whether all elements in the array pass the test implemented by the provided function. 
+      - It returns a Boolean value.
+      - Nó loop toàn bộ các item trong array để check xem mỗi item đó có thỏa điều kiện function
+    */
+   let counterLoopEvery = 0;
+    const testEvery = prices.every(number => {
+      counterLoopEvery = counterLoopEvery + 1;
+      return number < 49;
+    });
+    console.log('testEvery: ', { testEvery, counterLoopEvery })
+
+    // find
+    const fruitArray = [];
+    const mangoFound = fruits.find(item => item.title === 'mango'); 
+    // const mangoFound = Object.keys({}); 
+    if(Object.keys(mangoFound).length > 0) {
+      fruitArray.push(mangoFound)
+      console.log('find: ', { mangoFound, fruitArray })
+    }
+
+    // include
+    const alphabet = ['linh', 'truong', 'ngoc', 'apple', 'Truong']
+    const testAlphaBet = alphabet.includes('ng');
+    // ng => ngoc
+    // li => linh
+    const filteredRelativeItem = alphabet.filter(item => {
+      return item.toLowerCase().includes('tr'.toLowerCase())
+    })
+
+    // ap -> apple, grapes
+    // an -> banana, mango, orange
+    // -> viết theo kiểu function có tham số truyền vào. Viết 1 function nhận vào 2 params (1: data, 2: input của user)
+    function filterRelativeFunc(array, query) {
+      // return array.filter(item => {
+      //   return item.toLowerCase().includes(query.toLowerCase())
+      // })
+      // const res = array.filter(item => item.title.toLowerCase().includes(query.toLowerCase()))
+      const res = array.filter(item => {
+        return item.title.toLowerCase().includes(query.toLowerCase())
+      })
+      return res;
+    }
+    const resFiltered = filterRelativeFunc(fruits, "an")
+
+    console.log('include: ', { testAlphaBet, filteredRelativeItem, resFiltered })
+
+  
+    </script>
+  </body>
+</html>

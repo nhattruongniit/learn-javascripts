@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function</title>
+  </head>
+  <body>
+    <h2>Function</h2>
+
+    <script type="text/javascript">
+      // constructor function
+      function HttpRequest(host, port, status) {
+        this.host = host; // initial value
+        this.port = port; // initial value
+        this.status = status; // initial value
+        console.log('this: ', this) // ngữ cảnh trỏ đến đối tượng nào
+      }
+
+      // add method
+      HttpRequest.prototype.print = function(status) {
+        console.log('status: ', status) // 
+        // console.log('Server running at: ' + this.host +  ": " + this.port + ": " + status)
+        console.log('Server running at: ' + this.host +  ": " + this.port + ": " + this.status)
+      }
+
+      HttpRequest.prototype.getStatus = function() {
+        console.log('get status is: ', this.status)
+      }
+
+      const httpRequest = new HttpRequest('localhost', 3000, 300); // create instance
+      httpRequest.print(200);
+      httpRequest.getStatus();
+
+      // // return early
+      function returnEarly() {
+        if(xx){ 
+          // 
+          return;
+        }
+        if(xx){ 
+          // 
+          return;
+        }
+      }
+
+      /*
+        function declaration
+        - the name of the function
+        - hoisting
+      */
+      console.log("function declaration: ", calcReact(4, 3))
+      function calcReact(x, y) {
+        return x * y
+      }
+
+      /*
+        function expression
+        - no name
+        - no hoisting (Uncaught TypeError: getTodo is not a function)
+      */
+     
+      var getTodo = function(x, y) {
+        return x + y
+      }
+      console.log("function expression: ", getTodo(2, 4)); 
+    </script>
+  </body>
+</html>

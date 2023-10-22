@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operator Ternary</title>
+  </head>
+  <body>
+    <h2>Operator Ternary</h2>
+
+    <script type="text/javascript">
+       
+        function score(number){
+            var status = '';
+            // conditional trandition
+            // if(score === 0)  {
+            //     status = 'yeu'
+            // } else if (score >= 1 && score <= 5) {
+            //     status = 'trung binh'
+            // } else if (score >= 6 && score <= 8) {
+            //     status = 'kha'
+            // } else {
+            //     status = 'gioi'
+            // }
+
+            // conditional ternary
+            score === 0 ? status = 'yeu'
+                        : score >= 1 && score <= 5 ? status = 'trung binh'
+                        : score >= 6 && score <= 8 ? status = 'kha'
+                        : status = 'gioi'
+
+            return status;
+        }
+
+        const numberTony = 8;
+        const result = score(numberTony);
+        console.log('result: ', result)
+
+    </script>
+  </body>
+</html>

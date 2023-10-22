@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scope</title>
+  </head>
+  <body>
+    <h2>Scope</h2>
+
+    <script type="text/javascript">
+      // global variable, global scope: var, let, const
+      const triangle = 'square'; // global variable, //global scope
+
+      function sum() {
+        console.log('triangle :', triangle);
+      }
+      sum();
+
+      // local/function scope: var, let, const
+      function testScopeLocal() {
+        const color = 'red'; // local variable, local/function scope
+        console.log('color: ', color)
+      }
+      testScopeLocal()
+
+      // block scope: let, const
+      if(true) {
+        const statement = 'statement'; // local variable, local/block scope
+        console.log('statement: ', statement)
+      }
+      // console.log('outside blockscope : ', statement)
+
+    </script>
+
+  </body>
+</html>

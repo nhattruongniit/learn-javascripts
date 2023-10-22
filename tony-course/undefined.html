@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>undefined</title>
+    </head>
+<body>
+    <h2>undefined</h2>
+
+    <script type="text/javascript">
+        var numNotChange = 1; // mutable variable;
+        var numAbc = undefined; 
+
+        // unintiaialized value
+        var cars;
+        console.log(cars);
+
+        // missing parameter
+        function sum(num1, numb2) {
+            numNotChange += 2;
+            console.log('function: ', {num1, numb2});
+        }
+        sum();
+
+        // Functions implicitly return it if nothing has been explicitly returned.
+        function sum2(num1, numb2) {
+            // var result = num1 + numb2;
+            // return result;
+            // return num1 + numb2;
+            numNotChange += 2;
+        }
+        var resultSum2 = sum2(1, 2);
+        console.log('resultSum2: ', { resultSum2 });
+
+        // condition: if, else or switch case
+
+        // return early (clean code)
+        function statusScore(score) {
+            // var result = '';
+            // if (score < 0 || score > 10) {
+            //     result =  'invalid score';
+            // } else if(score >= 8) {
+            //     result = 'good';
+            // } else if(score >= 5) {
+            //     result =  'normal';
+            // } else {
+            //     result = 'bad';
+            // }
+            // return result;
+            
+            // return early
+            if (score < 0 || score > 10) {
+                return 'invalid score';
+            }
+
+            if (score >= 8) {   
+                return 'good';
+            }
+
+            if (score >= 5) {
+                return 'normal';
+            }
+            return 'bad';
+        }
+
+        console.log("statusScore: ", statusScore(8))
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compare Object</title>
+  </head>
+  <body>
+    <h2>Compare Object</h2>
+
+    <script type="text/javascript">
+      /*
+        Referential equality (so sánh tham chiếu)
+        Manual Comparison
+        Shallow equality (so sánh nông)
+        Deep equality (so sánh sâu)
+      */
+      var a = 1; // memory X
+      console.log("compare", 1 === 2) // so sanh gia tri
+      // object, array: so sanh tham chieu
+      // {}  -> memory A
+      // {} -> memory B
+      const objA = {}; // -> memory A
+      const objB = {}; // -> memory B
+      const objC = objA;
+
+      objB.name = 'truong'
+      console.log(objA);
+
+      console.log("object: ", objA === objB ) // so sanh tham chieu
+      console.log("object A & C: ", objA === objC ) // so sanh tham chieu
+
+      const hero1 = {
+        name: "batman",
+        age: 18,
+        gender: 'male',
+        country: {
+          code: 22,
+          name: 'us'
+        }
+      }
+      const hero2 = {
+        name: "batman",
+        age: 18,
+        gender: 'male',
+        country: {
+          code: 22,
+          name: 'us',
+        }
+      }
+
+      // manual comparison
+      function isManualEqual(obj1, obj2) {
+        return obj1.name === obj2.name && 
+                obj1.age === obj2.age && 
+                obj1.gender === obj2.gender && 
+                obj1.country === obj2.country
+      }
+      console.log('manual comparison: ', isManualEqual(hero1, hero2))
+
+      // shallow comparison
+      function isShallowEqual(obj1, obj2) {
+        const keys1 = Object.keys(obj1); // convert object to array  
+        const keys2 = Object.keys(obj2); // convert object to array  
+
+        if(keys1.length !== keys2.length) {
+          return false;
+        }
+
+        for(const key of keys1) {
+          const value1 = obj1[key]; // access value 
+          const value2 = obj2[key]; // access value 
+          if(value1 !== value2) {
+            return false
+          }
+        }
+
+        return true;
+      }
+      console.log('shallow comparison: ', isShallowEqual(hero1, hero2))
+
+      // deep comparison
+      function isObject(value) {
+        return value !== null && typeof value === 'object';
+      }
+
+      function isDeepEqual(obj1, obj2) {
+        // obj1 = value1
+        // obj2 = value2
+        const keys1 = Object.keys(obj1); // convert object to array  
+        const keys2 = Object.keys(obj2); // convert object to array  
+
+        if(keys1.length !== keys2.length) {
+          return false;
+        }
+
+        for(const key of keys1) {
+          const value1 = obj1[key]; // access value 
+          const value2 = obj2[key]; // access value 
+          const areObject = isObject(value1) && isObject(value2);
+          const checkValueNestedObject = areObject && !isDeepEqual(value1, value2);
+          const checkValue = !areObject && value1 !== value2;
+          if(checkValueNestedObject || checkValue){
+            return false;
+          }
+        }
+
+        return true;
+      }
+      console.log('deep comparison: ', isDeepEqual(hero1, hero2))
+
+
+    </script>
+  </body>
+</html>

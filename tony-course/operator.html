@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>operator</title>
+    </head>
+<body>
+    <h2>operator</h2>
+
+    <script type="text/javascript">
+      // assigment operator
+      var number = 1;
+      var number2 = 2;
+      number2 += 10; // number2 = number2 + 10;
+
+      // comparsion opeator
+      var numA = '1'; // string
+      var numB = 1; // number
+      console.log('comparsion opeator ==: ', numA == numB); // ép kiểu Number('1') == 1 => 1 == 1
+      console.log('comparsion opeator ===: ', numA === numB); // so sanh type & value
+      console.log('comparsion opeator !==: ', numA !== numB); // so sanh type & value
+
+      // logical operator
+      /*
+      && - return true if both expression are true, otherwise it returns false
+          if side left is true, return value side right.
+          if side left is false, return value side left.
+      */
+      const scoreTony = 10;
+      const isLarge10 = scoreTony > 9 && 'DONE'; // true && 'DONE'
+      console.log('logical operator: ', isLarge10);
+      console.log('logical operator: ', false && 'truong')
+      console.log('logical operator: ', true && 'truong');
+
+      // || -> side is false, so I get otherwise side.
+      console.log('logical operator || (get value right): ', false || 'truong');
+      console.log('logical operator || (get value left): ', 'truomng' || false);
+
+      // ! -> phủ định
+      const tonyScore = 100;
+      const isScoreGood = tonyScore > 80;
+      console.log('! opeator: ', !isScoreGood) // true => !true => false
+      console.log('! opeator: ', !!!isScoreGood) // true => !true => !false => !true => false
+      
+
+      // == operator
+      console.log('opeator == same object: ', {} == {}) // reference obj
+      console.log('opeator == same null, undefined: ', null == undefined) // null, underfiend
+
+      // When comparing a number to a string, try to convert the string to a numeric value.
+      console.log('opeator ==: ', '1' == 1) // Number('1') == 1;
+      console.log('opeator ==: ', 'ab1' == 1) // Number('ab1') == 1 => NaN (not a number) == 1
+
+      // If one of the operands is Boolean, convert the Boolean operand to 1 if it is true and +0 if it is false.
+      console.log('one of the operands is Boolean: ', true == 1) // true => 1 == 1
+      console.log('one of the operands is Boolean: ', false == 1) // false => 0 == 1
+      console.log('one of the operands is Boolean: ', true == '1') // true => 1 == '1' => 1 == Number('1')
+      console.log('one of the operands is Boolean: ', true == 'abc') // 1 == 'abc' => false
+
+      /*
+      If the operands have the same type, they are compared as follows:
+        String: return true only if both operands have the same characters in the same order.
+        Number: return true only if both operands have the same value. +0 and -0 are treated as the same value. If either operand is NaN, return false.
+        Boolean: return true only if operands are both true or both false.
+      */
+      console.log('If the operands have the same type: ', 'pack' == true) // false
+
+      /*
+        The valueOf() method returns the primitive value of a string.
+        The valueOf() method does not change the original string.
+        The valueOf() method can be used to convert a string object into a string.
+
+        let text = new String("Hello World!");
+        let result = text.valueOf();
+      */
+      const strHello = new String('hello');
+      const textStr = 'hello';
+      console.log('valueOf before: ', strHello )
+      //console.log('valueOf after: ', strHello.valueOf() )      
+      console.log('typeof operator: ', typeof strHello.valueOf(), typeof textStr)  // false
+      console.log('valueOf operator == : ', strHello === textStr)  // false
+      console.log('valueOf operator === : ', strHello.valueOf() === textStr)  // true
+
+      // operator strictly equality  ===
+      const todoId = 300;
+      console.log('operator === number: ', Number('300') === todoId);
+      console.log('operator === number: ', '300' === todoId.toString());
+
+      // type convert
+      // convert todoId -> string: todoId.toString()
+      // convert todoId -> number: Number(todoId)
+      // convert todoId -> boolean: Boolean(todoId)
+
+
+     </script>
+</body>
+</html>

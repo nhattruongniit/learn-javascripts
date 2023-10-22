@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array</title>
+  </head>
+  <body>
+    <h2>array-baitap-checkSomeArray</h2>
+  
+
+    <script type="text/javascript">
+      const input = {
+        businessLicenseNumber: '23',
+        informationOfBusiness: {
+          idNumber: {
+            id: 22,
+            pictureIdNumber: 'http://localhost:3032/uploads/1548662953953.png',
+          },
+          passport: {
+            passportNumber: 222,
+            pictureOfBuyerHoldingPassport: 'http://localhost:3032/uploads/2314231253123.png',
+            address: {
+              pictureAddress: 'http://localhost:3032/uploads/content-js.pdf',
+            }
+          },
+        },
+        street: {
+          pictureStreet: 'http://localhost:3032/uploads/street.pdf',
+        },
+      }
+
+      // apply: flattern, đệ quy
+
+      /* output
+       {
+          businessLicenseNumber: '23',
+          id: 22,
+          pictureIdNumber: 'http://localhost:3032/uploads/1548662953953.png',
+          passportNumber: 222,
+          pictureOfBuyerHoldingPassport: 'http://localhost:3032/uploads/2314231253123.png',
+          pictureAddress: 'http://localhost:3032/uploads/content-js.pdf',
+          pictureStreet: 'http://localhost:3032/uploads/street.pdf',
+       }
+      */
+
+
+
+
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Variable</title>
+  </head>
+  <body>
+    <h2>Variable</h2>
+
+    <script type="text/javascript">
+      var todoText; // declarate
+      const abc = 'truong'; // global variable
+
+      /* var
+       - The var statement declares a function-scoped or globally-scoped variable, optionally initializing it to a value.
+        - Hoisting.
+            - nó sẽ đưa các biến, function dc khai báo lên đầu file, or đầu hàm
+            - và sau đó nó sẽ gán lại giá trị
+            - có thể truy cập dc trước khi khởi tạo
+        - Allow assignment.
+      */
+      // global variable
+      var number = 123; // memory ?
+      console.log('outside: ', number)
+
+      function sum(x) {
+        // scope function
+        var y = 2; // local variable of function
+        console.log('onsite functionsum: ', number);
+
+        if(x > 1) {
+          y = 10
+        }
+        return x + y;
+      }
+
+      const resSum = sum(2);
+      console.log('resSum: ', resSum)
+
+      // hoisting
+      console.log("hoisting var before declarate: ", todoText); // undefined
+      // var todoText = 'learn javascript';
+      todoText = 'learn javascript'; // allow assigment
+      console.log("hoisting var after declarate: ", todoText); // learn javascript
+
+
+      // mutable & immutable
+      var number = 2;
+      var numberA = 0;
+
+      if(true) {
+        // var numberA = 4;
+        // hoisiting
+        var numberA;
+        numberA = 4;
+      }
+
+      function multiple(x) {
+        return x * number;
+      }
+      const resMultiple = multiple(10); // expected = 20;
+      console.log('resMultiple: ', resMultiple)
+
+      console.log(number, numberA)
+
+
+      /* let
+       - The let statement declares a block-scoped local variable, optionally initializing it to a value.
+           - Allows you to declare variables that are limited to the scope of a block statement, or expression on which it is used.
+           - The let does not create properties of the window object when declared globally (in the top-most scope). 
+      - Not hoisting.
+          - ko dc truy cập biến trước khi khởi tạo
+      - Allow assignment.
+      */
+      // console.log("before variable let: ", nameBook); // error
+      let nameBook = 'javascript';
+
+      if(true) { // block scope, block statment
+        let nameBook = 'angular';
+        // nameBook = 'angular'; // allow assigment
+        console.log("in block scope: ", nameBook) // angular
+      }
+
+      // nameBook = 'react';
+      console.log("after variable let: ", nameBook); // javascript
+
+      /* const
+        - The const statement declares a block-scoped local variable.
+        - Not hoisting.
+        - Not assignment.
+      */
+
+      // console.log("accept variable const before declare: ", car); // error
+      const car = 'bmw';
+      // car = 'city' // error: ssignment to constant variable.
+      function exampleConst() {
+        // car = 'city' // error: ssignment to constant variable.
+
+        const car = 'city';
+        return car;
+      }
+      const resCar = exampleConst();
+      console.log("resCar: ", resCar) // city
+      console.log("accept variable const after declare: ", car) // bmw
+    </script>
+  </body>
+</html>

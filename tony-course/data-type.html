@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Type</title>
+  </head>
+  <body>
+    <h2>Data Type</h2>
+
+    <script type="text/javascript">
+      var a = 1; // memory A
+      var b = 2; // memory B
+      var isShow = false;
+      var isHidden = false;
+
+      // var, let, const
+
+      // function // memory A -> camelCase
+      function add() {
+        var value = a + 4; // a = a + 4 = 5
+        return a + b + value
+      }
+
+      var result = add();
+      
+      console.log(a, result)
+
+      console.log('compare value: ', a == b) // compare value
+      console.log('compare value: ', isShow == isHidden) // compare value
+
+      // data type: object
+      var objA = {
+        name: 'truong'
+      }; // memory8
+      var objB = {
+        name: 'truong'
+      }; // memory9
+      var objC = objA; // memory8
+
+      console.log('compare object: ', objA == objB) // compare refrerence
+      console.log('compare object: ', objA.name == objB.name) // compare value
+      console.log('compare object: ', objA == objC) // compare refrerence
+
+
+
+    </script>
+  </body>
+</html>

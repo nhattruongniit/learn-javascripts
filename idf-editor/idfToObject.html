@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>IDF to Object</title>
+  </head>
+
+  <body>
+    <!-- Slideshow container -->
+    <p class="panel">Object To IDF</p>
+    
+    <script type="text/javascript">
+      const objectRawText = `
+        BuildingSurface:Detailed,
+          WALL-1PF,		 !- Name
+          Wall,			 !- Surface Type
+          WALL-1,			 !- Construction Name
+          PLENUM-1,		 !- Zone Name
+          ,				 !- Space Name
+          Outdoors,		 !- Outside Boundary Condition
+          ,				 !- Outside Boundary Condition Object
+          SunExposed,		 !- Sun Exposure
+          WindExposed,	 !- Wind Exposure
+          0.5,			 !- View Factor to Ground
+          4,				 !- Number of Vertices
+          0,0,3,			 !- Vertex 1
+          0,0,2.4,		 !- Vertex 2
+          30.5,0,2.4,		 !- Vertex 3
+          30.5,0,3,		 !- Vertex 4
+
+        BuildingSurface:Detailed,
+          WALL-1PR,		 !- Name
+          Wall,			 !- Surface Type
+          WALL-1,			 !- Construction Name
+          PLENUM-1,		 !- Zone Name
+          ,				 !- Space Name
+          Outdoors,		 !- Outside Boundary Condition
+          ,				 !- Outside Boundary Condition Object
+          SunExposed,		 !- Sun Exposure
+          WindExposed,	 !- Wind Exposure
+          0.5,			 !- View Factor to Ground
+          4,				 !- Number of Vertices
+          0,0,3,			 !- Vertex 1
+          0,0,2.4,		 !- Vertex 2
+          30.5,0,2.4,		 !- Vertex 3
+          30.5,0,3,		 !- Vertex 4
+       
+      `
+
+      // // Split the string into lines
+      // const lines = objectRawText.split('\n');
+
+      // // Create an object to store key-value pairs
+      // const obj = {};
+
+      // // Process each line to extract key-value pairs
+      // lines.forEach(line => {
+      //   // Remove leading and trailing spaces
+      //   line = line.trim();
+
+      //   // Split the line into key and value using comma as the delimiter
+      //   const parts = line.split(',');
+
+
+
+      //   // Extract key and value
+      //   const key = parts[1] ? parts[1]?.trim().split('!')[1]?.trim().split('-')[1].trim() : null
+      //   const value = parts[0].trim();
+
+      //   // Add the key-value pair to the object
+      //   obj[key] = value;
+      // });
+
+      // console.log(obj);
+
+      // Split the text into individual object sections based on empty lines
+      const objectSections = objectRawText.split('\n\n');
+
+      // Initialize an array to store the objects
+      const objects = [];
+
+      // Process each object section and convert it to a JavaScript object
+      objectSections.forEach(section => {
+        const lines = section.split('\n');
+        const obj = {};
+
+        lines.forEach(line => {
+          // Split each line into key and value
+          const [key, value] = line.split(',').map(entry => entry.trim());
+          // const valueParts = value ? value?.trim().split('!')[1]?.trim().split('-')[1].trim() : 'id'
+          const newValue = value === '' ? 'id' : value?.trim().split('!')[1]?.trim().split('-')[1].trim() || 'N/A'
+          obj[newValue] = key;
+        });
+
+        objects.push(obj);
+      });
+
+      console.log(objects);
+
+    </script>
+  </body>
+</html>
