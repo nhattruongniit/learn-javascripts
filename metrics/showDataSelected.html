@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>Metric Tree Select</title>
+  </head>
+
+  <body>
+    <div>
+      <h2>Metric Tree Select</h2>
+    </div>
+
+    <script type="text/javascript">
+      const initialSourceData = [
+        {
+          key: "song_click",
+          title: "song_click",
+        },
+        {
+          key: "me_start",
+          title: "me_start",
+        },
+        {
+          key: "CountSong",
+          title: "CountSong",
+          children: [
+            {
+              key: "song_end",
+              title: "song_end",
+            },
+          ],
+        },
+      ];
+
+      const checkedKeysSource = [
+        {
+          key: "CountSong",
+          title: "CountSong",
+          children: [
+            {
+              key: "song_start",
+              title: "song_start",
+            },
+          ],
+        },
+      ];
+
+      const output = [
+        {
+          key: "song_click",
+          title: "song_click",
+        },
+        {
+          key: "me_start",
+          title: "me_start",
+        },
+        {
+          key: "CountSong",
+          title: "CountSong",
+          children: [
+            {
+              key: "song_end",
+              title: "song_end",
+            },
+            {
+              key: "song_start",
+              title: "song_start",
+            },
+          ],
+        },
+      ];
+
+      function mergeDataRecursive(data1, data2) {
+        const mergedData = [];
+
+        // Combine data from data1
+        for (const item of data1) {
+          const matchingItem = data2.find((item2) => item2.key === item.key);
+          if (matchingItem) {
+            const mergedItem = { ...item };
+            if (item.children && matchingItem.children) {
+              mergedItem.children = mergeDataRecursive(
+                item.children,
+                matchingItem.children
+              );
+            }
+            mergedData.push(mergedItem);
+          } else {
+            mergedData.push(item);
+          }
+        }
+
+        // Add any additional data from data2
+        for (const item of data2) {
+          if (!data1.find((item1) => item1.key === item.key)) {
+            mergedData.push(item);
+          }
+        }
+
+        return mergedData;
+      }
+
+      const res = mergeDataRecursive(initialSourceData, checkedKeysSource);
+
+      console.log(res);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>Metric Tree Select</title>
+  </head>
+
+  <body>
+    <div>
+      <h2>Metric Tree Select</h2>
+    </div>
+
+    <script type="text/javascript">
+      const initialSourceData = [
+        {
+          key: "song_click",
+          title: "song_click",
+        },
+        {
+          key: "me_start",
+          title: "me_start",
+        },
+        {
+          key: "CountSong",
+          title: "CountSong",
+          children: [
+            {
+              key: "song_end",
+              title: "song_end",
+            },
+            {
+              key: "song_start",
+              title: "song_start",
+            },
+          ],
+        },
+      ];
+
+      const checkedKeysSource = ["song_click", "song_start"];
+
+      const output = [
+        {
+          key: "CountSong",
+          title: "CountSong",
+          children: [
+            {
+              key: "song_end",
+              title: "song_end",
+            },
+          ],
+        },
+      ];
+
+      function dataFiltered(data, checkedKeys) {
+        return data.filter((item) => {
+          if (!checkedKeys.includes(item.key)) {
+            if (item.children) {
+              item.children = dataFiltered(item.children, checkedKeys);
+            }
+            return true;
+          } else {
+            return false;
+          }
+        });
+      }
+
+      const res = dataFiltered(initialSourceData, checkedKeysSource);
+
+      console.log(res);
+    </script>
+  </body>
+</html>
