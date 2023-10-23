@@ -32,7 +32,7 @@
           0,0,3,			 !- Vertex 1
           0,0,2.4,		 !- Vertex 2
           30.5,0,2.4,		 !- Vertex 3
-          30.5,0,3,		 !- Vertex 4
+          30.5,0,3;		 !- Vertex 4
 
         BuildingSurface:Detailed,
           WALL-1PR,		 !- Name
@@ -49,59 +49,61 @@
           0,0,3,			 !- Vertex 1
           0,0,2.4,		 !- Vertex 2
           30.5,0,2.4,		 !- Vertex 3
-          30.5,0,3,		 !- Vertex 4
+          30.5,0,3;		 !- Vertex 4
        
       `
 
-      // // Split the string into lines
-      // const lines = objectRawText.split('\n');
+      // // Split the text into individual object sections based on empty lines
+      // const objectSections = objectRawText.split('\n\n');
 
-      // // Create an object to store key-value pairs
-      // const obj = {};
+      // // Initialize an array to store the objects
+      // const objects = [];
 
-      // // Process each line to extract key-value pairs
-      // lines.forEach(line => {
-      //   // Remove leading and trailing spaces
-      //   line = line.trim();
+      // // Process each object section and convert it to a JavaScript object
+      // objectSections.forEach(section => {
+      //   const lines = section.split('\n');
+      //   const obj = {};
 
-      //   // Split the line into key and value using comma as the delimiter
-      //   const parts = line.split(',');
+      //   lines.forEach(line => {
+      //     // Split each line into key and value
+      //     const [key, value] = line.split(',').map(entry => entry.trim());
+      //     // const valueParts = value ? value?.trim().split('!')[1]?.trim().split('-')[1].trim() : 'id'
+      //     const newValue = value === '' ? 'id' : value?.trim().split('!')[1]?.trim().split('-')[1].trim() || 'N/A'
+      //     obj[newValue] = key;
+      //   });
 
-
-
-      //   // Extract key and value
-      //   const key = parts[1] ? parts[1]?.trim().split('!')[1]?.trim().split('-')[1].trim() : null
-      //   const value = parts[0].trim();
-
-      //   // Add the key-value pair to the object
-      //   obj[key] = value;
+      //   objects.push(obj);
       // });
 
-      // console.log(obj);
+      // console.log(objects);
 
-      // Split the text into individual object sections based on empty lines
-      const objectSections = objectRawText.split('\n\n');
 
-      // Initialize an array to store the objects
-      const objects = [];
+      // Split the raw text into individual building surface configurations
+      const class_name = 'BuildingSurface:Detailed';
+      const surfaceConfigurations = objectRawText.split(`${class_name},`);
 
-      // Process each object section and convert it to a JavaScript object
-      objectSections.forEach(section => {
-        const lines = section.split('\n');
-        const obj = {};
+      // Remove the first element since it's an empty string
+      surfaceConfigurations.shift();
 
-        lines.forEach(line => {
-          // Split each line into key and value
-          const [key, value] = line.split(',').map(entry => entry.trim());
-          // const valueParts = value ? value?.trim().split('!')[1]?.trim().split('-')[1].trim() : 'id'
-          const newValue = value === '' ? 'id' : value?.trim().split('!')[1]?.trim().split('-')[1].trim() || 'N/A'
-          obj[newValue] = key;
-        });
+      // Initialize an array to store the building surface objects
+      const buildingSurfaces = [];
 
-        objects.push(obj);
-      });
+      // Loop through each configuration and parse the data
+      for (const config of surfaceConfigurations) {
+        const lines = config.trim().split("\n");
+        const surfaceObject = {};
 
-      console.log(objects);
+        for (const line of lines) {
+          const [key, value] = line.trim().split('!-');
+          // surfaceObject[key.trim()] = value.trim();
+          const newKey = key.trim().slice(0, -1);
+          surfaceObject[value.trim()] = newKey.trim();
+        }
+
+        buildingSurfaces.push(surfaceObject);
+      }
+      console.log('input: ', objectRawText);
+      console.log(buildingSurfaces);
 
     </script>
   </body>
