@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>IDF to Object</title>
+  </head>
+
+  <body>
+    <!-- Slideshow container -->
+    <p class="panel">Object To IDF</p>
+    
+    <script type="text/javascript">
+        const input = {
+            "Name": "WALL-1P2F",
+            "Surface Type": "Wall",
+            "Construction Name": "WALL-1",
+            "Zone Name": "PLENUM-1",
+            "Space Name": "",
+            "Outside Boundary Condition": "Outdoors",
+            "Outside Boundary Condition Object": "2",
+            "Sun Exposure": "SunExposed",
+            "Wind Exposure": "WindExposed",
+            "View Factor to Ground": "0.5",
+            "Number of Vertices": "4",
+            "Vertex 1": "0,0,3",
+            "Vertex 2": "0,0,2.4",
+            "Vertex 3": "30.5,0,2.4",
+            "Vertex 4": "30.5,0,3"
+        }
+        const vertexOutput = [
+            {
+                "N3": 0,
+                "N4": 0,
+                "N5": 3
+            },
+            {
+                "N3": 0,
+                "N4": 0,
+                "N5": 2.4
+            },
+            {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 2.4
+            },
+            {
+                "N3": 30.5,
+                "N4": 0,
+                "N5": 3
+            }
+        ]
+        const vertexFiltered = Object.keys(input).filter(key => key.includes('Vertex'))
+        const vertices = vertexFiltered.map(key => input[key]);
+        function isNumber(n) { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); } 
+        // convert vertices to vertexOutput
+        const vertexOutput2 = vertices.map(vertex => {
+            const vertexArray = vertex.split(',');
+            const vertexObject = {
+                N3:  isNumber(vertexArray[0]) ? vertexArray[0] : 0,
+                N4:  isNumber(vertexArray[1]) ? vertexArray[1] : 0,
+                N5:  isNumber(vertexArray[2]) ? vertexArray[2] : 0
+            }
+            return vertexObject;
+        })
+
+
+
+        console.log("vertices: ", {
+            vertices,
+            vertexFiltered,
+            vertexOutput2
+        })
+
+    </script>
+  </body>
+</html>
