@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>Timer api</title>
+</head>
+
+<body>
+  <h2>Timer Api: open console to check</h2>
+  <script>
+    // setInterval(() => {
+    //   const d = new Date(); // for now
+    //   const datetext = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+    //   console.log('heart beat: ' + datetext);
+    // }, 2000);
+  
+    // const startTime = new Date().valueOf();
+  
+    // function printElapsedTime(startTime) {
+    //   let curTime = new Date().valueOf();
+    //   console.log(curTime - startTime);
+    // }
+  
+    // let intervalObj = setInterval(printElapsedTime, 1000, startTime);
+  
+    const workerCode = `
+        let intervalId;
+  
+        self.onmessage = function (event) {
+          if (event.data === 'start') {
+            intervalId = setInterval(function () {
+              // Các công việc cần thực hiện trong interval ở đây
+              self.postMessage('Interval is running...');
+            }, 2000);
+          } else if (event.data === 'stop') {
+            clearInterval(intervalId);
+            self.postMessage('Interval stopped.');
+          }
+        };
+      `;
+  
+    // Tạo một blob từ chuỗi JavaScript
+    const blob = new Blob([workerCode], { type: "application/javascript" });
+  
+    // Tạo một URL cho blob
+    const workerUrl = URL.createObjectURL(blob);
+  
+    // Tạo một worker từ URL của blob
+    const worker = new Worker(workerUrl);
+  
+    // Gửi message để bắt đầu interval khi trang web được load
+    worker.postMessage("start");
+  
+    // Nghe các message từ worker
+    worker.onmessage = function (event) {
+      const d = new Date(); // for now
+      const datetext = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+      console.log("heart beat: " + datetext);
+    };
+  
+    // Ngừng interval khi trang web đóng
+    window.addEventListener("beforeunload", function () {
+      worker.postMessage("stop");
+    });
+  </script>
+</body>
+
+</html>
