@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>numberConsecutiveZeros</title>
+  </head>
+
+  <body>
+    <!-- Slideshow container -->
+    <div>numberConsecutiveZeros</div>
+
+    <script>
+      // inputData = [-52.63352219356757, -29.269191875533124, -9.119393550755625,  0.9824158567562287, -14.606107325281767, -1.236937849778179, -0.1886474589722393, -0.0001886474589722393, -0.001886474589722393, -0.01886474589722393];
+      // outputData = [-52.633, -29.269, -9.119,  0.982, -14.606, -1.236, -0.188, -0.000188, -0.00188, -0.0188];
+      const inputData = [
+        -52.63352219356757, -29.269191875533124, -9.119393550755625,
+        0.9824158567562287, -14.606107325281767, -1.236937849778179,
+        -0.1886474589722393, -0.0001886474589722393, -0.001886474589722393,
+        -0.01886474589722393, -2.8755810080120914,
+      ];
+
+      function getDecimalPlaces(num) {
+        const [strBeforeDot, strAfterDot] = num.toString().split(".");
+        const decimalPlaces = num.toString().split(".")[1]?.length || 0; // Get the number of decimal places in outputData value
+        const strToArray = strAfterDot?.split("") || [];
+        let count0 = 0;
+        for (const digit of strToArray) {
+          if (digit === "0") {
+            count0++;
+          } else {
+            break;
+          }
+        }
+        const consecutiveZeros = Array.from(Array(count0).keys())
+          .map(() => 0)
+          .join("");
+
+        const afterDotSliced = strAfterDot.substring(
+          0,
+          Math.min(
+            decimalPlaces,
+            consecutiveZeros === "" ? 3 : consecutiveZeros.length + 3
+          )
+        );
+        return Number(`${strBeforeDot}.${afterDotSliced}`);
+      }
+
+      // how to convert inputData to outputData
+      const output = inputData.map((num) => getDecimalPlaces(num));
+      console.log(output);
+    </script>
+  </body>
+</html>
