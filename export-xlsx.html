@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>export-xlsx</title>
+  </head>
+
+  <body>
+    <h2>export-xlsx</h2>
+
+    <script type="text/javascript">
+      const defaultColumns = [
+        {
+          header: "Metric group",
+          key: "metricGroup",
+          width: 30,
+        },
+        {
+          header: "Metric name",
+          key: "metricName",
+          width: 30,
+        },
+      ];
+      const variantColumns = [
+        {
+          header: "Meo Meo (mean)",
+          key: "0",
+          width: 30,
+        },
+        {
+          header: "Méo Méo (%)",
+          key: "1",
+          width: 30,
+        },
+        {
+          header: "Mèo Mèo (%)",
+          key: "2",
+          width: 30,
+        },
+        {
+          header: "Meow Meow (%)",
+          key: "3",
+          width: 30,
+        },
+      ];
+
+      const chartData = {
+        "Activation Metrics": {
+          name: "Activation Metrics",
+          id: "Activation Metrics",
+          order: 4,
+          children: [
+            {
+              id: "2MEd0_rate",
+              name: "2MEd0_rate",
+            },
+            {
+              id: "aha_rate",
+              name: "aha_rate",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.37451162790697673,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.465,
+                  confidentialInternal: {
+                    changes: 0.018175813257780452,
+                    lowerBound: -0.030581489501791084,
+                    upperBound: 0.06693311601735198,
+                  },
+                  mean: 0.3813186813186813,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.714,
+                  confidentialInternal: {
+                    changes: -0.009093922840939916,
+                    lowerBound: -0.057654141405841484,
+                    upperBound: 0.03946629572396165,
+                  },
+                  mean: 0.3711058480597559,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.024,
+                  confidentialInternal: {
+                    changes: -0.05602997262852607,
+                    lowerBound: -0.10474131067378695,
+                    upperBound: -0.007318634583265194,
+                  },
+                  mean: 0.3535277516462841,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "habit_rate",
+              name: "habit_rate",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.21172093023255814,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.779,
+                  confidentialInternal: {
+                    changes: -0.010377437442463788,
+                    lowerBound: -0.08290470905328694,
+                    upperBound: 0.06214983416835935,
+                  },
+                  mean: 0.20952380952380953,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.526,
+                  confidentialInternal: {
+                    changes: -0.023350263396260448,
+                    lowerBound: -0.09560646818281834,
+                    upperBound: 0.048905941390297435,
+                  },
+                  mean: 0.20677719074512663,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.077,
+                  confidentialInternal: {
+                    changes: -0.06513548054301331,
+                    lowerBound: -0.13741014706528645,
+                    upperBound: 0.007139185979259844,
+                  },
+                  mean: 0.19793038570084667,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "setup_rate",
+              name: "setup_rate",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.34493023255813954,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.34,
+                  confidentialInternal: {
+                    changes: 0.025317499832062988,
+                    lowerBound: -0.026735326643813638,
+                    upperBound: 0.07737032630793962,
+                  },
+                  mean: 0.3536630036630037,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.67,
+                  confidentialInternal: {
+                    changes: -0.01126171141930824,
+                    lowerBound: -0.06302189389600019,
+                    upperBound: 0.0404984710573837,
+                  },
+                  mean: 0.3410457278192749,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.045,
+                  confidentialInternal: {
+                    changes: -0.05307585439836162,
+                    lowerBound: -0.10498734590893231,
+                    upperBound: -0.0011643628877909353,
+                  },
+                  mean: 0.3266227657572907,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+          ],
+        },
+        "UV ULRD": {
+          name: "UV ULRD",
+          id: "UV ULRD",
+          order: 5,
+          children: [
+            {
+              id: "ad_imp",
+              name: "ad_imp",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 5.223441860465116,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.686,
+                  confidentialInternal: {
+                    changes: 0.01567347680576057,
+                    lowerBound: -0.060413367116789275,
+                    upperBound: 0.09176032072831042,
+                  },
+                  mean: 5.305311355311355,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.424,
+                  confidentialInternal: {
+                    changes: -0.030360225690407392,
+                    lowerBound: -0.10481023250655974,
+                    upperBound: 0.04408978112574496,
+                  },
+                  mean: 5.064856986700674,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.877,
+                  confidentialInternal: {
+                    changes: 0.006606245619838177,
+                    lowerBound: -0.07708767390594641,
+                    upperBound: 0.09030016514562277,
+                  },
+                  mean: 5.257949200376293,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "banner_imp",
+              name: "banner_imp",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "iap_value",
+              name: "iap_value",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0.00038333333333333334,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0.0003813080706868282,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "interstitial_imp",
+              name: "interstitial_imp",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 2.3246511627906976,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.296,
+                  confidentialInternal: {
+                    changes: 0.030128168483510617,
+                    lowerBound: -0.026432956487905123,
+                    upperBound: 0.08668929345492636,
+                  },
+                  mean: 2.3946886446886446,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.485,
+                  confidentialInternal: {
+                    changes: 0.021237425558673168,
+                    lowerBound: -0.038321383649775116,
+                    upperBound: 0.08079623476712144,
+                  },
+                  mean: 2.374020768810348,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.208,
+                  confidentialInternal: {
+                    changes: -0.03791996572853029,
+                    lowerBound: -0.09690437312270171,
+                    upperBound: 0.021064441665641125,
+                  },
+                  mean: 2.2365004703668863,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "rewarded_imp",
+              name: "rewarded_imp",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 2.895627906976744,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.93,
+                  confidentialInternal: {
+                    changes: 0.00498867726122929,
+                    lowerBound: -0.10653295132184926,
+                    upperBound: 0.11651030584430783,
+                  },
+                  mean: 2.91007326007326,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.195,
+                  confidentialInternal: {
+                    changes: -0.07103903140502163,
+                    lowerBound: -0.17860184586815417,
+                    upperBound: 0.036523783058110895,
+                  },
+                  mean: 2.689925305155766,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.504,
+                  confidentialInternal: {
+                    changes: 0.042802238225898404,
+                    lowerBound: -0.08269675180336715,
+                    upperBound: 0.16830122825516394,
+                  },
+                  mean: 3.0195672624647223,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "subs_value",
+              name: "subs_value",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "UV",
+              name: "UV",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.19905570492636276,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.004,
+                  confidentialInternal: {
+                    changes: 0.08796536615383375,
+                    lowerBound: 0.027388354684538253,
+                    upperBound: 0.14854237762312925,
+                  },
+                  mean: 0.21656571289521975,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.527,
+                  confidentialInternal: {
+                    changes: -0.01748066813749496,
+                    lowerBound: -0.07164930904062555,
+                    upperBound: 0.03668797276563564,
+                  },
+                  mean: 0.1955760782076699,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.884,
+                  confidentialInternal: {
+                    changes: -0.004425990983152792,
+                    lowerBound: -0.06380487142485586,
+                    upperBound: 0.05495288945855027,
+                  },
+                  mean: 0.19817468617121356,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "UV_ad",
+              name: "UV_ad",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.19905570492636276,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.005,
+                  confidentialInternal: {
+                    changes: 0.08603960706305512,
+                    lowerBound: 0.02558760294124564,
+                    upperBound: 0.1464916111848646,
+                  },
+                  mean: 0.21618237956188646,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.482,
+                  confidentialInternal: {
+                    changes: -0.01939625287709286,
+                    lowerBound: -0.07343830797582433,
+                    upperBound: 0.034645802221638614,
+                  },
+                  mean: 0.19519477013698305,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.884,
+                  confidentialInternal: {
+                    changes: -0.004425990983152792,
+                    lowerBound: -0.06380487142485586,
+                    upperBound: 0.05495288945855027,
+                  },
+                  mean: 0.19817468617121356,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "UV_ad_banner",
+              name: "UV_ad_banner",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "UV_ad_interstitial",
+              name: "UV_ad_interstitial",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.11458391739534883,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0,
+                  confidentialInternal: {
+                    changes: 0.10446016113179073,
+                    lowerBound: 0.048451814991338424,
+                    upperBound: 0.16046850727224304,
+                  },
+                  mean: 0.12655337186957877,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.722,
+                  confidentialInternal: {
+                    changes: 0.00944298677365966,
+                    lowerBound: -0.042551168058359616,
+                    upperBound: 0.06143714160567893,
+                  },
+                  mean: 0.11566593181178722,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.614,
+                  confidentialInternal: {
+                    changes: -0.013917078463168494,
+                    lowerBound: -0.06805318106805013,
+                    upperBound: 0.04021902414171313,
+                  },
+                  mean: 0.11298924402634054,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "UV_ad_rewarded",
+              name: "UV_ad_rewarded",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.08447178753101395,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.207,
+                  confidentialInternal: {
+                    changes: 0.06105257520921113,
+                    lowerBound: -0.03387878268222656,
+                    upperBound: 0.15598393310064884,
+                  },
+                  mean: 0.08962900769230768,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.175,
+                  confidentialInternal: {
+                    changes: -0.058515977349281136,
+                    lowerBound: -0.14309156500867906,
+                    upperBound: 0.026059610310116794,
+                  },
+                  mean: 0.07952883832519585,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.863,
+                  confidentialInternal: {
+                    changes: 0.008448437457263888,
+                    lowerBound: -0.0876339678473542,
+                    upperBound: 0.10453084276188197,
+                  },
+                  mean: 0.085185442144873,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+          ],
+        },
+        "Song engagement": {
+          name: "Song engagement",
+          id: "Song engagement",
+          order: 7,
+          children: [
+            {
+              id: "me_start",
+              name: "me_start",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 3.983441860465116,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.969,
+                  confidentialInternal: {
+                    changes: -0.001084735637068476,
+                    lowerBound: -0.05623976798974195,
+                    upperBound: 0.054070296715604996,
+                  },
+                  mean: 3.979120879120879,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.647,
+                  confidentialInternal: {
+                    changes: 0.014355637536425355,
+                    lowerBound: -0.04711651332255687,
+                    upperBound: 0.07582778839540757,
+                  },
+                  mean: 4.040626707961377,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.394,
+                  confidentialInternal: {
+                    changes: -0.025410620339911053,
+                    lowerBound: -0.08379037605668825,
+                    upperBound: 0.03296913537686615,
+                  },
+                  mean: 3.882220131702728,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_click",
+              name: "song_click",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 4.647441860465117,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.564,
+                  confidentialInternal: {
+                    changes: 0.020176030934637747,
+                    lowerBound: -0.048366136800594706,
+                    upperBound: 0.0887181986698702,
+                  },
+                  mean: 4.741208791208791,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.87,
+                  confidentialInternal: {
+                    changes: 0.006318809830155854,
+                    lowerBound: -0.06943033088152831,
+                    upperBound: 0.08206795054184002,
+                  },
+                  mean: 4.676808161778101,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.664,
+                  confidentialInternal: {
+                    changes: 0.017078008596905628,
+                    lowerBound: -0.0600100129520509,
+                    upperBound: 0.09416603014586215,
+                  },
+                  mean: 4.726810912511759,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_fail",
+              name: "song_fail",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 10.071255813953488,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.191,
+                  confidentialInternal: {
+                    changes: 0.03275093923127473,
+                    lowerBound: -0.016304916852544295,
+                    upperBound: 0.08180679531509374,
+                  },
+                  mean: 10.401098901098901,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.333,
+                  confidentialInternal: {
+                    changes: -0.024766558355895373,
+                    lowerBound: -0.07488966566049146,
+                    upperBound: 0.025356548948700722,
+                  },
+                  mean: 9.821825469120059,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.002,
+                  confidentialInternal: {
+                    changes: 0.08495019035986737,
+                    lowerBound: 0.03053191636416819,
+                    upperBound: 0.13936846435556655,
+                  },
+                  mean: 10.926810912511758,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_revive_impression",
+              name: "song_revive_impression",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 6.000558139534884,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.974,
+                  confidentialInternal: {
+                    changes: 0.0011583952380156994,
+                    lowerBound: -0.06931548774351799,
+                    upperBound: 0.07163227821954939,
+                  },
+                  mean: 6.0075091575091575,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.628,
+                  confidentialInternal: {
+                    changes: -0.018431018464943678,
+                    lowerBound: -0.09293329875391598,
+                    upperBound: 0.05607126182402862,
+                  },
+                  mean: 5.889961741665148,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.19,
+                  confidentialInternal: {
+                    changes: 0.05465259833187976,
+                    lowerBound: -0.02708115899658587,
+                    upperBound: 0.13638635566034538,
+                  },
+                  mean: 6.328504233301976,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_revive",
+              name: "song_revive",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 1.5026976744186047,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.399,
+                  confidentialInternal: {
+                    changes: -0.06115123166627434,
+                    lowerBound: -0.20321470521425855,
+                    upperBound: 0.08091224188170987,
+                  },
+                  mean: 1.410805860805861,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.07,
+                  confidentialInternal: {
+                    changes: -0.12721488989662327,
+                    lowerBound: -0.2646631637747239,
+                    upperBound: 0.010233383981477339,
+                  },
+                  mean: 1.31153215521953,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.377,
+                  confidentialInternal: {
+                    changes: 0.07789839353140418,
+                    lowerBound: -0.09481759193176902,
+                    upperBound: 0.2506143789945774,
+                  },
+                  mean: 1.619755409219191,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_impression",
+              name: "song_impression",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_start",
+              name: "song_start",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 6.1480930232558135,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.736,
+                  confidentialInternal: {
+                    changes: 0.009723736188361351,
+                    lowerBound: -0.04678997726086607,
+                    upperBound: 0.06623744963758878,
+                  },
+                  mean: 6.207875457875458,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.813,
+                  confidentialInternal: {
+                    changes: 0.007441202741323054,
+                    lowerBound: -0.054093020116796176,
+                    upperBound: 0.06897542559944228,
+                  },
+                  mean: 6.193842229914374,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.748,
+                  confidentialInternal: {
+                    changes: 0.010340129090559372,
+                    lowerBound: -0.052864320360501045,
+                    upperBound: 0.07354457854161979,
+                  },
+                  mean: 6.211665098777046,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_start__song_play_type__replay",
+              name: "song_start__song_play_type__replay",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 2.3369302325581396,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.272,
+                  confidentialInternal: {
+                    changes: 0.06514097159586846,
+                    lowerBound: -0.05116282038455773,
+                    upperBound: 0.18144476357629466,
+                  },
+                  mean: 2.4891601384587356,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.465,
+                  confidentialInternal: {
+                    changes: 0.03631457972274777,
+                    lowerBound: -0.061161721091115694,
+                    upperBound: 0.13379088053661123,
+                  },
+                  mean: 2.4217948717948716,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.318,
+                  confidentialInternal: {
+                    changes: 0.057984729721218244,
+                    lowerBound: -0.055792573872922864,
+                    upperBound: 0.17176203331535936,
+                  },
+                  mean: 2.472436500470367,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_result",
+              name: "song_result",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 5.2532093023255815,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.553,
+                  confidentialInternal: {
+                    changes: 0.01884343344713077,
+                    lowerBound: -0.04342063565841615,
+                    upperBound: 0.0811075025526777,
+                  },
+                  mean: 5.352197802197802,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.822,
+                  confidentialInternal: {
+                    changes: 0.007911746170030617,
+                    lowerBound: -0.06099569898872467,
+                    upperBound: 0.0768191913287859,
+                  },
+                  mean: 5.294771360903625,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.824,
+                  confidentialInternal: {
+                    changes: 0.007993771620118464,
+                    lowerBound: -0.06259679824232295,
+                    upperBound: 0.07858434148255988,
+                  },
+                  mean: 5.295202257761054,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_end",
+              name: "song_end",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 1.2628837209302326,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.934,
+                  confidentialInternal: {
+                    changes: 0.002270355356684094,
+                    lowerBound: -0.05169156564394303,
+                    upperBound: 0.05623227635731122,
+                  },
+                  mean: 1.2657509157509157,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.133,
+                  confidentialInternal: {
+                    changes: -0.039955278854704145,
+                    lowerBound: -0.0921433473048585,
+                    upperBound: 0.01223278959545021,
+                  },
+                  mean: 1.2124248496993988,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0,
+                  confidentialInternal: {
+                    changes: -0.13396849955457896,
+                    lowerBound: -0.1853259850389445,
+                    upperBound: -0.0826110140702134,
+                  },
+                  mean: 1.0936970837253057,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "song_unlock",
+              name: "song_unlock",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.568186046511628,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.374,
+                  confidentialInternal: {
+                    changes: 0.04986764490693752,
+                    lowerBound: -0.06008835770730682,
+                    upperBound: 0.15982364752118186,
+                  },
+                  mean: 0.5965201465201465,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.739,
+                  confidentialInternal: {
+                    changes: -0.01820369917664704,
+                    lowerBound: -0.1253975101844405,
+                    upperBound: 0.08899011183114643,
+                  },
+                  mean: 0.5578429586445619,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.339,
+                  confidentialInternal: {
+                    changes: -0.051295865391901695,
+                    lowerBound: -0.15644830788562683,
+                    upperBound: 0.05385657710182346,
+                  },
+                  mean: 0.5390404515522107,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+          ],
+        },
+        Subscription: {
+          name: "Subscription",
+          id: "Subscription",
+          order: 8,
+          children: [
+            {
+              id: "pay_rate",
+              name: "pay_rate",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "subs_users_rate",
+              name: "subs_users_rate",
+            },
+            {
+              id: "trial_rate",
+              name: "trial_rate",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: null,
+                  confidentialInternal: {
+                    changes: null,
+                    lowerBound: null,
+                    upperBound: null,
+                  },
+                  mean: 0,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+          ],
+        },
+        Retention: {
+          name: "Retention",
+          id: "Retention",
+          order: 2,
+          children: [
+            {
+              id: "retention",
+              name: "retention",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.9624186046511628,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.212,
+                  confidentialInternal: {
+                    changes: 0.004604246195199216,
+                    lowerBound: -0.002621507526294078,
+                    upperBound: 0.01182999991669251,
+                  },
+                  mean: 0.9668498168498169,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.253,
+                  confidentialInternal: {
+                    changes: 0.0042183377351683845,
+                    lowerBound: -0.0030157904909900285,
+                    upperBound: 0.011452465961326796,
+                  },
+                  mean: 0.9664784113681909,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.354,
+                  confidentialInternal: {
+                    changes: 0.0034690580787172065,
+                    lowerBound: -0.003861972670599361,
+                    upperBound: 0.010800088828033773,
+                  },
+                  mean: 0.9657572906867357,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "sum_retention",
+              name: "sum_retention",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.9624186046511628,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.212,
+                  confidentialInternal: {
+                    changes: 0.004604246195199216,
+                    lowerBound: -0.0026224617950039776,
+                    upperBound: 0.011830954185402412,
+                  },
+                  mean: 0.9668498168498169,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.253,
+                  confidentialInternal: {
+                    changes: 0.0042183377351683845,
+                    lowerBound: -0.0030168277480524166,
+                    upperBound: 0.011453503218389186,
+                  },
+                  mean: 0.9664784113681909,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.354,
+                  confidentialInternal: {
+                    changes: 0.0034690580787172065,
+                    lowerBound: -0.0038631939092756227,
+                    upperBound: 0.010801310066710037,
+                  },
+                  mean: 0.9657572906867357,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+          ],
+        },
+        "Time engagement": {
+          name: "Time engagement",
+          id: "Time engagement",
+          order: 3,
+          children: [
+            {
+              id: "song_play_time",
+              name: "song_play_time",
+            },
+            {
+              id: "time_in_app",
+              name: "time_in_app",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 655.4776580465116,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.691,
+                  confidentialInternal: {
+                    changes: -0.013391453974438347,
+                    lowerBound: -0.07946075612979779,
+                    upperBound: 0.0526778481809211,
+                  },
+                  mean: 646.6998591575091,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.363,
+                  confidentialInternal: {
+                    changes: -0.030444460538355252,
+                    lowerBound: -0.0961075881928279,
+                    upperBound: 0.03521866711611739,
+                  },
+                  mean: 635.521994352341,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.572,
+                  confidentialInternal: {
+                    changes: -0.020431184332561705,
+                    lowerBound: -0.09138134053679955,
+                    upperBound: 0.05051897187167614,
+                  },
+                  mean: 642.0854731890875,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+          ],
+        },
+        "Other metrics": {
+          name: "Other metrics",
+          id: "Other metrics",
+          order: 9,
+          children: [
+            {
+              id: "coin_earn",
+              name: "coin_earn",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 4.744,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.646,
+                  confidentialInternal: {
+                    changes: 0.015935301348454802,
+                    lowerBound: -0.0520988301628074,
+                    upperBound: 0.083969432859717,
+                  },
+                  mean: 4.819597069597069,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.825,
+                  confidentialInternal: {
+                    changes: 0.008494069236126743,
+                    lowerBound: -0.06670479783123028,
+                    upperBound: 0.08369293630348376,
+                  },
+                  mean: 4.784295864456185,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.763,
+                  confidentialInternal: {
+                    changes: 0.011844044425478227,
+                    lowerBound: -0.06520101807124017,
+                    upperBound: 0.08888910692219662,
+                  },
+                  mean: 4.8001881467544685,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "coin_spend",
+              name: "coin_spend",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 0.1813953488372093,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.149,
+                  confidentialInternal: {
+                    changes: -0.16398985629754873,
+                    lowerBound: -0.3869800370366263,
+                    upperBound: 0.05900032444152882,
+                  },
+                  mean: 0.15164835164835164,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.5,
+                  confidentialInternal: {
+                    changes: -0.07801617220454897,
+                    lowerBound: -0.3047356975939908,
+                    upperBound: 0.14870335318489283,
+                  },
+                  mean: 0.16724357806522136,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.436,
+                  confidentialInternal: {
+                    changes: -0.09035868490242904,
+                    lowerBound: -0.3176141556836035,
+                    upperBound: 0.1368967858787454,
+                  },
+                  mean: 0.16500470366886172,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+          ],
+        },
+        "Ads event": {
+          name: "Ads event",
+          id: "Ads event",
+          order: 6,
+          children: [
+            {
+              id: "fullads_show",
+              name: "fullads_show",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 2.3988837209302325,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.67,
+                  confidentialInternal: {
+                    changes: 0.01199389385755132,
+                    lowerBound: -0.04324628447147391,
+                    upperBound: 0.06723407218657655,
+                  },
+                  mean: 2.4276556776556775,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.61,
+                  confidentialInternal: {
+                    changes: 0.015304930545835758,
+                    lowerBound: -0.04351000091377711,
+                    upperBound: 0.07411986200544864,
+                  },
+                  mean: 2.4355984696666058,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.119,
+                  confidentialInternal: {
+                    changes: -0.04604422689033565,
+                    lowerBound: -0.1039246357507592,
+                    upperBound: 0.011836181970087891,
+                  },
+                  mean: 2.2884289746001882,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+            {
+              id: "fullads_show_ready",
+              name: "fullads_show_ready",
+              variants: [
+                {
+                  PValue: null,
+                  confidentialInternal: null,
+                  mean: 2.4314418604651165,
+                  name: "0",
+                  variantType: "BASE",
+                },
+                {
+                  PValue: 0.7,
+                  confidentialInternal: {
+                    changes: 0.010796247137971818,
+                    lowerBound: -0.044138293098416416,
+                    upperBound: 0.06573078737436006,
+                  },
+                  mean: 2.457692307692308,
+                  name: "1",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.597,
+                  confidentialInternal: {
+                    changes: 0.01579594751798816,
+                    lowerBound: -0.04272021716182018,
+                    upperBound: 0.0743121121977965,
+                  },
+                  mean: 2.469848788486063,
+                  name: "2",
+                  variantType: "COMPARED",
+                },
+                {
+                  PValue: 0.117,
+                  confidentialInternal: {
+                    changes: -0.045972937474135944,
+                    lowerBound: -0.10352537087313891,
+                    upperBound: 0.011579495924867024,
+                  },
+                  mean: 2.319661335841957,
+                  name: "3",
+                  variantType: "COMPARED",
+                },
+              ],
+            },
+          ],
+        },
+      };
+
+      /*
+       output = [
+        {
+          metricGroup: 'Activation Metrics',
+          metricName: "2MEd0_rate",
+          "0": '-', // mean
+          "1": '-', // confidentialInternal.changes
+          "2": '-', // confidentialInternal.changes
+          "3": '-' // confidentialInternal.changes
+        },
+         {
+          metricGroup: 'Activation Metrics',
+          metricName: "aha_rate",
+          "0": 0.37451162790697673, // mean
+          "1": 0.018175813257780452, // confidentialInternal.changes
+          "2": -0.009093922840939916, // confidentialInternal.changes
+          "3": -0.05602997262852607 // confidentialInternal.changes
+        },
+       ]
+      */
+
+      // how to map chart data & header to output
+      const output = Object.keys(chartData).reduce((acc, key) => {
+        const metricGroup = chartData[key].name;
+        const metricGroupChildren = chartData[key].children;
+        let item = {
+          metricGroup,
+        };
+        metricGroupChildren.forEach((metric) => {
+          item = {
+            ...item,
+            metricName: metric.name,
+          };
+          if (!metric.variants) {
+            variantColumns.forEach((_, index) => {
+              item = {
+                ...item,
+                [index]: "-",
+              };
+            });
+          } else {
+            const [firstMetrics, ...otherMetrics] = metric.variants;
+            item = {
+              ...item,
+              [firstMetrics.name]: firstMetrics.mean,
+            };
+            otherMetrics.forEach((otherMetric) => {
+              item = {
+                ...item,
+                [otherMetric.name]: otherMetric.confidentialInternal
+                  ? otherMetric.confidentialInternal.changes ?? "-"
+                  : "-",
+              };
+            });
+          }
+          acc.push(item);
+        });
+
+        return acc;
+      }, []);
+
+      console.log("chartData: ", {
+        chartData,
+        output,
+      });
+    </script>
+  </body>
+</html>
