@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>line chart</title>
+</head>
+
+<body>
+    
+    <script type="text/javascript">
+        const input = [
+            {
+                "type": "line",
+                "showInLegend": true,
+                "name": "",
+                "markerType": "square",
+                "xValueFormatString": "DD MMM, YYYY",
+                "color": "",
+                "dataPoints": [
+                    {
+                        "label": "00:00:00",
+                        "y": -18.8,
+                        "x": 0,
+                        "name": "269,1,ZN_1_FLR_1_"
+                    },
+                    {
+                        "label": "01:00:00",
+                        "y": -18.8,
+                        "x": 1,
+                        "name": "269,1,ZN_1_FLR_1_"
+                    },
+                    {
+                        "label": "02:00:00",
+                        "y": -18.8,
+                        "x": 2,
+                        "name": "269,1,ZN_1_FLR_1_"
+                    },
+                    {
+                        "label": "03:00:00",
+                        "y": -18.8,
+                        "x": 3,
+                        "name": "269,1,ZN_1_FLR_1_"
+                    },
+                    {
+                        "label": "04:00:00",
+                        "y": -18.8,
+                        "x": 4,
+                        "name": "269,1,ZN_1_FLR_1_"
+                    },
+                    {
+                        "label": "05:00:00",
+                        "y": -18.8,
+                        "x": 5,
+                        "name": "269,1,ZN_1_FLR_1_"
+                    },
+                    {
+                        "label": "06:00:00",
+                        "y": -18.8,
+                        "x": 6,
+                        "name": "269,1,ZN_1_FLR_1_"
+                    }
+                ]
+            },
+            {
+                "type": "line",
+                "showInLegend": true,
+                "name": "",
+                "markerType": "square",
+                "xValueFormatString": "DD MMM, YYYY",
+                "color": "",
+                "dataPoints": [
+                    {
+                        "label": "00:00:00",
+                        "y": 0.000728874454824939,
+                        "x": 0,
+                        "name": "270,1"
+                    },
+                    {
+                        "label": "01:00:00",
+                        "y": 0.000728874454824939,
+                        "x": 1,
+                        "name": "270,1"
+                    },
+                    {
+                        "label": "02:00:00",
+                        "y": 0.000728874454824939,
+                        "x": 2,
+                        "name": "270,1"
+                    },
+                    {
+                        "label": "03:00:00",
+                        "y": 0.000728874454824939,
+                        "x": 3,
+                        "name": "270,1"
+                    },
+                    {
+                        "label": "04:00:00",
+                        "y": 0.000728874454824939,
+                        "x": 4,
+                        "name": "270,1"
+                    },
+                    {
+                        "label": "05:00:00",
+                        "y": 0.000728874454824939,
+                        "x": 5,
+                        "name": "270,1"
+                    },
+                    {
+                        "label": "06:00:00",
+                        "y": 0.000728874454824939,
+                        "x": 6,
+                        "name": "270,1"
+                    }
+                ]
+            }
+            ]
+
+            const output = [
+                {
+                    "name": "00:00:00",
+                    "269,1,ZN_1_FLR_1_": -18.8,
+                    "270,1": 0.000728874454824939
+                },
+                {
+                    "name": "01:00:00",
+                    "269,1,ZN_1_FLR_1_": -18.8,
+                    "270,1": 0.000728874454824939,
+                },
+            ]
+
+            // how to convert to output from input
+            const res = input.reduce((acc, cur) => {
+                cur.dataPoints.forEach((dataPoint) => {
+                    const { label, y, name } = dataPoint
+                    const index = acc.findIndex((item) => item.name === label)
+                    if (index === -1) {
+                        acc.push({
+                            name: label,
+                            [name]: y
+                        })
+                    } else {
+                        acc[index][name] = y
+                    }
+                })
+                return acc
+            }, [])
+            console.log('res: ', res)
+    </script>
+
+</body>
+
+</html>
