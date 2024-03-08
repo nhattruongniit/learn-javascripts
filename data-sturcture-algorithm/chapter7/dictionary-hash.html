@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>Chapter 7 - Dictionaries & Hashes</title>
+  </head>
+
+  <body>
+    <h1>Chapter 7 - Dictionaries & Hashes</h1>
+
+    <script type="text/javascript">
+      /* 
+      - Use to store unique keys and their values [key, value]
+      - The Map method is used to store key-value pairs
+      */
+
+      class Dictionary {
+        constructor() {
+          this.items = {};
+        }
+
+        // add a new item to the dictionary
+        set(key, value) {
+          this.items[key] = value;
+        }
+
+        // get the value using the key
+        get(key) {
+          return this.has(key) ? this.items[key] : undefined;
+        }
+
+        // check if the key exists in the dictionary
+        has(key) {
+          return key in this.items;
+        }
+
+        // remove the value from the dictionary using the key
+        delete(key) {
+          if (this.has(key)) {
+            delete this.items[key];
+            return true;
+          }
+          return false;
+        }
+
+        // return values of all the items in the dictionary
+        values() {
+          const values = [];
+          for (let key in this.items) {
+            if (this.has(key)) {
+              values.push(this.items[key]);
+            }
+          }
+          return values;
+        }
+
+        keys() {
+          return Object.keys(this.items);
+        }
+
+        print() {
+          return this.items;
+        }
+      }
+
+      const dictionary = new Dictionary();
+      dictionary.set("Gandalf", "gandalf@gmail.com");
+      dictionary.set("John", "john@gmail.com");
+      dictionary.set("Tyrion", "tyrion@gmail.com");
+
+      console.log("dictionary: ", {
+        print: dictionary.print(),
+      });
+
+      // hash table
+      class HashTable {
+        constructor() {
+          this.table = [];
+        }
+
+        loseloseHashCode(key) {
+          let hash = 0;
+          for (let i = 0; i < key.length; i++) {
+            hash += key.charCodeAt(i);
+          }
+          return hash % 37;
+        }
+
+        put(key, value) {
+          const position = this.loseloseHashCode(key);
+          console.log(`${position} - ${key}`);
+          this.table[position] = value;
+        }
+
+        get(key) {
+          return this.table[this.loseloseHashCode(key)];
+        }
+
+        remove(key) {
+          this.table[this.loseloseHashCode(key)] = undefined;
+        }
+
+        print() {
+          return this.table;
+        }
+      }
+
+      const hash = new HashTable();
+      hash.put("Gandalf", "gandalf@gmail.com");
+      hash.put("John", "john@gmail.com");
+      hash.put("Tyrion", "tyrion@gmail.com");
+
+      console.log("hashTable: ", {
+        print: hash.print(),
+      });
+    </script>
+  </body>
+</html>
