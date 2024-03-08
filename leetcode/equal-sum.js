@@ -5,12 +5,11 @@
 const nums = [1, 2, 4, 4];
 
 function equalSum(nums, target) {
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] + nums[i + 1] === target) {
+  for(let i = 0; i < nums.length; i++) {
+    if(nums[i] + nums[i + 1] === target)  {
       return [nums[i], nums[i + 1]];
     }
   }
 }
-const result = equalSum(nums, 8);
-
+const result = equalSum(nums, 6);
 console.log(result);

@@ -4,23 +4,20 @@ const input = [2, 2, 3, 4];
 // because 2 + 4 = 6
 
 // way 1
-const twoSum = function (nums, target) {
-  const hashtable = {}
-
+function twoSumWay1(nums, target) {
+  const hashTable = {};
   for(let i = 0; i < nums.length; i++) {
     const currVal = nums[i];
-
-    if(currVal in hashtable) {
-      console.log('currVal: ', [hashtable[currVal], i])
-      return [hashtable[currVal], i]
+    if(currVal in hashTable) {
+      return [hashTable[currVal], i]
     }
-    hashtable[target - currVal] = i
+    hashTable[target - currVal] = i
   }
-};
+}
 
-const result = twoSum(input, 6);
-
+const result = twoSumWay1(input, 6);
 console.log("result way 1: ", result);
+
 
 
 const twoSum2 = function (nums, target) {

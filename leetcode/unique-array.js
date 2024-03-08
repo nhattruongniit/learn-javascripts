@@ -10,16 +10,14 @@ const arr2 = [2,6,7,4,9]
 const uniqueArray = () => {
   const arrays = arr1.concat(arr2);
   const hashMap = {};
-
   arrays.forEach(item => {
     if(item in hashMap) {
-      hashMap[item] = true
-      return hashMap
+      hashMap[item] = true;
+      return hashMap;
     }
     hashMap[item] = item
   })
-
-  return hashMap;
+  return hashMap
 }
 
 const res = uniqueArray();

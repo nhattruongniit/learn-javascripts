@@ -11,9 +11,6 @@ Output: ""
 Explanation: There is no common prefix among the input strings.
 
 */
-
-const input = ["flower","flow","flight"]
-
 function longest(strs) {
   if(!strs || strs.length === 0) return ''
   const sortedArr = strs.sort((a, b) => a.length - b.length)
