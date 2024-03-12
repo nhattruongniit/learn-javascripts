@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Holiday</title>
+</head>
+<body>
+
+    <h1>Car Holiday</h1>
+
+    <script type="text/javascript">
+        // input = [2, 3, 5, 2, 3, 4, 6, 4, 1]
+        // outpiut = 25
+        function solution(input) {
+            let result = 0;
+            let max = 0;
+            for (let i = 0; i < input.length; i++) {
+                if (input[i] > max) {
+                    max = input[i];
+                }
+                result += max;
+            }
+            return result;
+            
+        }
+        console.log('car holiday: ', solution([2, 3, 5, 2, 3, 4, 6, 4, 1]));
+    </script>
+
+</body>
+</html>

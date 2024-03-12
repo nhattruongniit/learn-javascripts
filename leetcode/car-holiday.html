@@ -1,0 +1,108 @@
+<!-- 
+<div class="brinza-task-description">
+<p>A group of friends is going on holiday together. They have come to a meeting point (the start of the journey) using N cars. There are P[K] people and S[K] seats in the K-th car for K in range [0..N-1]. Some of the seats in the cars may be free, so it is possible for some of the friends to change the car they are in. The friends have decided that, in order to be ecological, they will leave some cars parked at the meeting point and travel with as few cars as possible.</p>
+<p>Write a function:</p>
+<blockquote><p style="font-family: monospace; font-size: 9pt; display: block; white-space: pre-wrap"><tt>function solution(P, S);</tt></p></blockquote>
+<p>that, given two arrays P and S, consisting of N integers each, returns the minimum number of cars needed to take all of the friends on holiday.</p>
+<p><b>Examples:</b></p>
+<p>1. Given P = [1, 4, 1] and S = [1, 5, 1], the function should return 2. A person from car number 0 can travel in car number 1 instead. This way, car number 0 can be left parked at the meeting point.</p>
+<p>2. Given P = [4, 4, 2, 4] and S = [5, 5, 2, 5], the function should return 3. One person from car number 2 can travel in car number 0 and the other person from car number 2 can travel in car number 3.</p>
+<p>3. Given P = [2, 3, 4, 2] and S = [2, 5, 7, 2], the function should return 2. Passengers from car number 0 can travel in car number 1 and passengers from car number 3 can travel in car number 2.</p>
+<p>Write an <b><b>efficient</b></b> algorithm for the following assumptions:</p>
+<blockquote><ul style="margin: 10px;padding: 0px;"><li>N is an integer within the range [<span class="number">1</span>..<span class="number">100,000</span>];</li>
+<li>each element of arrays P and S is an integer within the range [<span class="number">1</span>..<span class="number">9</span>];</li>
+<li>every friend had a seat in the car they came in; that is, P[K] ≤ S[K] for each K within the range [0..N-1].</li>
+</ul>
+</blockquote></div>
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Holiday</title>
+</head>
+<body>
+
+    <h1>Car Holiday</h1>
+
+    <script type="text/javascript">
+        /*
+            P = [1, 4, 1] and S = [1, 5, 1] => 2
+            P = [4, 4, 2, 4] and S = [5, 5, 2, 5] => 3
+            P = [2, 3, 4, 2] and S = [2, 5, 7, 2] => 2
+        */
+        function solution(P, S) {
+            // const emptyCars = [];
+            // for(let i = 0; i < P.length; i ++) {
+            //     const emptySeat = S[i] - P[i];
+            //     emptyCars.push(emptySeat)
+            // }
+            // emptyCars.sort((a, b) => {
+            //     if(a > b) return -1;
+            //     if(a < b) return 1;
+            //     return 0;
+            // })
+
+            // const totalP = P.reduce((total, curr) => total += curr, 0);
+            // const totalS = S.reduce((total, curr) => total += curr, 0);
+
+            // let availableSeats = totalS - totalP;
+            // let car = 0;
+
+            // console.log('emptyCars: ', {
+            //     emptyCars,
+            //     availableSeats
+            // })
+
+            // for (let i = 0; i < emptyCars.length; i++) {
+            //     if(availableSeats > 0) {
+            //         availableSeats -= emptyCars[i];
+            //         car++
+            //     }
+            // }
+            // return car
+
+            const totalP = P.reduce((total, curr) => total += curr, 0);
+            const totalS = S.reduce((total, curr) => total += curr, 0);
+
+            let availableSeats = totalS - totalP;
+            let car = 0;
+
+            let sortedS = S.sort((a, b) => {
+                if(a > b) return 1;
+                if(a < b) return -1;
+                return 0;
+            })
+
+            // solution([1, 4, 1], [1, 5, 1]), -> 2
+            // solution([4, 4, 2, 4], [5, 5, 2, 5]) -> 3
+            sortedS.forEach((seat, index) => {
+                
+                if(availableSeats > 0) {
+                    availableSeats -= seat;
+                    car++
+                }
+            })
+
+            console.log('emptyCars: ', {
+                totalP,
+                totalS,
+                availableSeats,
+                car,
+                sortedS
+            })
+            return car
+
+        }
+        // const result = solution([4,4,2,4], [5,5,2,5]);
+        const result =
+        console.log('result: ', {
+            test1: solution([1, 4, 1], [1, 5, 1]), // 2
+            test2: solution([4, 4, 2, 4], [5, 5, 2, 5]), // 3
+            test3: solution([2, 3, 4, 2], [2, 5, 7, 2]), // 2
+        })
+    </script>
+
+</body>
+</html>
