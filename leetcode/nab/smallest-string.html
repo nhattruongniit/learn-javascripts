@@ -1,0 +1,62 @@
+<!-- 
+Write a function that, given a string S consisting of N characters, 
+returns the alphabetically smallest string that can be obtained by 
+removing exactly one letter from S.
+
+Examples:
+1. Given S = "acb", by removing one letter, you can obtain "ac", "ab" or "cb". 
+Your function should return "ab" (after removing 'c') since it is alphabetically
+smaller than "ac" and "bc"
+
+2. Given S = "hot", return "ho", which is alphabetically smaller than 
+"ht" and "ot".
+
+3. Given S = "codility", return "cdility"
+
+4. Given S = "aaaa", return "aaa". Any occurrence of 'a' can be removed.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smallest String</title>
+</head>
+<body>
+
+    <h1>Smallest String</h1>
+
+    <script type="text/javascript">
+        function test(string) {
+            let min = 0;
+            let result = '';
+            for (let i = 1; i < string.length + 1; i++) {
+                const _str = removeChar(string, i);
+                const _score = getStringScore(_str);
+                console.log('_score: ', _score)
+                if (min === 0 || _score < min) {
+                    result = _str;
+                    min = _score;
+                }
+            }
+            return result;
+        }
+
+        function removeChar(string, position) {
+            const part1 = string.slice(0, position);
+            const part2 = string.slice(position + 1);
+            return part1 + part2;
+        }
+
+        function getStringScore(string) {
+            let score = 0;
+            for (let i = 0; i < string.length; i++) {
+                const base = (string.length - i) * 1000;
+                score += string.charCodeAt(i) * base;
+            }
+            return score;
+        }
+        console.log('smallest string: ', test('codility'));
+    </script>
+
+</body>
+</html>
