@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remove Banana</title>
+</head>
+<body>
+
+  <h1>Remove Banana</h1>
+
+  <script type="text/javascript">
+    // NAABXXAN -> XX -> return 1
+    // NAANAAXNABABYNNBZ -> NAAXNABYNBZ -> XBYNZ -> return 2
+    // QABAAAWOBL -> return 0
+
+    const removeBANANA = (string) => {
+      let countB = 0;
+      let countA = 0;
+      let countN = 0;
+      let totalWord = 0;
+      for (let i = 0; i < string.length; i++) {
+        if (string[i] === "B") {
+          countB++;
+        } else if (string[i] === "N") {
+          countN++;
+        } else if (string[i] === "A") {
+          countA++;
+        }
+      }
+      const expectBCheck = Math.floor(countA / 3);
+      const expectNCheck = Math.floor(countA / 3) * 2;
+      if (expectNCheck <= countN && expectBCheck <= countB) {
+        totalWord = expectBCheck;
+      }
+      return totalWord;
+    };
+
+    console.log({
+      'NAABXXAN': removeBANANA('NAABXXAN'),
+      'NAANAAXNABABYNNBZ': removeBANANA('NAANAAXNABABYNNBZ'),
+      'QABAAAWOBL': removeBANANA('QABAAAWOBL')
+    })
+      
+  </script>
+
+</body>
+</html>

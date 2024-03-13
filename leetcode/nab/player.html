@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>player</title>
+</head>
+<body>
+
+  <h1>player</h1>
+
+  <script type="text/javascript">
+    // "><^v" => 2
+   
+    function player(string) {
+      let result = 0;
+      for (let i = 0; i < string.length; i++) {
+        if(string[i] === '^' && string[i + 1] === 'v' && (string[i-1] === '<' || string[i-1] === '>')) {
+          result++;
+        } else if(string[i] === 'v' && string[i + 1] === '^') {
+          result++;
+        } else if(string[i] === '<' && string[i + 1] === '>'  && (string[i-1] === '<' || string[i-1] === '>')) {
+          result++;
+        } else if(string[i] === '>' && string[i + 1] === '<') {
+          result++;
+        }
+      }
+      return result
+    }
+    
+    console.log({
+      'test1': player("><^v"), 
+      'test2': player("<<^<v>>"),
+    })
+      
+  </script>
+
+</body>
+</html>
