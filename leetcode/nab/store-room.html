@@ -1,60 +1,74 @@
+<!-- 
+- A storeroom is used to organize items stored in it on N shelves. Shelves are numbered from 0 to N−1. 
+The K-th shelf is dedicated to items of only one type, denoted by a positive integer A[K].
 
+- Recently it was decided that it is necessary to free R consecutive shelves. Shelves cannot be 
+reordered. What is the maximum number of types of items which still can be stored in the storeroom 
+after freeing R consecutive shelves?
+
+Write a function:
+- function solution(A, R) that, given an array A of N integers representing types of items stored on storeroom shelves, 
+and an integer R representing the number of consecutive shelves to be freed, returns the maximum number of different types of items that can be stored in the storeroom after freeing R consecutive shelves.
+
+- Examples:
+1. Given A = [2, 1, 2, 3, 2, 2] and R = 3, your function should return 2. It can be achieved, for example, by freeing shelves 2, 3 and 4 (shelves are numbered from 0).
+2. Given A = [2, 3, 1, 1, 2] and R = 2, your function should return 3. All three types can still be stored by freeing the last two shelves.
+3. Given A = [20, 10, 10, 10, 30, 20] and R = 3, your function should return 3. It can be achieved by freeing the first three shelves.
+4. Given A = [1, 100000, 1] and R = 3, your function should return 0. All shelves need to be freed.
+-->
 
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>store-room</title>
-</head>
-<body>
+  </head>
+  <body>
+    <h1>store-room</h1>
 
-  <h1>store-room</h1>
-
-  <script type="text/javascript">
-    // [2, 1, 2, 3, 2, 2], R = 3 => 2 (free shelves 2, 3 and 4 start number from 0)
-    // [2, 3, 1, 1, 2], R = 2 => 3 
-    // [20, 10, 10, 10, 30, 20], R = 3 => 3 
-    // [1, 100000, 1], R = 3 => 0 
-    function removeDuplicate(data) {
-      let unique = data.reduce(function (a, b) {
-        if (a.indexOf(b) < 0) a.push(b);
-        return a;
-      }, []);
-      return unique;
-    }
-
-    const solution = (A, R) => {
-      let arrCompare = [];
-      let arrAfterRemoveDuplicate = [];
-      for (let i = 0; i < A.length; i++) {
-        if (i + R > A.length) {
-          break;
-        }
-        const data = [...A];
-        data.splice(i, R);
-        console.log(i + "loop" + data);
-        arrCompare.push(data);
+    <script type="text/javascript">
+      // [2, 1, 2, 3, 2, 2], R = 3 => 2 (free shelves 2, 3 and 4 start number from 0)
+      // [2, 3, 1, 1, 2], R = 2 => 3
+      // [20, 10, 10, 10, 30, 20], R = 3 => 3
+      // [1, 100000, 1], R = 3 => 0
+      function removeDuplicate(data) {
+        let unique = data.reduce(function (a, b) {
+          if (a.indexOf(b) < 0) a.push(b);
+          return a;
+        }, []);
+        return unique;
       }
 
-      arrCompare.forEach((e) => {
-        arrAfterRemoveDuplicate.push(removeDuplicate(e));
-      });
-      const sortedArr = arrAfterRemoveDuplicate.sort((a, b) => {
-        if(a.length > b.length) return -1;
-        if(a.length < b.length) return 1;
-        return 0;
-      });
-      console.log(sortedArr[0].length);
-      return sortedArr[0].length;
-    };
+      const solution = (A, R) => {
+        let arrCompare = [];
+        let arrAfterRemoveDuplicate = [];
+        for (let i = 0; i < A.length; i++) {
+          if (i + R > A.length) {
+            break;
+          }
+          const data = [...A];
+          data.splice(i, R);
+          console.log(i + "loop" + data);
+          arrCompare.push(data);
+        }
 
-    console.log({
-      'test1': solution([2, 1, 2, 3, 2, 2], 3), 
-      'test2': solution([2, 3, 1, 1, 2], 2), 
-      'test3': solution([20, 10, 10, 10, 30, 20], 3),
-      'test4': solution([1, 100000, 1], 3)
-    })
-      
-  </script>
+        arrCompare.forEach((e) => {
+          arrAfterRemoveDuplicate.push(removeDuplicate(e));
+        });
+        const sortedArr = arrAfterRemoveDuplicate.sort((a, b) => {
+          if (a.length > b.length) return -1;
+          if (a.length < b.length) return 1;
+          return 0;
+        });
+        console.log(sortedArr[0].length);
+        return sortedArr[0].length;
+      };
 
-</body>
+      console.log({
+        test1: solution([2, 1, 2, 3, 2, 2], 3),
+        test2: solution([2, 3, 1, 1, 2], 2),
+        test3: solution([20, 10, 10, 10, 30, 20], 3),
+        test4: solution([1, 100000, 1], 3),
+      });
+    </script>
+  </body>
 </html>
