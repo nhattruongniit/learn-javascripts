@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>repeat-string2</title>
+</head>
+<body>
+
+    <h1>repeat-string2 20 March 2024</h1> 
+
+    <script type="text/javascript">
+        /*
+            abaaba => 2
+            zyzyzyz => 5
+            aabbbabaaa => 3
+        */
+        function count_sub(s, sub, count=0) {
+            let sub_index = s.indexOf(sub);
+            if (sub_index > -1) {
+                return count_sub(s.slice(sub_index + 1), sub, count + 1);
+            }
+            return count;
+        }
+
+        function solution(S) {
+            let length = S.length;
+            let existing_keys = new Set();
+            let output = [];
+            for (let i = 0; i < length; i++) {
+                for (let j = i + 1; j <= length; j++) {
+                    let sub = S.slice(i, j);
+                    console.log(sub)
+                    if (!existing_keys.has(sub)) {
+                        existing_keys.add(sub);
+                        output.push({
+                            's': sub.length,
+                            'c': count_sub(S, sub)
+                        })
+                    }
+                }
+            }
+            let sorted_x = output.sort((a, b) => a['c'] - b['c'] || a['s'] - b['s']);
+            return sorted_x[0]['s'];
+        }
+
+
+
+        ['abaaba', 'zyzyzyz', 'aabbbabaaa'].forEach(s => {
+            console.log('result: ', solution(s));
+        })
+    </script>
+
+</body>
+</html>

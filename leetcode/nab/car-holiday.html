@@ -24,7 +24,7 @@
 </head>
 <body>
 
-    <h1>Car Holiday</h1>
+    <h1>Car Holiday 20 March 2024</h1>
 
     <script type="text/javascript">
         /*
@@ -33,70 +33,26 @@
             P = [2, 3, 4, 2] and S = [2, 5, 7, 2] => 2
         */
         function solution(P, S) {
-            // const emptyCars = [];
-            // for(let i = 0; i < P.length; i ++) {
-            //     const emptySeat = S[i] - P[i];
-            //     emptyCars.push(emptySeat)
-            // }
-            // emptyCars.sort((a, b) => {
-            //     if(a > b) return -1;
-            //     if(a < b) return 1;
-            //     return 0;
-            // })
-
-            // const totalP = P.reduce((total, curr) => total += curr, 0);
-            // const totalS = S.reduce((total, curr) => total += curr, 0);
-
-            // let availableSeats = totalS - totalP;
-            // let car = 0;
-
-            // console.log('emptyCars: ', {
-            //     emptyCars,
-            //     availableSeats
-            // })
-
-            // for (let i = 0; i < emptyCars.length; i++) {
-            //     if(availableSeats > 0) {
-            //         availableSeats -= emptyCars[i];
-            //         car++
-            //     }
-            // }
-            // return car
-
-            const totalP = P.reduce((total, curr) => total += curr, 0);
-            const totalS = S.reduce((total, curr) => total += curr, 0);
-
-            let availableSeats = totalS - totalP;
-            let car = 0;
-
-            let sortedS = S.sort((a, b) => {
-                if(a > b) return 1;
-                if(a < b) return -1;
+            if (!S || !P) {
                 return 0;
-            })
-
-            // solution([1, 4, 1], [1, 5, 1]), -> 2
-            // solution([4, 4, 2, 4], [5, 5, 2, 5]) -> 3
-            sortedS.forEach((seat, index) => {
-                
-                if(availableSeats > 0) {
-                    availableSeats -= seat;
-                    car++
+            }
+            var total_people = P.reduce((a, b) => a + b, 0);
+            S.sort(function(a, b) {
+                return b - a;
+            });
+            console.log('sorted S: ', S)
+            var total_seat = 0;
+            for (var i = 0; i < S.length; i++) {
+                total_seat += 1;
+                total_people -= S[i];
+                if (total_people <= 0) {
+                    break;
                 }
-            })
-
-            console.log('emptyCars: ', {
-                totalP,
-                totalS,
-                availableSeats,
-                car,
-                sortedS
-            })
-            return car
-
+            }
+            return total_seat;
         }
-        // const result = solution([4,4,2,4], [5,5,2,5]);
-        const result =
+
+
         console.log('result: ', {
             test1: solution([1, 4, 1], [1, 5, 1]), // 2
             test2: solution([4, 4, 2, 4], [5, 5, 2, 5]), // 3
