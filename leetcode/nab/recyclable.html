@@ -1,0 +1,77 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>recyclable</title>
+</head>
+<body>
+
+  <h1>recyclable</h1>
+
+  <script type="text/javascript">
+    /* Requirement. Có 3 loại túi:
+      P = Plastic
+      G = Glass
+      M = Metal
+
+      Tính tổng time nhỏ nhất mà xe rác đi lấy
+      - Mỗi loại rác mình tìm tổng số túi với lưu lại số nhà xa nhất.
+      - Xong tính tổng quảng đường đi đến nhà xa nhất + đi về + thời gian load cái túi lên
+      - Tìm thời gian lớn nhất trong 3 loại rác đó
+
+      D=[2,5]; T=["PGP", "M"] -> 15 => 2 + 1 + 1 + 2 + 1 + 1 + 7 = 15
+      D=[3,2,4] T=["MPM","","G"] -> 19 => 3 + 2 + 4 + 1+ 4 + 2 + 3 = 19
+    */
+    
+
+    function solution(D, T) {
+      // Initialize variables to store the time taken by each truck
+      let plasticTime = 0;
+      let glassTime = 0;
+      let metalTime = 0;
+
+      let maxPlasticIndex = -1;
+      let maxGlassIndex = -1;
+      let maxMetalIndex = -1;
+      const lengthT = T.length;
+      for (let i = lengthT - 1; i >= 0; i--) {
+        if (maxPlasticIndex === -1 && T[i].includes('P')) {
+          maxPlasticIndex = i;
+        }
+        if (maxGlassIndex === -1 && T[i].includes('G')) {
+          maxGlassIndex = i;
+        }
+        if (maxMetalIndex === -1 && T[i].includes('M')) {
+          maxMetalIndex = i;
+        }
+      }
+
+      for (let k = 0; k < lengthT; k++) {
+        // Calculate the time taken to collect the trash and return to the starting point for each truck
+        const Dk = D[k];
+        const Tk = T[k];
+        if (maxPlasticIndex >= k) {
+          plasticTime += Tk.split('P').length - 1 + Dk * 2;
+        }
+        if (maxGlassIndex >= k) {
+          glassTime += Tk.split('G').length - 1 + Dk * 2;
+        }
+        if (maxMetalIndex >= k) {
+          metalTime += Tk.split('M').length - 1 + Dk * 2;
+        }
+      }
+      return Math.max(plasticTime, glassTime, metalTime);
+    }
+
+
+
+    console.log('recyclabel: ', {
+      case1: solution([3,2,4],["MPM", "", "G"])
+    })
+
+
+  </script>
+
+</body>
+</html>

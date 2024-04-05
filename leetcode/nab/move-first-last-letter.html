@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>move-first-last-letter</title>
+</head>
+<body>
+
+  <h1>move-first-last-letter</h1>
+
+  <script type="text/javascript">
+    /* Requirement
+      - Move the first letter of S to the end. Hiow many tims is
+      the first letter of S the samee as the last letter?
+      - Return the number of times the first letter is the same as the last in
+      the obtained sequence of string
+    */
+    /* abbaa -> 3
+      abbaa -> bbaaa -> baaab -> aaabb -> aabba 
+        1                 2                 3
+    */
+
+    // aaaa -> 4
+    // abab -> 0
+
+    function firstLastLetter(S) {
+      let result = 0;
+      const isValid = /a|b/.test(S);
+
+      if (S === "" || !isValid) {
+        return result;
+      }
+
+      for(let i = 0; i < S.length; i ++) {
+        const compare = i === 0 ? S.length - 1 : i - 1;
+        console.log('compare: ', compare)
+        if(S[i] === S[compare]) result++;
+      }
+      return result;
+    }
+    ['abbaa'].map(item => console.log(firstLastLetter(item)));
+
+  </script>
+
+</body>
+</html>
