@@ -19,10 +19,10 @@
       // inputData = [-52.63352219356757, -29.269191875533124, -9.119393550755625,  0.9824158567562287, -14.606107325281767, -1.236937849778179, -0.1886474589722393, -0.0001886474589722393, -0.001886474589722393, -0.01886474589722393];
       // outputData = [-52.633, -29.269, -9.119,  0.982, -14.606, -1.236, -0.188, -0.000188, -0.00188, -0.0188];
       const inputData = [
-        -52.63352219356757, -29.269191875533124, -9.119393550755625,
+        -52434.63352219356757, -29.269191875533124, -9.119393550755625,
         0.9824158567562287, -14.606107325281767, -1.236937849778179,
         -0.1886474589722393, -0.0001886474589722393, -0.001886474589722393,
-        -0.01886474589722393, -2.8755810080120914,
+        -0.01886474589722393, -2.8755810080120914, 627953, 89252,
       ];
 
       function getDecimalPlaces(num) {
@@ -41,14 +41,20 @@
           .map(() => 0)
           .join("");
 
-        const afterDotSliced = strAfterDot.substring(
-          0,
-          Math.min(
-            decimalPlaces,
-            consecutiveZeros === "" ? 3 : consecutiveZeros.length + 3
-          )
-        );
-        return Number(`${strBeforeDot}.${afterDotSliced}`);
+        const afterDotSliced = strAfterDot
+          ? strAfterDot.substring(
+              0,
+              Math.min(
+                decimalPlaces,
+                consecutiveZeros === "" ? 2 : consecutiveZeros.length + 2
+              )
+            )
+          : null;
+        const preNumber = Number(strBeforeDot).toLocaleString();
+
+        if (afterDotSliced === null) return preNumber;
+
+        return `${preNumber}.${afterDotSliced}`;
       }
 
       // how to convert inputData to outputData
