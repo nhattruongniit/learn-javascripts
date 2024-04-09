@@ -21,16 +21,17 @@
       - Write a function named delay().
       - This function should take one parameter: interval, which is of type number.
       - The function must return a CancellablePromise object.
-      - The CancellablePromise object should have all the methods of a regular Promise, 
+      - The CancellablePromise object should have all the methods of a regular Promise,
         but with an additional method cancel(). When cancel() is called, the CancellablePromise should reject with a value of "cancelled".
-      - The CancellablePromise object should resolve after a period of time in milliseconds 
+      - The CancellablePromise object should resolve after a period of time in milliseconds
         equal to the value of the interval parameter.
       */
 
       function delay(interval) {
         let cancelFunc = null;
-        const promise = new Promise((resolve, reject) => {
-          const timer = setTimeout(resolve, interval);
+        const promise = new Promise((resovle, reject) => {
+          let timer = setTimeout(resovle, interval);
+
           cancelFunc = () => {
             clearTimeout(timer);
             reject("cancelled");
@@ -40,28 +41,26 @@
         const cancellablePromise = Object.assign(promise, {
           cancel: cancelFunc,
         });
-
         return cancellablePromise;
       }
 
-      const myPromise = delay(2000);
+      const promise = delay(5000);
 
-      myPromise
+      promise
         .then(() => {
           console.log("resolved");
         })
-        .catch((error) => {
-          console.log("error", error);
-          if (error === "cancelled") {
-            console.log("cancelled");
+        .catch((err) => {
+          if (err === "cancelled") {
+            console.log("Promise cancelled");
           } else {
-            console.log("error");
+            console.log("error: ", error);
           }
         });
 
       setTimeout(() => {
-        myPromise.cancel();
-      }, 1500);
+        promise.cancel();
+      }, 3000);
     </script>
   </body>
 </html>
