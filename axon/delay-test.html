@@ -29,9 +29,8 @@
 
       function delay(interval) {
         let cancelFunc = null;
-        const promise = new Promise((resovle, reject) => {
-          let timer = setTimeout(resovle, interval);
-
+        const promise = new Promise((resolve, reject) => {
+          let timer = setTimeout(resolve, interval);
           cancelFunc = () => {
             clearTimeout(timer);
             reject("cancelled");
@@ -41,26 +40,9 @@
         const cancellablePromise = Object.assign(promise, {
           cancel: cancelFunc,
         });
+
         return cancellablePromise;
       }
-
-      const promise = delay(5000);
-
-      promise
-        .then(() => {
-          console.log("resolved");
-        })
-        .catch((err) => {
-          if (err === "cancelled") {
-            console.log("Promise cancelled");
-          } else {
-            console.log("error: ", error);
-          }
-        });
-
-      setTimeout(() => {
-        promise.cancel();
-      }, 3000);
     </script>
   </body>
 </html>

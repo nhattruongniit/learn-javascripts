@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>Event delegation</title>
+  </head>
+
+  <body>
+    <h2>Event delegation</h2>
+
+    <ul id="parent">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+
+    <script type="text/javascript">
+      const parent = document.getElementById("parent");
+      parent.addEventListener("click", function (event) {
+        if (event.target.tagName === "LI") {
+          console.log("click on: ", event.target.textContent);
+        }
+      });
+    </script>
+  </body>
+</html>
