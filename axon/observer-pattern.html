@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>observer-pattern</title>
+  </head>
+
+  <body>
+    <h2>observer-pattern</h2>
+
+    <script type="text/javascript">
+      class Observable {
+        constructor() {
+          this.observers = [];
+        }
+
+        subscribe(callback) {
+          this.observers.push(callback);
+        }
+
+        unsubscribe(callback) {
+          this.observers = this.observers.filter(
+            (observer) => observer !== callback
+          );
+        }
+
+        notify(data) {
+          this.observers.forEach((observer) => observer(data));
+        }
+      }
+
+      const stockObserver = new Observable();
+
+      function updateStockPrices(price) {
+        console.log(`Stock Price: ${price}`);
+      }
+
+      stockObserver.subscribe(updateStockPrices);
+
+      setInterval(() => {
+        const newPrice = Math.random() * 100;
+        stockObserver.notify(newPrice);
+      }, 2000);
+
+      // complex exambple
+      class Blog {
+        constructor() {
+          this.subscribers = [];
+        }
+
+        subscribe(subscriber) {
+          this.subscribers.push(subscriber);
+        }
+
+        unsubscribe(subscriberToRemove) {
+          this.subscribe = this.subscribers.filter(
+            (subscriber) => subscriber != subscriberToRemove
+          );
+        }
+
+        publishNewArticle(article) {
+          this.subscribers.forEach((subscriber) => subscriber.notify(article));
+        }
+      }
+
+      // observer - subscriber class
+      class Subscriber {
+        constructor(name) {
+          this.name = name;
+        }
+
+        // notification method
+        notify(article) {
+          console.log(
+            `${this.name} got a notification : new article! - "${article}"`
+          );
+        }
+      }
+
+      const myBlog = new Blog();
+
+      // With three random users
+      const subscriber1 = new Subscriber("Alice");
+      const subscriber2 = new Subscriber("Bob");
+
+      // The subscribers join to the blog
+      myBlog.subscribe(subscriber1);
+      myBlog.subscribe(subscriber2);
+
+      // New article!
+      myBlog.publishNewArticle("Les dernières tendances en programmation");
+
+      // Unsubscribe a user
+      myBlog.unsubscribe(subscriber2);
+
+      // New article!
+      myBlog.publishNewArticle(
+        "Guide de démarrage rapide en développement web"
+      );
+
+      // Result : Only Alice AND Charlie got a notification.
+    </script>
+  </body>
+</html>

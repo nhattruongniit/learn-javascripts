@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=false"
+    />
+
+    <title>instance-in-javascript</title>
+  </head>
+
+  <body>
+    <h2>instance-in-javascript</h2>
+    <a href="https://www.altcademy.com/blog/what-is-an-instance-in-javascript/"
+      >Instance in Javascript</a
+    >
+    <br />
+    <br />
+    <div style="width: 50%">
+      Let's start with the concept of an instance. To make it simple, an
+      instance is like a unique copy of a blueprint. Imagine you have a
+      blueprint for a house. The blueprint itself is not a house, but using it,
+      you can build as many houses as you want. Each house you build using the
+      blueprint is an instance of that blueprint.
+      <br />
+      <br />
+      In JavaScript, when we talk about instances, we are often referring to
+      objects that have been created from a constructor function. The
+      constructor function serves as the blueprint, and each object created from
+      it is an instance.
+      <br />
+      <br />
+      To create an instance, or to build a 'house' using our 'blueprint', we use
+      the <b>new</b> keyword
+    </div>
+    <script type="text/javascript">
+      function Car(make, model, year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+
+        this.getAge = function () {
+          const currentYear = new Date().getFullYear();
+          return currentYear - this.year;
+        };
+      }
+
+      const myCar = new Car("Honda", "Civic", 2020);
+      const yourCa = new Car("Kia", "K3", 2010);
+
+      console.log("myCar year", myCar.getAge());
+    </script>
+  </body>
+</html>
