@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>leetcode</title>
+  </head>
+  <body>
+    <h1>leetcode</h1>
+
+    <script type="text/javascript">
+      /*  
+        that, given an array A of N integers, returns the length of the longest consistent fragment 
+        of A in which all elements can be generated using at most two different digits. You must use the same digits for all elements.
+        input = [23, 333, 33, 30, 0, 505]
+        output = 4
+      */
+      function solution(A) {
+        let maxLength = 0;
+        for (let i = 0; i < A.length; i++) {
+          let digitsSet = new Set(A[i].toString());
+          for (let j = i; j < A.length; j++) {
+              digitsSet = new Set([...digitsSet, ...A[j].toString()]);
+              if (digitsSet.size <= 2) {
+                maxLength = Math.max(maxLength, j - i + 1);
+              } else {
+                break;
+              }
+          }
+        }
+        return maxLength;
+      }
+
+      
+      [[23, 333, 33, 30, 0, 505], [615, 88, 498, 99, 99], [123, 456], [3, 456, 7]].map(item => console.log(item, solution(item))); // 4
+
+    </script>
+  </body>
+</html>
