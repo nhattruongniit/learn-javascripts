@@ -17,45 +17,36 @@
       AABBBB -> 0 
     */
 
-    // Huy Ly
-    function solutionHuy(S) {
-      let result = 0;
-      const isValid = /A|B/.test(S);
-
-      if (S === "" || !isValid) {
-        return result;
-      }
-      let firstBIndex = S.indexOf('B');
-      let lastAIndex = S.length - S.split('').reverse().join('').indexOf('A') - 1;
-      let countAAfterB = S.slice(firstBIndex).split('').filter(char => char === 'A').length;
-      let countBBeforeA = S.slice(0, lastAIndex + 1).split('').filter(char => char === 'B').length;
-
-      return Math.min(countAAfterB, countBBeforeA);
-    }
-
     function solutionTony(S) {
+      
       let countB = 0;
       let result = 0;
-      const isValid = /A|B/.test(S);
 
+      const isValid = /A|B/.test(S);
       if (S === "" || !isValid) {
         return result;
       }
 
-      for(let i = 0; i < S.length; i ++) {
+      for(let i = 0; i < S.length; i++) {
+
+        console.log('loop: ', {
+          i,
+          countB,
+          result,
+          S: S[i]
+        })
         if(S[i] === 'B') {
           countB++;
-        } else if (countB) {
+        } else if(countB) {
           result++;
-          countB--;
+          countB--
         }
       }
-      return result;
+      return result
     }
 
 
-    ['BAAABAB', 'BBABAA', 'AABBBB'].map(item => console.log('huy ly: ', solutionHuy(item)));
-    ['BAAABAB', 'BBABAA', 'AABBBB'].map(item => console.log('huy tony: ', solutionTony(item)));
+    ['BAAABAB'].map(item => console.log('huy tony: ', solutionTony(item)));
 
   </script>
 

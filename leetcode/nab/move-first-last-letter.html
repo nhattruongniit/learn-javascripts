@@ -32,13 +32,15 @@
         return result;
       }
 
-      for(let i = 0; i < S.length; i ++) {
+      for(let i = 0; i < S.length; i++) {
         const compare = i === 0 ? S.length - 1 : i - 1;
-        console.log('compare: ', compare)
         if(S[i] === S[compare]) result++;
       }
+    
       return result;
     }
+
+
     ['abbaa'].map(item => console.log(firstLastLetter(item)));
 
   </script>

@@ -26,36 +26,39 @@ smaller than "ac" and "bc"
     <h1>Smallest String</h1>
 
     <script type="text/javascript">
-        function test(string) {
-            let min = 0;
-            let result = '';
-            for (let i = 1; i < string.length + 1; i++) {
-                const _str = removeChar(string, i);
-                const _score = getStringScore(_str);
-                console.log('_score: ', _score)
-                if (min === 0 || _score < min) {
-                    result = _str;
-                    min = _score;
-                }
-            }
-            return result;
-        }
+      // refactor code
+      function solution(S) {
+        let min = 0;
+        let result = '';
 
-        function removeChar(string, position) {
-            const part1 = string.slice(0, position);
-            const part2 = string.slice(position + 1);
-            return part1 + part2;
+        for(let i = 1; i <S.length + 1; i++) {
+          const _str = removeChar(S, i)
+          const score = getScore(_str)
+          if(min === 0 || score < min) {
+            result = _str
+            min = score;
+          }
         }
+        return result
+      }
 
-        function getStringScore(string) {
-            let score = 0;
-            for (let i = 0; i < string.length; i++) {
-                const base = (string.length - i) * 1000;
-                score += string.charCodeAt(i) * base;
-            }
-            return score;
+      function removeChar(string, position) {
+        const char1 = string.slice(0, position);
+        const char2 = string.slice(position + 1);
+        return char1 + char2;
+      }
+
+      function getScore(string) {
+        let score = 0;
+        for(let i = 0; i < string.length; i++) {
+          const base = (string.length - i) * 1000;
+          score += string.charCodeAt(i) * base;
         }
-        console.log('smallest string: ', test('codility'));
+        return score;
+      }
+
+      console.log('refactor code:', solution('codility'));
+
     </script>
 
 </body>

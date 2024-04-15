@@ -56,6 +56,51 @@ QABAAAWOBL -> return 0
         NAANAAXNABABYNNBZ: removeBANANA("NAANAAXNABABYNNBZ"),
         QABAAAWOBL: removeBANANA("QABAAAWOBL"),
       });
+
+      // refatore
+      function solution(S) {
+        let bananaCount = 0;
+        let countB = 0;
+        let countA = 0;
+        let countN = 0;
+
+        for(let i = 0; i < S.length; i++) {
+          switch(S[i]) {
+            case 'B': {
+              countB = countB + 1;
+              break
+            }
+            case 'N': {
+              countN = countN + 1;
+              break
+            }
+            case 'A': {
+              countA = countA + 1;
+              break
+            }
+            default:
+              break
+          }
+          console.log('loop: ', {
+            i,
+            countA,
+            countB,
+            countN,
+            bananaCount,
+            letter: S[i],
+            S
+          })
+          if(countB >= 1 && countA >= 3 && countN >= 2) {
+            bananaCount = bananaCount + 1;
+            countB = countB - 1;
+            countN = countN - 2;
+            countA = countA - 3;
+          }
+        }
+        return bananaCount;
+      }
+
+      ['NAANAAXNABABYNNBZ'].forEach(item => console.log(solution(item)))
     </script>
   </body>
 </html>

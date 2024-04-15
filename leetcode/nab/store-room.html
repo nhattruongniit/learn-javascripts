@@ -42,24 +42,38 @@ and an integer R representing the number of consecutive shelves to be freed, ret
         let arrCompare = [];
         let arrAfterRemoveDuplicate = [];
         for (let i = 0; i < A.length; i++) {
+        
           if (i + R > A.length) {
             break;
           }
           const data = [...A];
+        
           data.splice(i, R);
-          console.log(i + "loop" + data);
+         
+          // console.log(i + "loop" + data);
           arrCompare.push(data);
+
         }
 
         arrCompare.forEach((e) => {
           arrAfterRemoveDuplicate.push(removeDuplicate(e));
         });
+
+
+      
+
         const sortedArr = arrAfterRemoveDuplicate.sort((a, b) => {
           if (a.length > b.length) return -1;
           if (a.length < b.length) return 1;
           return 0;
         });
-        console.log(sortedArr[0].length);
+
+        console.log('s: ', {
+          arrCompare,
+          arrAfterRemoveDuplicate,
+          sortedArr
+        })
+        // console.log(sortedArr[0].length);
         return sortedArr[0].length;
       };
 

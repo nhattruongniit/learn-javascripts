@@ -12,21 +12,22 @@ Output: 21
 
 */
 
-const num = 123
+const num = -123
 function reverse(num) {
   const isNegative = num < 0;
   const strArr = Math.abs(num).toString().split('');
-  const reversArr = strArr.reverse().join('');
-  const resNum = Number(reversArr);
+  const reverseArr = strArr.reverse().join('');
+  const reverseNum = Number(reverseArr)
 
-  if(isNegative && resNum > Math.pow(2, 31)) {
-    return 0;
-  }
-  if(!isNegative && resNum > Math.pow(2, 31) - 1) {
+  if(isNegative && reverseNum > Math.pow(2, 31)) {
     return 0;
   }
 
-  return isNegative ? -resNum : resNum;
+  if(!isNegative && reverseNum > Math.pow(2, 31) - 1 ) {
+    return 0
+  }
+
+  return isNegative ? -reverseNum : reverseNum
 }
 
 
