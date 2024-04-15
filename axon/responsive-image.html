@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=false"
+    />
+
+    <title>responsive-image</title>
+  </head>
+
+  <body>
+    <h2>responsive-image</h2>
+    <a href="https://blog.webdevsimplified.com/2023-05/responsive-images/">
+      responsive-image
+    </a>
+
+    <div id="data"></div>
+
+    <img
+      style="width: 100%; border-radius: 1rem"
+      src="https://placehold.co/3200x800/png"
+      srcset="
+        https://placehold.co/400x100/png   400w,
+        https://placehold.co/800x200/png   800w,
+        https://placehold.co/1200x300/png 1200w,
+        https://placehold.co/1600x400/png 1600w,
+        https://placehold.co/3200x800/png 3200w
+      "
+      sizes="(max-width: 500px) 50vw, (max-width: 800px) 100vw, 1200px"
+    />
+
+    <script type="text/javascript">
+      window.addEventListener("resize", function () {
+        const data = document.getElementById("data");
+        data.textContent = `Width: ${window.innerWidth}, Ratio: ${window.devicePixelRatio}`;
+      });
+    </script>
+  </body>
+</html>

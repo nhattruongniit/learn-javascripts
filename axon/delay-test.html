@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>delay test</title>
+  </head>
+
+  <body>
+    <h2>delay test</h2>
+
+    <script type="text/javascript">
+      /*
+        ### Small coding test
+
+      - Write a function named delay().
+      - This function should take one parameter: interval, which is of type number.
+      - The function must return a CancellablePromise object.
+      - The CancellablePromise object should have all the methods of a regular Promise,
+        but with an additional method cancel(). When cancel() is called, the CancellablePromise should reject with a value of "cancelled".
+      - The CancellablePromise object should resolve after a period of time in milliseconds
+        equal to the value of the interval parameter.
+      */
+
+      function delay(interval) {
+        let cancelFunc = null;
+        const promise = new Promise((resolve, reject) => {
+          let timer = setTimeout(resolve, interval);
+          cancelFunc = () => {
+            clearTimeout(timer);
+            reject("cancelled");
+          };
+        });
+
+        const cancellablePromise = Object.assign(promise, {
+          cancel: cancelFunc,
+        });
+
+        return cancellablePromise;
+      }
+    </script>
+  </body>
+</html>
