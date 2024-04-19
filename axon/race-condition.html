@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>axon</title>
+  </head>
+  <body>
+    <h1>axon</h1>
+
+    <div>
+    </div>
+
+    <script type="text/javascript">
+      /**
+      Create a small Brute-Force program to hack user credentials via this login 
+      API: https://reqres.in/api/login. See API description on the website.
+
+      * Assuming we know user email.
+      * Assuming we know password length.
+
+      To prevent us from being banned: 
+        * Call API every 100ms with some random delay.
+        * After 5 failures, sleep 10s.
+        * After 10 failures, sleep 1 minute.
+        * Stop after 1000 attempts until the next day.
+      */
+      let count = 0;
+      let cancelFn = null;
+      let timer1 = null;
+      let sleep = '';
+
+      function tryLogin() {
+        const user = {
+          email: 'eve.holt@reqres.in',
+          password: 'cityslicka'
+        }
+  
+        const promise = new Promise((res) => {
+          timer1 = setInterval(() => {
+            fetch('https://reqres.in/api/login', {
+              method: 'POST',
+              body: JSON.stringify(user),
+            })
+            .then(data => {
+              count = count + 1;
+              if(count === 5) {
+                sleep = '10s';
+                res();
+              }
+              if(count === 10) {
+                sleep = '1phut';
+                res();
+              }
+            })
+          }, 1000)
+        })
+        return promise;
+      }
+
+      tryLogin().then(error => {
+        console.log('sleep', sleep )
+
+        if(sleep === '10s') {
+          clearInterval(timer1);
+          timer1 = null;
+          sleep = '';
+          setTimeout(() => {
+            tryLogin()
+          }, 1000 * 5)
+        }
+
+
+        if(sleep === '1phut') {
+          clearInterval(timer1);
+          timer1 = null;
+          sleep = '';
+          console.log('sleep: ', sleep)
+
+          setTimeout(() => {
+            tryLogin()
+          }, 1000 * 10)
+        }
+      })
+    
+
+
+    </script>
+  </body>
+</html>
