@@ -11,19 +11,18 @@
 
     <script type="text/javascript">
       /**
-      Create a small Brute-Force program to hack user credentials via this login 
-      API: https://reqres.in/api/login. See API description on the website.
+        Create a small Brute-Force program to hack user credentials via this login 
+        API: https://reqres.in/api/login. See API description on the website.
 
-      * Assuming we know user email.
-      * Assuming we know password length.
+        * Assuming we know user email.
+        * Assuming we know password length (generate random).
 
-      To prevent us from being banned: 
-        * Call API every 100ms with some random delay.
-        * After 5 failures, sleep 5s.
-        * After 10 failures, sleep 10s.
-        * Stop after 1000 attempts until the next day.
+        To prevent us from being banned: 
+          * Call API every 100ms with some random delay.
+          * After 5 failures, sleep 5s.
+          * After 10 failures, sleep 10s.
+          * Stop after 1000 attempts until the next day.
       */
-
       let totalAttempt = 0;
       let failureCount = 0;
       let timer = null;
