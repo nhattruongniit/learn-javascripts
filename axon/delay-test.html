@@ -26,23 +26,38 @@
       - The CancellablePromise object should resolve after a period of time in milliseconds
         equal to the value of the interval parameter.
       */
-
       function delay(interval) {
         let cancelFunc = null;
         const promise = new Promise((resolve, reject) => {
-          let timer = setTimeout(resolve, interval);
+          const timer = setTimeout(() => {
+            resolve('resolved')
+          }, interval);
+
           cancelFunc = () => {
-            clearTimeout(timer);
-            reject("cancelled");
-          };
-        });
+            console.log('reject:')
+            clearTimeout(timer)
+            reject('cancel');
+          }
+        })
 
         const cancellablePromise = Object.assign(promise, {
-          cancel: cancelFunc,
-        });
+          cancel: cancelFunc
+        })
 
         return cancellablePromise;
       }
+
+      const delayPromise = delay(1000 * 3);
+        delayPromise.then(data => {
+          console.log('success: ', data)
+        })
+        .catch(err => {
+          console.log('err: ', err)
+        })
+
+        setTimeout(() => {
+          delayPromise.cancel();
+        }, 1000 * 5)
     </script>
   </body>
 </html>

