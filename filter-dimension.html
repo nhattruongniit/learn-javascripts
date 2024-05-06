@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>filter-dimension</title>
+  </head>
+
+  <body>
+    <h2>filter-dimension</h2>
+    <script>
+      /*
+      input = [
+        {
+            "name": "firebase.ama_app_id",
+            "title": "Firebase Ama App Id",
+            "type": "string",
+            "shortTitle": "Ama App Id",
+            "suggestFilterValues": true,
+            "isVisible": true,
+            "public": true,
+            "primaryKey": false
+        },
+        {
+            "name": "firebase.composite_key",
+            "title": "Firebase Composite Key",
+            "type": "string",
+            "shortTitle": "Composite Key",
+            "suggestFilterValues": true,
+            "isVisible": false,
+            "public": false,
+            "primaryKey": true
+        },
+        {
+            "name": "user_on_boarding_survey.age",
+            "title": "User on Boarding Survey Age",
+            "type": "string",
+            "shortTitle": "Age",
+            "suggestFilterValues": true,
+            "isVisible": false,
+            "public": false,
+            "primaryKey": false
+        }
+      ]
+
+      output = [
+        {
+          label: 'Firebase',
+          title: 'Firebase',
+          options: [
+            {
+                "name": "firebase.ama_app_id",
+                "title": "Firebase Ama App Id",
+                "type": "string",
+                "shortTitle": "Ama App Id",
+                "suggestFilterValues": true,
+                "isVisible": true,
+                "public": true,
+                "primaryKey": false
+            },
+            {
+                "name": "firebase.composite_key",
+                "title": "Firebase Composite Key",
+                "type": "string",
+                "shortTitle": "Composite Key",
+                "suggestFilterValues": true,
+                "isVisible": false,
+                "public": false,
+                "primaryKey": true
+            },
+          ]
+        },
+        {
+            label: 'User on Boarding Survey Age',
+            title: 'User on Boarding Survey Age',
+            options: [
+              {
+                  "name": "user_on_boarding_survey.age",
+                  "title": "User on Boarding Survey Age",
+                  "type": "string",
+                  "shortTitle": "Age",
+                  "suggestFilterValues": true,
+                  "isVisible": false,
+                  "public": false,
+                  "primaryKey": false
+              }
+          ]
+        }
+      ]
+    */
+      // how to convert input to output
+      function solution() {
+        const result = [];
+        const map = new Map();
+        for (const item of input) {
+          const [label, title] = item.name.split(".");
+          if (!map.has(label)) {
+            map.set(label, []);
+          }
+          map.get(label).push(item);
+        }
+        for (const [label, options] of map) {
+          result.push({ label, title: options[0].title, options });
+        }
+      }
+    </script>
+  </body>
+</html>
