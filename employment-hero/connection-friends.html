@@ -1,0 +1,92 @@
+<!-- 
+connections = ["fred:joe", "joe:mary", "mary:fred", "mary:bill"]
+name1 = "fred"
+name2 = "bill"
+
+Result = 2
+         1      2
+fred > mary > bill
+   
+
+connections = ["fred:joe", "joe:mary", "kate:sean", "sean:sally"]
+name1 = "fred"
+name2 = "sally"
+
+Result = -1
+
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Connection friends</title>
+  </head>
+  <body>
+    <h1>Connection friends</h1>
+
+    <script type="text/javascript">
+      // regex only contains a-z character
+      const regex = /[^a-z]/g;
+
+      function findDegreeFriend(dictionary, name1, name2) {
+        function recurseRelation(relations, level = 1) {
+          let nextLevelRelation = new Set();
+          for (let rel of relations) {
+            if(rel === name2) {
+              return level;
+            }
+            let nextRelation = dictionary[rel];
+            if(nextRelation) {
+              delete dictionary[rel];
+              for(let nextRel of nextRelation) {
+                nextLevelRelation.add(nextRel);
+              }
+            }
+          }
+          if(nextLevelRelation.size === 0) {
+            return -1;
+          }
+          return recurseRelation(nextLevelRelation, level + 1);
+        }
+        let initialRelation = dictionary[name1];
+        delete dictionary[name1];
+        return recurseRelation(new Set(initialRelation));
+      }
+
+      function solution(connections, name1, name2) {
+        // write your code in JavaScript
+        let result = -1;
+        if(regex.test(name1) || regex.test(name2)) {
+          return result
+        }
+
+        let dictionary = {};
+        for(let con of connections) {
+            let [key, value] = con.split(':');
+            if(!dictionary[key]) {
+              dictionary[key] = new Set();
+            }             
+            if(!dictionary[value]) {
+              dictionary[value] = new Set();
+            }
+            dictionary[key].add(value);
+            dictionary[value].add(key);
+        }
+
+        if(!dictionary[name1] || !dictionary[name2]) {
+          return result;
+        }
+        
+        console.log("dictionary: ", dictionary)
+        
+        result = findDegreeFriend(dictionary, name1, name2);
+
+
+        return result;
+      }
+
+      console.log(solution(["fred:joe", "joe:mary", "mary:fred", "mary:bill"],  'fred', 'bill')) // true
+      
+    </script>
+  </body>
+</html>

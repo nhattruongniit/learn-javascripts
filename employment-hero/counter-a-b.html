@@ -1,0 +1,52 @@
+<!-- 
+Eg:
+x = "ABCD"
+y = "AC" 
+output = true
+
+x = "ABCD"
+y = "CA"
+output = false
+
+x = "ABCAD"
+y = "BA" 
+output = true
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>counter-a-b</title>
+  </head>
+  <body>
+    <h1>counter-a-b</h1>
+
+    <script type="text/javascript">
+      // regex only contains alpha-numberic character
+      
+      const regex = /[^a-zA-Z0-9]/g;
+      function solution(x, y) {
+        if(x.length < y.length) {
+          return false;
+        }
+        if(regex.test(x) || regex.test(y)) {
+          return false;
+        }
+
+        for(let item of y) {
+          let index = x.indexOf(item);
+          console.log("index: ", index)
+          if(index === -1) {
+            return false;
+          }
+          x = x.substring(index + 1);
+        }
+
+        return true;
+      }
+
+      console.log(solution('ABCAD', 'BA')) // true
+      
+    </script>
+  </body>
+</html>
