@@ -43,6 +43,71 @@
           return acc;
         }, {});
       }
+
+      // test 2
+      const input2 = {
+        "firebase.ama_app_id": "asc",
+        "firebase.event_count": "asc",
+        "firebase.app_info__version": "asc",
+        "firebase.event_timestamp": "desc",
+      };
+      const input2_2 = [
+        {
+          id: "firebase.event_count",
+          title: "Firebase Event Count",
+          order: "asc",
+        },
+        {
+          id: "firebase.ama_app_id",
+          title: "Firebase Ama App Id",
+          order: "asc",
+        },
+        {
+          id: "firebase.app_info__version",
+          title: "Firebase App Info - Version",
+          order: "asc",
+        },
+        {
+          id: "firebase.event_timestamp",
+          title: "Firebase Event Timestamp",
+          order: "desc",
+        },
+      ];
+
+      const output = [
+        {
+          id: "firebase.ama_app_id",
+          title: "Firebase Ama App Id",
+          order: "asc",
+        },
+        {
+          id: "firebase.event_count",
+          title: "Firebase Event Count",
+          order: "asc",
+        },
+        {
+          id: "firebase.app_info__version",
+          title: "Firebase App Info - Version",
+          order: "asc",
+        },
+        {
+          id: "firebase.event_timestamp",
+          title: "Firebase Event Timestamp",
+          order: "desc",
+        },
+      ];
+
+      // Create an array of the keys from input2 to use as the sorting order
+      const order = Object.keys(input2);
+
+      console.log("order: ", order);
+
+      // Sort the input2_2 array based on the order specified in the input2 object
+      const output2 = input2_2.sort((a, b) => {
+        return order.indexOf(a.id) - order.indexOf(b.id);
+      });
+
+      console.log(output2);
     </script>
   </body>
 </html>
