@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>filter-dimension</title>
+  </head>
+
+  <body>
+    <h2>filter-dimension</h2>
+    <script>
+      /*
+        input = [
+            [
+                "firebase.event_count",
+                "desc"
+            ],
+            [
+                "firebase.event_timestamp",
+                "asc"
+            ]
+        ]
+
+        output =  {
+            "firebase.event_count": "desc",
+            "firebase.event_name": "asc",
+          };
+      */
+      // how to convert input to output
+      const input = [
+        ["firebase.event_count", "desc"],
+        ["firebase.event_timestamp", "asc"],
+      ];
+
+      function solution() {
+        const result = input.reduce((acc, curr) => {
+          acc[curr[0]] = curr[1];
+          return acc;
+        }, {});
+      }
+    </script>
+  </body>
+</html>
