@@ -108,6 +108,120 @@
       });
 
       console.log(output2);
+
+      // filtered order
+      const orderMembers = [
+        {
+          id: "firebase.event_count",
+          title: "Firebase Event Count",
+          order: "desc",
+        },
+        {
+          id: "firebase.ep__song_play_type",
+          title: "Firebase Event Param - song_play_type",
+          order: "none",
+        },
+        {
+          id: "firebase.app_info__id",
+          title: "Firebase App Info - ID",
+          order: "asc",
+        },
+        {
+          id: "firebase.ep__timestamp",
+          title: "Firebase Event Param - timestamp",
+          order: "asc",
+        },
+        {
+          id: "firebase.app_info__version",
+          title: "Firebase App Info - Version",
+          order: "asc",
+        },
+        {
+          id: "firebase.event_timestamp",
+          title: "Firebase Event Timestamp",
+          order: "none",
+        },
+      ];
+
+      const vizStateOrder = [
+        ["firebase.event_count", "desc"],
+        ["firebase.app_info__id", "asc"],
+        ["firebase.app_info__version", "asc"],
+        ["firebase.ep__timestamp", "asc"],
+      ];
+      const resulFilter = [
+        {
+          id: "firebase.event_count",
+          title: "Firebase Event Count",
+          order: "desc",
+        },
+        {
+          id: "firebase.ep__song_play_type",
+          title: "Firebase Event Param - song_play_type",
+          order: "none",
+        },
+        {
+          id: "firebase.app_info__id",
+          title: "Firebase App Info - ID",
+          order: "asc",
+        },
+        {
+          id: "firebase.app_info__version",
+          title: "Firebase App Info - Version",
+          order: "asc",
+        },
+        {
+          id: "firebase.ep__timestamp",
+          title: "Firebase Event Param - timestamp",
+          order: "asc",
+        },
+        {
+          id: "firebase.event_timestamp",
+          title: "Firebase Event Timestamp",
+          order: "none",
+        },
+      ];
+
+      function combineOrderMembers(orderMembers, vizStateOrder) {
+        // Separate elements with 'none' order and others
+        const noneOrderMembers = [];
+        const otherOrderMembers = [];
+
+        orderMembers.forEach((member) => {
+          if (member.order === "none") {
+            noneOrderMembers.push(member);
+          } else {
+            otherOrderMembers.push(member);
+          }
+        });
+
+        // Sort otherOrderMembers according to vizStateOrder
+        otherOrderMembers.sort((a, b) => {
+          return (
+            vizStateOrder.findIndex(([id]) => id === a.id) -
+            vizStateOrder.findIndex(([id]) => id === b.id)
+          );
+        });
+
+        // Merge noneOrderMembers back to their original positions in otherOrderMembers
+        const resulFilter = [];
+        let noneIndex = 0;
+        let otherIndex = 0;
+
+        orderMembers.forEach((member) => {
+          if (member.order === "none") {
+            resulFilter.push(noneOrderMembers[noneIndex++]);
+          } else {
+            resulFilter.push(otherOrderMembers[otherIndex++]);
+          }
+        });
+
+        return resulFilter;
+      }
+
+      const outputFilterKeep = combineOrderMembers(orderMembers, vizStateOrder);
+
+      console.log("outputFilterKeep: ", outputFilterKeep);
     </script>
   </body>
 </html>
