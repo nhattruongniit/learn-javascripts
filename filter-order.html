@@ -222,6 +222,54 @@
       const outputFilterKeep = combineOrderMembers(orderMembers, vizStateOrder);
 
       console.log("outputFilterKeep: ", outputFilterKeep);
+
+      // filter timestamop
+      const availableMembers = [
+        {
+          label: "Firebase Event Param - song_play_type",
+          value: "firebase.ep__song_play_type",
+        },
+        {
+          label: "Firebase Event Timestamp",
+          value: "firebase.event_timestamp",
+        },
+      ];
+      const timeDimensions = [
+        {
+          dimension: {
+            name: "firebase.event_timestamp",
+            title: "Firebase Event Timestamp",
+            type: "time",
+          },
+          dateRange: "Last 7 days",
+          index: 0,
+        },
+      ];
+      // const outputFilterNotTimetamp = [
+      //   {
+      //     label: "Firebase Event Param - song_play_type",
+      //     value: "firebase.ep__song_play_type",
+      //   },
+      // ];
+
+      // filtered avilable members that timestamp not granurity field
+      const outputFilterNotTimetamp = availableMembers.reduce(
+        (acc, currItem) => {
+          if (
+            !timeDimensions.some(
+              (timeDimension) =>
+                timeDimension.dimension.name === currItem.value &&
+                !timeDimension.granularity
+            )
+          ) {
+            acc.push(currItem);
+          }
+          return acc;
+        },
+        []
+      );
+
+      console.log("outputFilterNotTimetamp: ", outputFilterNotTimetamp);
     </script>
   </body>
 </html>
