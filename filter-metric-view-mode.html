@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>filter-metric-view-mode</title>
+  </head>
+
+  <body>
+    <h2>filter-metric-view-mode</h2>
+    <script>
+      const input = {
+        "Song engagement": {
+          name: "Song engagement",
+          value: "Song engagement",
+          selected: [4],
+          unselected: [6],
+          children: [
+            {
+              label: "me_start",
+              value: "fixed-37",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_click",
+              value: "fixed-36",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_fail",
+              value: 4,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_impression",
+              value: 16,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_revive_impression",
+              value: 3,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_start__song_play_type__replay",
+              value: 15,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_unlock",
+              value: 6,
+              type: "CUSTOM",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+          ],
+        },
+        "Other metrics": {
+          name: "Other metrics",
+          value: "Other metrics",
+          selected: [14],
+          unselected: [9],
+          children: [
+            {
+              label: "coin_earn",
+              value: 14,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "coin_spend",
+              value: 13,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "coin_spend__location__character_unlock",
+              value: 9,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "coin_spend__location__character_unlock",
+              value: 9,
+              type: "CUSTOM",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "shop_preview",
+              value: 28,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "shop_unlock",
+              value: 25,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "shop_unlock__unlock_type__ads",
+              value: 27,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "shop_unlock__unlock_type__coin",
+              value: 26,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+          ],
+        },
+        "Ads event": {
+          name: "Ads event",
+          value: "Ads event",
+          selected: [10, 10, 17],
+          unselected: [],
+          children: [
+            {
+              label: "videoads_show",
+              value: 10,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "videoads_show",
+              value: 10,
+              type: "CUSTOM",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "videoads_show_ready__reward__revive",
+              value: 17,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+          ],
+        },
+        "UV ULRD": {
+          name: "UV ULRD",
+          value: "UV ULRD",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "ad_imp",
+              value: "fixed-52",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "banner_imp",
+              value: "fixed-55",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "iap_value",
+              value: "fixed-46",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "interstitial_imp",
+              value: "fixed-53",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "rewarded_imp",
+              value: "fixed-54",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "subs_value",
+              value: "fixed-45",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "UV",
+              value: "fixed-47",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "UV_ad",
+              value: "fixed-48",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "UV_ad_banner",
+              value: "fixed-51",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "UV_ad_interstitial",
+              value: "fixed-49",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "UV_ad_rewarded",
+              value: "fixed-50",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+          ],
+        },
+        Subscription: {
+          name: "Subscription",
+          value: "Subscription",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "pay_rate",
+              value: "fixed-42",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "subs_users_rate",
+              value: "fixed-44",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "trial_rate",
+              value: "fixed-43",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+          ],
+        },
+        "Activation Metrics": {
+          name: "Activation Metrics",
+          value: "Activation Metrics",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "2MEd0_rate",
+              value: "fixed-38",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "aha_rate",
+              value: "fixed-40",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "habit_rate",
+              value: "fixed-41",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "setup_rate",
+              value: "fixed-39",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+          ],
+        },
+        "Time engagement": {
+          name: "Time engagement",
+          value: "Time engagement",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "song_play_time",
+              value: "fixed-35",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "time_in_app",
+              value: "fixed-34",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+          ],
+        },
+        Retention: {
+          name: "Retention",
+          value: "Retention",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "retention",
+              value: "fixed-32",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "sum_retention",
+              value: "fixed-33",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+          ],
+        },
+      };
+
+      const output = {
+        "Song engagement": {
+          name: "Song engagement",
+          value: "Song engagement",
+          selected: [4],
+          unselected: [6],
+          children: [
+            {
+              label: "me_start",
+              value: "fixed-37",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_click",
+              value: "fixed-36",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_fail",
+              value: 4,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_impression",
+              value: 16,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_revive_impression",
+              value: 3,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_start__song_play_type__replay",
+              value: 15,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "song_unlock",
+              value: 6,
+              type: "CUSTOM",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+          ],
+        },
+        "Other metrics": {
+          name: "Other metrics",
+          value: "Other metrics",
+          selected: [14],
+          unselected: [9],
+          children: [
+            {
+              label: "coin_earn",
+              value: 14,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "coin_spend",
+              value: 13,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "coin_spend__location__character_unlock",
+              value: 9,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "coin_spend__location__character_unlock",
+              value: 9,
+              type: "CUSTOM",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "shop_preview",
+              value: 28,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "shop_unlock",
+              value: 25,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "shop_unlock__unlock_type__ads",
+              value: 27,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "shop_unlock__unlock_type__coin",
+              value: 26,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+          ],
+        },
+        "Ads event": {
+          name: "Ads event",
+          value: "Ads event",
+          selected: [10, 10, 17],
+          unselected: [],
+          children: [
+            {
+              label: "videoads_show",
+              value: 10,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "videoads_show",
+              value: 10,
+              type: "CUSTOM",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "videoads_show_ready__reward__revive",
+              value: 17,
+              type: "DEFAULT",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+          ],
+        },
+        "UV ULRD": {
+          name: "UV ULRD",
+          value: "UV ULRD",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "ad_imp",
+              value: "fixed-52",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "banner_imp",
+              value: "fixed-55",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "iap_value",
+              value: "fixed-46",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "interstitial_imp",
+              value: "fixed-53",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "rewarded_imp",
+              value: "fixed-54",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "subs_value",
+              value: "fixed-45",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "UV",
+              value: "fixed-47",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "UV_ad",
+              value: "fixed-48",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "UV_ad_banner",
+              value: "fixed-51",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "UV_ad_interstitial",
+              value: "fixed-49",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "UV_ad_rewarded",
+              value: "fixed-50",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+          ],
+        },
+        Subscription: {
+          name: "Subscription",
+          value: "Subscription",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "pay_rate",
+              value: "fixed-42",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "subs_users_rate",
+              value: "fixed-44",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "trial_rate",
+              value: "fixed-43",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+          ],
+        },
+        "Activation Metrics": {
+          name: "Activation Metrics",
+          value: "Activation Metrics",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "2MEd0_rate",
+              value: "fixed-38",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "aha_rate",
+              value: "fixed-40",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "habit_rate",
+              value: "fixed-41",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "setup_rate",
+              value: "fixed-39",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+          ],
+        },
+        "Time engagement": {
+          name: "Time engagement",
+          value: "Time engagement",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "song_play_time",
+              value: "fixed-35",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+            {
+              label: "time_in_app",
+              value: "fixed-34",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT", "ACT_DATE"],
+            },
+          ],
+        },
+        Retention: {
+          name: "Retention",
+          value: "Retention",
+          selected: [],
+          unselected: [],
+          children: [
+            {
+              label: "retention",
+              value: "fixed-32",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+            {
+              label: "sum_retention",
+              value: "fixed-33",
+              type: "FIXED",
+              waitingBackfill: false,
+              viewModes: ["COHORT"],
+            },
+          ],
+        },
+      };
+
+      // how to loop input to output
+      function solution() {
+        const result = Object.keys(input).reduce((acc, curr) => {
+          acc[curr] = input[curr];
+          return acc;
+        }, {});
+      }
+    </script>
+  </body>
+</html>

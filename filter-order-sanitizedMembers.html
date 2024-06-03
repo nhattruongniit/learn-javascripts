@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>filter-dimension</title>
+  </head>
+
+  <body>
+    <h2>filter-dimension</h2>
+    <script>
+      const sanitizedMembers = [
+        {
+          name: "firebase.event_previous_timestamp",
+          type: "time",
+        },
+        {
+          name: "firebase.event_timestamp",
+          type: "time",
+        },
+        {
+          name: "firebase.country",
+          type: "string",
+        },
+        {
+          name: "firebase.user_first_touch_timestamp",
+          type: "time",
+        },
+      ];
+
+      const timeDimensions = [
+        {
+          dimension: {
+            name: "firebase.event_timestamp",
+          },
+          granularity: "hour",
+        },
+        {
+          dimension: {
+            name: "firebase.user_first_touch_timestamp",
+          },
+        },
+      ];
+
+      // const output = [
+      //   {
+      //     name: "firebase.event_previous_timestamp",
+      //     type: "time",
+      //   },
+      //   {
+      //     name: "firebase.country",
+      //     type: "string",
+      //   },
+      //   {
+      //     name: "firebase.user_first_touch_timestamp",
+      //     type: "time",
+      //   },
+      // ];
+
+      const output = sanitizedMembers.filter((member) => {
+        const timeDimension = timeDimensions.find(
+          (td) => td.dimension.name === member.name
+        );
+        return !timeDimension || !timeDimension.granularity;
+      });
+
+      console.log(output);
+    </script>
+  </body>
+</html>
