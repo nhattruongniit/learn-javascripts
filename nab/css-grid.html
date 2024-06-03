@@ -3,6 +3,15 @@
 <head>
     <title>Form</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .layout {
+        margin: 20px;
+      }
+
       button {
         color: #ffffff;
         background:#1ba94c;
@@ -24,6 +33,7 @@
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
         border-radius: 2px;
+        margin: 0;
       }    
 
       input {
@@ -39,6 +49,43 @@
         border-bottom: 2px solid transparent;
         transition: border-bottom 0.1s ease-in-out;
 
+      }
+
+      .form {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 10px;
+      }
+      input {
+        box-sizing: border-box;
+      }
+      input.first-name {
+        width: calc(calc(100% - 20px) / 3);
+      }
+      input.last-name {
+        width: calc(calc(100% - 20px) / 3);
+      }
+      input.age {
+        width: calc(calc(100% - 20px) / 3);
+      }
+      input.address {
+        width: calc(100%);
+      }
+      input.place-of-work {
+        width: calc(calc(100% - 10px) / 2);
+      }
+      input.job-title {
+        width: calc(calc(100% - 10px) / 2);
+      }
+      input.skype {
+        width: calc(calc(100% - 10px) / 2);
+      }
+      input.phone-number {
+        width: calc(calc(100% - 10px) / 2);
+      }
+      button {
+        width: 100%;
       }
     </style>
 </head>
