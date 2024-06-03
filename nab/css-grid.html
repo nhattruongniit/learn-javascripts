@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <style>
+      button {
+        color: #ffffff;
+        background:#1ba94c;
+        box-shadow: 0 4px 12px rgba(27, 169, 76, 0.5);
+        outline: none;
+        padding: 0 1.528em;
+        min-height: 44px;
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        margin: 8px 12px;
+        transition: box-shadow 0.1s ease;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 700;
+        font-family: var(--font-family-sans-serif);
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+      }    
+
+      input {
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 0 transparent;
+        border: 0;
+        border-radius: 0;
+        background-color: #f3f7f7;
+        color: #0e141e;
+        height: 36px;
+        outline: none;
+        font-size: 14px;
+        padding: 0 12px;
+        border-bottom: 2px solid transparent;
+        transition: border-bottom 0.1s ease-in-out;
+
+      }
+    </style>
+</head>
+
+<body>
+<!--HTML content goes here-->
+
+
+<div class="my-50 mx-auto">
+    <div class="container">
+        <div class="layout">
+            <h2>Your form</h2>
+            <div class="form">
+                <input placeholder="First name" class="first-name" />
+                <input placeholder="Last name" class="last-name" />
+                <input placeholder="Age" type="number" class="age" />
+                <input placeholder="Address" class="address" />
+                <input placeholder="Place of work" class="place-of-work" />
+                <input placeholder="Job title" class="job-title" />
+                <input placeholder="Phone number" class="phone-number" />
+                <input placeholder="Skype" class="skype" />
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
