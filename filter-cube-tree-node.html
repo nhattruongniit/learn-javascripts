@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>filter-cube-tree-node</title>
+  </head>
+
+  <body>
+    <h2>filter-cube-tree-node</h2>
+    <script>
+      const cubeTree = [
+        {
+          title: "firebase",
+          key: "firebase",
+          children: [
+            {
+              type: "string",
+              value: "firebase.ama_app_id",
+              label: "Ama App Id",
+            },
+            {
+              type: "string",
+              meta: {
+                member_groups: ["App Info"],
+              },
+              value: "firebase.app_info__id",
+              label: "App Info - ID",
+            },
+            {
+              type: "string",
+              meta: {
+                member_groups: ["App Info"],
+              },
+              value: "firebase.app_info__version",
+              label: "App Info - Version",
+            },
+          ],
+        },
+        {
+          title: "user ab testing",
+          key: "user ab testing",
+          children: [
+            {
+              type: "string",
+              value: "user_ab_testing.aba_id",
+              label: "Abalyzer v2 ID",
+            },
+          ],
+        },
+      ];
+
+      const treeNode = [
+        {
+          title: "Firebase",
+          key: "firebase",
+          children: [
+            {
+              title: "App Info",
+              key: "App Info",
+              children: [
+                {
+                  key: "firebase.app_info__id",
+                  title: "App Info - ID",
+                },
+                {
+                  key: "firebase.app_info__version",
+                  title: "App Info - Version",
+                },
+              ],
+            },
+            {
+              title: "Ama App Id",
+              key: "firebase.ama_app_id",
+            },
+          ],
+        },
+        {
+          title: "User Ab Testing",
+          key: "user_ab_testing",
+          children: [
+            {
+              title: "Abalyzer v2 ID",
+              key: "user_ab_testing.aba_id",
+            },
+          ],
+        },
+      ];
+
+      function convertCubeTree(cubeTree) {
+        function processNode(node) {
+          const resultNode = {
+            title: node.title.replace(/(^|\s)\S/g, (l) => l.toUpperCase()),
+            key: node.key,
+            children: [],
+          };
+
+          const groupedChildren = {};
+
+          (node.children || []).forEach((child) => {
+            if (child.children) {
+              // Recursively process child nodes
+              resultNode.children.push(processNode(child));
+            } else if (child.meta && child.meta.member_groups) {
+              child.meta.member_groups.forEach((group) => {
+                if (!groupedChildren[group]) {
+                  groupedChildren[group] = {
+                    title: group,
+                    key: group,
+                    children: [],
+                  };
+                }
+                groupedChildren[group].children.push({
+                  title: child.label,
+                  key: child.value,
+                });
+              });
+            } else {
+              resultNode.children.push({
+                title: child.label,
+                key: child.value,
+              });
+            }
+          });
+
+          for (const group in groupedChildren) {
+            resultNode.children.push(groupedChildren[group]);
+          }
+
+          return resultNode;
+        }
+
+        return cubeTree.map(processNode);
+      }
+      const result = convertCubeTree(cubeTree);
+      console.log("result: ", result);
+    </script>
+  </body>
+</html>
