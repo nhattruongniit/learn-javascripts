@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Maxium Profit</title>
+  </head>
+  <body>
+    <h1>Maxium Profit</h1>
+
+    <script type="text/javascript">
+     function findMaximumProfit(category, price) {
+          // Combine category and price into an array of objects
+          let items = category.map((cat, idx) => ({cat, pr: price[idx]}));
+
+          // Sort items by price in ascending order
+          items.sort((a, b) => a.pr - b.pr);
+
+          let soldCategories = new Set();
+          let totalProfit = 0;
+
+          // Iterate through the sorted items
+          for (let item of items) {
+              soldCategories.add(item.cat);
+              totalProfit += item.pr * soldCategories.size;
+          }
+
+          return totalProfit;
+      }
+
+      // Test cases
+      console.log(findMaximumProfit([3, 2, 2, 3], [2, 7, 3, 4]), 30); // Expected output: 30
+      console.log(findMaximumProfit([2, 1, 2], [3, 2, 4]), 16); // Expected output: 16
+      console.log(findMaximumProfit([3, 1, 2, 3], [2, 1, 4, 4]), 29); // Expected output: 29
+      console.log(findMaximumProfit([6, 2, 2, 2, 1, 3, 3], [6, 1, 2, 6, 4, 3, 5]), 58); // Expected output: 58
+    </script>
+  </body>
+</html>
