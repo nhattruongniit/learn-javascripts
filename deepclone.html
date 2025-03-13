@@ -19,8 +19,8 @@
         { id: 4, title: 'learn abc', price: 100},
       ] // a => b, c, d // global scope
 
+      const clonedTodos = JSON.parse(JSON.stringify(todos)); // deep clone
       // const clonedTodos = [...todos]; // shallow clone
-      const clonedTodos = [...todos]; // deep clone
       const idBE = 2; 
       
       const todoIndex = clonedTodos.findIndex(todo => todo.id === idBE)
@@ -28,55 +28,7 @@
 
       console.log('res: ', { todos, clonedTodos })
 
-      // using by reduce to total -> 800
-      const totalPrice = todos.reduce((accumulator, todo) => {
-        return accumulator + todo.price;
-      }, 0);
-
-      // grouping object by a property
-      const people = [
-        { name: "Alice", age: 21 },
-        { name: "Max", age: 20 },
-        { name: "Jane", age: 20 },
-      ];
-      
-
-      function grouping(data, property) {
-        return data.reduce((acc, currItem) => {
-          const key = currItem[property]; // currItem['age'] = 21
-          const currGroup = acc[key] ?? [];
-
-          return {
-            ...acc,
-            [key]: currGroup.concat(currItem)
-          };
-        }, {})
-      }
-      const resGrouping = grouping(people, 'age')
-      console.log('resGrouping: ', resGrouping)
-      /*
-        case1: people, 'age'
-          {
-            21: [ ... ],
-            20: [ ... ],
-          }
-
-      */
-
-      // counting values of object
-      const names = ["Alice", "Bob", "Tiff", "Bruce", "Alice"];
-      // { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }
-
-      const nameCounting = names.reduce((accumulator, name) => {
-        if (accumulator[name]) {
-              accumulator[name] += 1;
-        } else {
-              accumulator[name] = 1;
-        }
-          return accumulator;
-      }, {});
-
-  console.log(nameCounting);
+    
 
 
     </script>

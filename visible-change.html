@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang="ja"
+  xml:lang="ja"
+  dir="ltr"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:fb="http://www.facebook.com/2008/fbml"
+>
+  <head>
+    <title>visible-change</title>
+  </head>
+
+  <body>
+    <h2>visible-change</h2>
+    <script>
+      var hidden = "hidden";
+      let isUserActive = true;
+      let inactivityTimer;
+
+      function resetInactivityTimer() {
+        isUserActive = true;  // Mark user as active
+        clearTimeout(inactivityTimer);  // Reset timer
+
+        inactivityTimer = setTimeout(() => {
+          isUserActive = false; // Mark as inactive after timeout
+          console.log("User is inactive.");
+        }, 30000); // 30 seconds of inactivity
+      }
+
+
+      // Standards:
+      if (hidden in document)
+        document.addEventListener("visibilitychange", onchange);
+      else if ((hidden = "mozHidden") in document)
+        document.addEventListener("mozvisibilitychange", onchange);
+      else if ((hidden = "webkitHidden") in document)
+        document.addEventListener("webkitvisibilitychange", onchange);
+      else if ((hidden = "msHidden") in document)
+        document.addEventListener("msvisibilitychange", onchange);
+      // IE 9 and lower:
+      else if ("onfocusin" in document)
+        document.onfocusin = document.onfocusout = onchange;
+      // All others:
+      else
+        window.onpageshow = window.onpagehide
+        = window.onfocus = window.onblur = onchange;
+
+      function onchange (evt) {
+        // var v = "visible", h = "hidden",
+        //     evtMap = {
+        //       focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h
+        //     };
+
+        // evt = evt || window.event;
+        // if (evt.type in evtMap)
+        //   document.body.className = evtMap[evt.type];
+        // else
+        //   document.body.className = this[hidden] ? "hidden" : "visible";
+        if (document.visibilityState === "hidden") {
+          console.log("Page is hidden. Stopping events.");
+        } else if (isUserActive) {
+          console.log("Page is visible and user is active. Dispatch event.");
+        } else {
+          console.log("Page is visible, but user is inactive. No event dispatch.");
+        }
+      }
+
+      
+      // Listen for user activity (Mouse, Keyboard, Touch)
+      ["mousemove", "keydown", "touchstart"].forEach((event) => {
+        document.addEventListener(event, resetInactivityTimer);
+      });
+
+
+
+      // set the initial state (but only if browser supports the Page Visibility API)
+      if( document[hidden] !== undefined )
+        onchange({type: document[hidden] ? "blur" : "focus"});
+
+        function fetchData() {
+          if (isUserActive && document.visibilityState === "visible") {
+            console.log("Fetching data...");
+          } else {
+            console.log("Skipping fetch, user is inactive.");
+          }
+        }
+
+        setInterval(fetchData, 5000); // Fetch data every 5 sec
+
+      // setInterval(() => {
+      //   console.log("Hello");
+      // }, 5000);
+    </script>
+  </body>
+</html>
