@@ -13,3 +13,5 @@ function equalSum(nums, target) {
 }
 const result = equalSum(nums, 6);
 console.log(result);
+
+
